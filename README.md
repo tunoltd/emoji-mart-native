@@ -1,7 +1,7 @@
 <div align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
   <br><a href="https://thinkproductivity.github.io/emoji-mart-native">Demo</a> #TODO: Make example RN app • <a href="https://github.com/thinkproductivity/emoji-mart-native/releases">Changelog</a>
-  <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/1238485/39626099-823526f0-4f98-11e8-914e-72d9ce91c756.png">
+  <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png">
   <br><br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
   <br>Ported from code brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
@@ -275,21 +275,21 @@ Possible keys are:
 #### Short name, name and keywords
 Not only does **Emoji Mart Native** return more results than most emoji picker, they’re more accurate and sorted by relevance.
 
-<img width="338" alt="summer" src="https://user-images.githubusercontent.com/1238485/39626167-c513f456-4f98-11e8-99f4-50f81f8a8aed.png">
+<img width="338" alt="summer" src="https://user-images.githubusercontent.com/12134822/40007143-ef8196be-5793-11e8-83ab-96373b0101ff.png">
 
 #### Emoticons
 The only emoji picker that returns emojis when searching for emoticons.
 
-<img width="338" alt="emoticons" src="https://user-images.githubusercontent.com/1238485/39626180-cea3e0f8-4f98-11e8-90c2-5fae9bea7df6.png">
+<img width="338" alt="emoticons" src="https://user-images.githubusercontent.com/12134822/40007146-f1c9d544-5793-11e8-9c0a-5b7767b7045b.png">
 
 #### Results intersection
 For better results, **Emoji Mart Native** split search into words and only returns results matching both terms.
 
-<img width="338" alt="high-five" src="https://user-images.githubusercontent.com/1238485/39626199-dc63ddb0-4f98-11e8-8481-e6823aa468ed.png">
+<img width="338" alt="hand-raised" src="https://user-images.githubusercontent.com/12134822/40007148-f358a962-5793-11e8-951b-4c5a7c583f27.png">
 
 ### Fully customizable
 #### Anchors color, title and default emoji
-<img width="338" alt="customizable-color" src="https://user-images.githubusercontent.com/1238485/39626209-e55e64a8-4f98-11e8-90ce-58340d92c247.png">
+<img width="338" alt="customizable-color" src="https://user-images.githubusercontent.com/12134822/40007153-f56680ee-5793-11e8-9795-32fb54aa918f.png">
 
 #### Emojis sizes and length
 <img width="296" alt="size-and-length" src="https://user-images.githubusercontent.com/436043/32532590-381f67de-c400-11e7-86f6-328e30d6b116.png">
