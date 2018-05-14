@@ -8,6 +8,7 @@ import {
   ScrollView,
   ToastAndroid,
   TouchableWithoutFeedback,
+  // PixelRatio,
 } from 'react-native'
 
 import store from '../../utils/store'
@@ -445,7 +446,17 @@ export default class NimblePicker extends React.PureComponent {
       { skin } = this.state
 
     const emojiSizing = emojiSize + emojiMargin
-    const emojisListWidth = perLine * emojiSizing + emojiMargin
+    // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
+    // multiple devices, however the values passed still gets modified..
+    // TODO: If 4.roundToNearestPixel() starts working correctly,
+    // change hard value back to using PixelRatio.roundToNearestPixel()
+    // const emojisListWidth = PixelRatio.roundToNearestPixel(
+    //   perLine * emojiSizing + emojiMargin + 2,
+    // )
+    // const emojisListHeight = PixelRatio.roundToNearestPixel(
+    //   rows * emojiSizing + emojiMargin,
+    // )
+    const emojisListWidth = 320
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
     return [
@@ -491,7 +502,6 @@ export default class NimblePicker extends React.PureComponent {
             onScroll={this.onScroll}
             horizontal
             pagingEnabled
-            showsHorizontalScrollIndicator={false}
             scrollEventThrottle={100}
             keyboardShouldPersistTaps="handled"
           >

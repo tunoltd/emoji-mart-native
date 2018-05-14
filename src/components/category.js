@@ -1,17 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, Text, ScrollView } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  // PixelRatio
+} from 'react-native'
 
 import frequently from '../utils/frequently'
 import { getData, getSanitizedData, chunk } from '../utils'
 import { NimbleEmoji } from '.'
 
 const styles = StyleSheet.create({
-  category: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
   labelText: {
     fontSize: 15,
     fontWeight: 'bold',
@@ -209,7 +210,6 @@ export default class Category extends React.Component {
   }
 
   onLayout = (index, event) => {
-    const { initialPosition } = this.props
     const { x: left, width } = event.nativeEvent.layout
 
     if (index === 0) {
@@ -242,7 +242,17 @@ export default class Category extends React.Component {
     const { size: emojiSize, margin: emojiMargin } = emojiProps
 
     const emojiSizing = emojiSize + emojiMargin
-    const emojisListWidth = perLine * emojiSizing + emojiMargin
+    // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
+    // multiple devices, however the values passed still gets modified..
+    // TODO: If PixelRatio.roundToNearestPixel() starts working correctly,
+    // change hard value back to using PixelRatio.roundToNearestPixel()
+    // const emojisListWidth = PixelRatio.roundToNearestPixel(
+    //   perLine * emojiSizing + emojiMargin + 2,
+    // )
+    // const emojisListHeight = PixelRatio.roundToNearestPixel(
+    //   rows * emojiSizing + emojiMargin,
+    // )
+    const emojisListWidth = 320
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
     const paginatedEmojis = chunk(emojis, perLine * rows)
@@ -265,6 +275,9 @@ export default class Category extends React.Component {
                       width: emojisListWidth,
                       height: emojisListHeight,
                       padding: emojiMargin / 2,
+                      // TODO: Remove once we can use PixelRatio.roundToNearestPixel()
+                      paddingLeft: 6,
+                      paddingRight: 6,
                     },
                   ]}
                 >
