@@ -74,12 +74,11 @@ export default class Anchors extends React.PureComponent {
       const { selected } = this.state
       let contentOffset = 0
 
-      if (this.clientWidth && this.scrollWidth) {
+      if (this.clientWidth) {
         const anchorOffset = this.anchorsOffset[selected]
         const anchorWidth = this.anchorsWidth[selected]
         const anchorHalfWidth = anchorWidth / 2
 
-        const scrollCenter = this.scrollWidth / 2
         const clientCenter = this.clientWidth / 2
         const scrollStart = clientCenter - anchorHalfWidth
 
@@ -103,10 +102,6 @@ export default class Anchors extends React.PureComponent {
 
   onAnchorsScrollViewLayout = (event) => {
     this.clientWidth = event.nativeEvent.layout.width
-  }
-
-  onAnchorsScrollViewContentSizeChange = (contentWidth) => {
-    this.scrollWidth = contentWidth
   }
 
   onAnchorLayout = (index, event) => {
@@ -137,7 +132,6 @@ export default class Anchors extends React.PureComponent {
         showsHorizontalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         onLayout={this.onAnchorsScrollViewLayout}
-        onContentSizeChange={this.onAnchorsScrollViewContentSizeChange}
       >
         <View style={styles.anchors}>
           {categories.map((category, i) => {
