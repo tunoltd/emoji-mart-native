@@ -316,7 +316,7 @@ export default class NimblePicker extends React.PureComponent {
         { name: categoryName } = activeCategory
 
       if (anchors.state.selected != categoryName) {
-        anchors.setState({ selected: categoryName })
+        anchors.onSelectAnchor(categoryName)
       }
     }
 
@@ -547,30 +547,24 @@ export default class NimblePicker extends React.PureComponent {
 
           {showAnchors ? (
             <View style={styles.emojiMartAnchors}>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyboardShouldPersistTaps="handled"
-              >
-                <Anchors
-                  ref={this.setAnchorsRef}
-                  data={this.data}
-                  i18n={this.i18n}
-                  color={color}
-                  categories={this.categories}
-                  onAnchorPress={this.handleAnchorPress}
-                  categoryEmojis={categoryEmojis}
-                  emojiProps={{
-                    native,
-                    skin,
-                    size: anchorSize,
-                    set,
-                    forceSize: native,
-                    emojiImageFn,
-                    useLocalImages,
-                  }}
-                />
-              </ScrollView>
+              <Anchors
+                ref={this.setAnchorsRef}
+                data={this.data}
+                i18n={this.i18n}
+                color={color}
+                categories={this.categories}
+                onAnchorPress={this.handleAnchorPress}
+                categoryEmojis={categoryEmojis}
+                emojiProps={{
+                  native,
+                  skin,
+                  size: anchorSize,
+                  set,
+                  forceSize: native,
+                  emojiImageFn,
+                  useLocalImages,
+                }}
+              />
             </View>
           ) : null}
         </View>
