@@ -96,7 +96,7 @@ const PickerDefaultProps = {
   onLongPress: () => {},
   onSelect: () => {},
   onPressClose: () => {},
-  onSkinChange: null,
+  onSkinChange: () => {},
   emojiSize: 30,
   emojiMargin: EmojiDefaultProps.margin,
   anchorSize: 24,
@@ -114,7 +114,7 @@ const PickerDefaultProps = {
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,
   useLocalImages: EmojiDefaultProps.useLocalImages,
-  showSkinTones: false, // TODO: After porting <Skins /> component return value to true?
+  showSkinTones: true,
   showAnchors: true,
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
