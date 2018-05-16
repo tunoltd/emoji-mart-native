@@ -11,7 +11,7 @@ import {
   // PixelRatio,
 } from 'react-native'
 
-import store from '../../utils/store'
+import skinStore from '../../utils/skin'
 import frequently from '../../utils/frequently'
 import { deepMerge } from '../../utils'
 import { uncompress } from '../../utils/data'
@@ -104,7 +104,7 @@ export default class NimblePicker extends React.PureComponent {
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
-      skin: props.skin || store.get('skin') || props.defaultSkin,
+      skin: props.skin || skinStore.get() || props.defaultSkin,
       firstRender: true,
     }
 
@@ -217,7 +217,7 @@ export default class NimblePicker extends React.PureComponent {
   componentWillReceiveProps(props) {
     if (props.skin) {
       this.setState({ skin: props.skin })
-    } else if (props.defaultSkin && !store.get('skin')) {
+    } else if (props.defaultSkin && !skinStore.get()) {
       this.setState({ skin: props.defaultSkin })
     }
   }
@@ -376,11 +376,11 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleSkinChange(skin) {
-    var newState = { skin: skin },
+    var newState = { skin },
       { onSkinChange } = this.props
 
     this.setState(newState)
-    store.update(newState)
+    skinStore.set(skin)
 
     onSkinChange(skin)
   }
