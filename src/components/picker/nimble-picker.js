@@ -486,6 +486,11 @@ export default class NimblePicker extends React.PureComponent {
             custom={this.CUSTOM_CATEGORY.emojis}
             autoFocus={autoFocus}
             onPressClose={onPressClose}
+            showSkinTones={showSkinTones}
+            skinsProps={{
+              skin,
+              onChange: this.handleSkinChange,
+            }}
           />
 
           <ScrollView

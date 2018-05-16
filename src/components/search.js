@@ -10,6 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
+import { Skins } from '.'
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -53,6 +54,8 @@ export default class Search extends React.PureComponent {
     maxResults: PropTypes.number,
     emojisToShowFilter: PropTypes.func,
     autoFocus: PropTypes.bool,
+    showSkinTones: PropTypes.bool,
+    skinsProps: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -61,6 +64,7 @@ export default class Search extends React.PureComponent {
     maxResults: 75,
     emojisToShowFilter: null,
     autoFocus: false,
+    showSkinTones: true,
   }
 
   constructor(props) {
@@ -109,7 +113,13 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus, onPressClose } = this.props
+    var {
+      i18n,
+      autoFocus,
+      onPressClose,
+      skinsProps,
+      showSkinTones,
+    } = this.props
     var { searchTerm } = this.state
 
     let background
@@ -157,6 +167,7 @@ export default class Search extends React.PureComponent {
             </TouchableNativeFeedback>
           </View>
         ) : null}
+        {showSkinTones && <Skins {...skinsProps} />}
       </View>
     )
   }

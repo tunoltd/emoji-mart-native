@@ -31,7 +31,7 @@ class NimbleEmoji extends React.PureComponent {
 
   _getImage = (data) => {
     const { image } = data
-    const { skin, set, useLocalImages } = this.props
+    const { set, useLocalImages } = this.props
     const emoji = this._getSanitizedData(this.props)
 
     let imageSource = {
@@ -40,7 +40,7 @@ class NimbleEmoji extends React.PureComponent {
 
     if (useLocalImages && useLocalImages[emoji.id]) {
       return useLocalImages[emoji.id].localImages[set][
-        (skin || NimbleEmoji.defaultProps.skin) - 1
+        (emoji.skin || NimbleEmoji.defaultProps.skin) - 1
       ]
     }
 
