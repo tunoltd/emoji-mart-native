@@ -7,10 +7,11 @@ import {
   TextInput,
   TouchableNativeFeedback,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 import { Skins } from '.'
+
+const arrowBackIcon = require('../assets/arrow-back.png')
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -44,6 +45,8 @@ const styles = StyleSheet.create({
   closeButtonIcon: {
     marginTop: 1,
     marginLeft: 2,
+    height: 24,
+    widht: 24,
   },
 })
 
@@ -138,11 +141,7 @@ export default class Search extends React.PureComponent {
             background={background}
           >
             <View style={[styles.closeButton]}>
-              <Icon
-                style={styles.closeButtonIcon}
-                name="arrow-left"
-                size={24}
-              />
+              <Image style={styles.closeButtonIcon} source={arrowBackIcon} />
             </View>
           </TouchableNativeFeedback>
         </View>
