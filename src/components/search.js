@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
     marginLeft: 2,
     height: 24,
-    widht: 24,
+    width: 24,
   },
 })
 
