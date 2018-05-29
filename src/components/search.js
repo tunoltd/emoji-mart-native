@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableNativeFeedback,
+  Image,
 } from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 500,
   },
   closeButtonIcon: {
-    marginTop: 1,
+    marginTop: 2,
     marginLeft: 2,
     height: 24,
     width: 24,
