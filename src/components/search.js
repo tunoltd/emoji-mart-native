@@ -162,7 +162,7 @@ export default class Search extends React.PureComponent {
               background={background}
             >
               <View style={[styles.closeButton]}>
-                <Icon style={styles.closeButtonIcon} name="close" size={24} />
+                <Image style={styles.closeButtonIcon} source={arrowBackIcon} />
               </View>
             </TouchableNativeFeedback>
           </View>
