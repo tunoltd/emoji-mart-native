@@ -13,6 +13,7 @@ import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 import { Skins } from '.'
 
 const arrowBackIcon = require('../assets/arrow-back.png')
+const clearIcon = require('../assets/clear-icon.png')
 
 const styles = StyleSheet.create({
   searchContainer: {
@@ -162,7 +163,7 @@ export default class Search extends React.PureComponent {
               background={background}
             >
               <View style={[styles.closeButton]}>
-                <Image style={styles.closeButtonIcon} source={arrowBackIcon} />
+                <Image style={styles.closeButtonIcon} source={clearIcon} />
               </View>
             </TouchableNativeFeedback>
           </View>
