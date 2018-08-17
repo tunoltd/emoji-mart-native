@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   emojiMartPickerContainer: {
+    zIndex: 2,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     left: 0,
   },
   emojiMartPicker: {
-    zIndex: 2,
     flexShrink: 0,
     flexDirection: 'column',
     backgroundColor: '#eceff1',
