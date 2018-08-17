@@ -3,6 +3,7 @@ import '../../vendor/raf-polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Platform,
   StyleSheet,
   View,
   ScrollView,
@@ -260,13 +261,16 @@ export default class NimblePicker extends React.PureComponent {
   handleEmojiLongPress(emoji, e) {
     this.props.onLongPress(emoji, e)
 
-    ToastAndroid.showWithGravityAndOffset(
-      emoji.id,
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-      0,
-      190,
-    )
+    // TODO: Implement solution for iOS!
+    if (Platform.OS === 'android') {
+      ToastAndroid.showWithGravityAndOffset(
+        emoji.id,
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+        0,
+        190,
+      )
+    }
   }
 
   onScroll(event) {

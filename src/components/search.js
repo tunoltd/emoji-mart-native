@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
-import { Skins } from '.'
+import { Skins, Touchable } from '.'
 
 const arrowBackIcon = require('../assets/arrow-back.png')
 const clearIcon = require('../assets/clear-icon.png')
@@ -138,14 +138,13 @@ export default class Search extends React.PureComponent {
     return (
       <View style={styles.searchContainer}>
         <View style={styles.closeButtonContainer}>
-          <TouchableNativeFeedback
+          <Touchable
             onPress={onPressClose}
-            background={background}
+            background={Platform.OS === 'android' ? background : null}
+            style={[styles.closeButton]}
           >
-            <View style={[styles.closeButton]}>
-              <Image style={styles.closeButtonIcon} source={arrowBackIcon} />
-            </View>
-          </TouchableNativeFeedback>
+            <Image style={styles.closeButtonIcon} source={arrowBackIcon} />
+          </Touchable>
         </View>
         <TextInput
           style={styles.searchInput}
@@ -158,14 +157,13 @@ export default class Search extends React.PureComponent {
         />
         {searchTerm.length > 0 ? (
           <View style={styles.closeButtonContainer}>
-            <TouchableNativeFeedback
+            <Touchable
               onPress={this.pressCancel}
-              background={background}
+              background={Platform.OS === 'android' ? background : null}
+              style={[styles.closeButton]}
             >
-              <View style={[styles.closeButton]}>
-                <Image style={styles.closeButtonIcon} source={clearIcon} />
-              </View>
-            </TouchableNativeFeedback>
+              <Image style={styles.closeButtonIcon} source={clearIcon} />
+            </Touchable>
           </View>
         ) : null}
         {showSkinTones && <Skins {...skinsProps} />}
