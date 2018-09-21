@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   },
   emojiMartPickerContainer: {
     zIndex: 2,
+    elevation: 2,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
