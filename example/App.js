@@ -12,9 +12,9 @@ import {
   View
 } from 'react-native';
 import { NimblePicker } from 'emoji-mart-native';
+import data from 'emoji-mart-native/data/messenger.json';
+import dataRequires from './assets/emojis/messenger';
 import Toast, {DURATION} from 'react-native-easy-toast';
-import data from 'emoji-mart-native/data/twitter.json';
-import dataRequires from './assets/emojis/twitter.js';
 const {emojis: localEmojis} = dataRequires;
 type Props = {};
 export default class App extends Component<Props> {
@@ -24,7 +24,10 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <NimblePicker set='twitter' data={data} onSelect={this.addEmoji} useLocalImages={localEmojis} />
+        <NimblePicker set='messenger' 
+        data={data} 
+        onSelect={this.addEmoji} 
+        useLocalImages={localEmojis} />
         <Toast ref="toast"/>
       </View>
     );
