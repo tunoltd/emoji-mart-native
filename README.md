@@ -335,6 +335,8 @@ $ yarn start
 $ yarn storybook
 ```
 
+To easier test changes as you make them, you can run `npm run build:link -- --out-dir /$project/node_modules/emoji-mart-native/dist` replacing `$project` with your projects location.
+
 ## 🎩 Hat tips!
 Ported from code brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team<br>
 Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>
