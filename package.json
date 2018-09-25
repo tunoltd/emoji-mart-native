@@ -1,11 +1,11 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.2.15-beta",
+  "version": "0.3.0-beta",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:pederjohnsen/emoji-mart-native.git"
+    "url": "git@github.com:thinkproductivity/emoji-mart-native.git"
   },
   "keywords": [
     "react",
