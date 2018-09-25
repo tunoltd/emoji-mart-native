@@ -8,7 +8,6 @@ import {
   View,
   ScrollView,
   ToastAndroid,
-  TouchableWithoutFeedback,
   // PixelRatio,
 } from 'react-native'
 
@@ -39,36 +38,10 @@ const I18N = {
 }
 
 const styles = StyleSheet.create({
-  emojiMartBackdrop: {
-    zIndex: 1,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  emojiMartPickerContainer: {
-    zIndex: 2,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
   emojiMartPicker: {
     flexShrink: 0,
     flexDirection: 'column',
     backgroundColor: '#eceff1',
-  },
-  emojiMartFullscreen: {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
   },
   emojiMartScroll: {
     flexShrink: 0,
@@ -438,6 +411,7 @@ export default class NimblePicker extends React.PureComponent {
         emojisToShowFilter,
         showSkinTones,
         showAnchors,
+        showBackButton,
         emojiTooltip,
         include,
         exclude,
@@ -463,121 +437,113 @@ export default class NimblePicker extends React.PureComponent {
     const emojisListWidth = 320
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
-    return [
-      <TouchableWithoutFeedback
-        key="pickerBackdrop"
-        onPress={onPressClose}
-        style={styles.emojiMartBackdrop}
+    return (
+      <View
+        style={[
+          styles.emojiMartPicker,
+          { ...style },
+          { width: emojisListWidth },
+        ]}
       >
-        <View style={styles.emojiMartBackdrop} />
-      </TouchableWithoutFeedback>,
-      <View key="pickerContainer" style={styles.emojiMartPickerContainer}>
-        <View
+        <Search
+          ref={this.setSearchRef}
+          onSearch={this.handleSearch}
+          data={this.data}
+          i18n={this.i18n}
+          emojisToShowFilter={emojisToShowFilter}
+          include={include}
+          exclude={exclude}
+          custom={this.CUSTOM_CATEGORY.emojis}
+          autoFocus={autoFocus}
+          onPressClose={onPressClose}
+          showSkinTones={showSkinTones}
+          skinsProps={{
+            skin,
+            onChange: this.handleSkinChange,
+          }}
+          showBackButton={showBackButton}
+        />
+
+        <ScrollView
+          ref={this.setScrollViewRef}
+          onLayout={this.onScrollViewLayout}
+          onContentSizeChange={this.onScrollViewContentSizeChange}
           style={[
-            styles.emojiMartPicker,
-            { ...style },
-            { width: emojisListWidth },
+            styles.emojiMartScroll,
+            {
+              width: emojisListWidth,
+              height: emojisListHeight,
+            },
           ]}
+          onScroll={this.onScroll}
+          horizontal
+          pagingEnabled
+          scrollEventThrottle={100}
+          keyboardShouldPersistTaps="handled"
         >
-          <Search
-            ref={this.setSearchRef}
-            onSearch={this.handleSearch}
-            data={this.data}
-            i18n={this.i18n}
-            emojisToShowFilter={emojisToShowFilter}
-            include={include}
-            exclude={exclude}
-            custom={this.CUSTOM_CATEGORY.emojis}
-            autoFocus={autoFocus}
-            onPressClose={onPressClose}
-            showSkinTones={showSkinTones}
-            skinsProps={{
-              skin,
-              onChange: this.handleSkinChange,
-            }}
-          />
-
-          <ScrollView
-            ref={this.setScrollViewRef}
-            onLayout={this.onScrollViewLayout}
-            onContentSizeChange={this.onScrollViewContentSizeChange}
-            style={[
-              styles.emojiMartScroll,
-              {
-                width: emojisListWidth,
-                height: emojisListHeight,
-              },
-            ]}
-            onScroll={this.onScroll}
-            horizontal
-            pagingEnabled
-            scrollEventThrottle={100}
-            keyboardShouldPersistTaps="handled"
-          >
-            {this.getCategories().map((category, i) => {
-              return (
-                <Category
-                  ref={this.setCategoryRef.bind(this, `category-${i}`)}
-                  key={category.name}
-                  id={category.id}
-                  name={category.name}
-                  emojis={category.emojis}
-                  perLine={perLine}
-                  rows={rows}
-                  native={native}
-                  data={this.data}
-                  i18n={this.i18n}
-                  recent={
-                    category.id == this.RECENT_CATEGORY.id ? recent : undefined
-                  }
-                  custom={
-                    category.id == this.RECENT_CATEGORY.id
-                      ? this.CUSTOM_CATEGORY.emojis
-                      : undefined
-                  }
-                  initialPosition={this.scrollViewScrollLeft}
-                  emojiProps={{
-                    native,
-                    skin,
-                    size: emojiSize,
-                    margin: emojiMargin,
-                    set,
-                    forceSize: native,
-                    tooltip: emojiTooltip,
-                    emojiImageFn,
-                    useLocalImages,
-                    onPress: this.handleEmojiPress,
-                    onLongPress: this.handleEmojiLongPress,
-                  }}
-                />
-              )
-            })}
-          </ScrollView>
-
-          {showAnchors ? (
-            <View style={styles.emojiMartAnchors}>
-              <Anchors
-                ref={this.setAnchorsRef}
+          {this.getCategories().map((category, i) => {
+            return (
+              <Category
+                ref={this.setCategoryRef.bind(this, `category-${i}`)}
+                key={category.name}
+                id={category.id}
+                name={category.name}
+                emojis={category.emojis}
+                perLine={perLine}
+                rows={rows}
+                native={native}
                 data={this.data}
                 i18n={this.i18n}
-                color={color}
-                categories={this.categories}
-                onAnchorPress={this.handleAnchorPress}
-                categoryEmojis={categoryEmojis}
+                recent={
+                  category.id == this.RECENT_CATEGORY.id ? recent : undefined
+                }
+                custom={
+                  category.id == this.RECENT_CATEGORY.id
+                    ? this.CUSTOM_CATEGORY.emojis
+                    : undefined
+                }
+                initialPosition={this.scrollViewScrollLeft}
                 emojiProps={{
                   native,
                   skin,
-                  size: anchorSize,
+                  size: emojiSize,
+                  margin: emojiMargin,
                   set,
                   forceSize: native,
+                  tooltip: emojiTooltip,
                   emojiImageFn,
                   useLocalImages,
+                  onPress: this.handleEmojiPress,
+                  onLongPress: this.handleEmojiLongPress,
                 }}
               />
-            </View>
-          ) : null}
-        </View>
-      </View>,
-    ]
+            )
+          })}
+        </ScrollView>
+
+        {showAnchors ? (
+          <View style={styles.emojiMartAnchors}>
+            <Anchors
+              ref={this.setAnchorsRef}
+              data={this.data}
+              i18n={this.i18n}
+              color={color}
+              categories={this.categories}
+              onAnchorPress={this.handleAnchorPress}
+              categoryEmojis={categoryEmojis}
+              emojiProps={{
+                native,
+                skin,
+                size: anchorSize,
+                set,
+                forceSize: native,
+                emojiImageFn,
+                useLocalImages,
+              }}
+            />
+          </View>
+        ) : null}
+      </View>
+    )
   }
 }

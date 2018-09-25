@@ -1,11 +1,11 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.2.15-beta",
+  "version": "0.3.0-beta",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:pederjohnsen/emoji-mart-native.git"
+    "url": "git@github.com:thinkproductivity/emoji-mart-native.git"
   },
   "keywords": [
     "react",
@@ -67,6 +67,7 @@
     "build:localImagesData": "node scripts/local-images/build-data && BABEL_ENV=cjs babel data/local-images --out-dir data/local-images --copy-files",
     "build:dist": "npm run build:cjs",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
+    "build:link": "BABEL_ENV=cjs babel src --copy-files",
     "build": "npm run clean && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files",
     "start": "npm run watch",
