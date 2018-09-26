@@ -68,6 +68,8 @@ export default class App extends Component {
       <View style={styles.container}>
         {emojiPicker}
         <Text>Welcome To emoji-mart-native example app</Text>
+        <Text>Please choose an emoji set: </Text>
+
         <Picker
           selectedValue={this.state.set}
           style={{ height: 50, width: 250 }}
