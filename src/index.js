@@ -5,6 +5,7 @@ import { getEmojiDataFromNative } from './utils'
 
 export {
   Picker,
+  ModalPicker,
   NimblePicker,
   Emoji,
   NimbleEmoji,
