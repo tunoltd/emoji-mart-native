@@ -9,4 +9,5 @@ export { default as Emoji } from './emoji/emoji'
 export { default as NimbleEmoji } from './emoji/nimble-emoji'
 
 export { default as Picker } from './picker/picker'
+export { default as ModalPicker } from './picker/modal-picker'
 export { default as NimblePicker } from './picker/nimble-picker'

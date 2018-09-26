@@ -10,6 +10,9 @@
 
 ## Components
 ### Picker
+Renders *inline-block* & center aligned if parent is wider than picker.
+To render picker in a fullscreen modal use [`<ModalPicker />`](#modalpicker).
+
 ```jsx
 import { Picker } from 'emoji-mart-native'
 
@@ -33,6 +36,7 @@ import { Picker } from 'emoji-mart-native'
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}`  |
 | **onSkinChange** | | | Params: `(skin) => {}` |
+| **onPressClose** | | | Trigger when user press back button
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
@@ -47,6 +51,7 @@ import { Picker } from 'emoji-mart-native'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™ Native` | The title shown when no emojis are hovered |
+| **showBackButton** | | `false` | Shows the back button which triggers **onPressClose** |
 
 #### I18n
 ```js
@@ -162,6 +167,20 @@ const {emojis: localEmojis} = dataRequires
 }
 
 ```
+
+### ModalPicker
+Renders the picker in a fullscreen modal.
+
+```jsx
+import { ModalPicker } from 'emoji-mart-native'
+
+<ModalPicker isVisible={true} showBackButton />
+```
+
+| Prop | Required | Default | Description |
+| ---- | :------: | ------- | ----------- |
+| **...PickerProps** | | | |
+| **isVisible** | | `false` | When true shows the modal with the picker |
 
 ### Emoji
 ```jsx
@@ -316,8 +335,9 @@ $ yarn start
 $ yarn storybook
 ```
 
+To easier test changes as you make them, you can run `npm run build:link -- --out-dir /$project/node_modules/emoji-mart-native/dist` replacing `$project` with your projects location.
+
 ## 🎩 Hat tips!
 Ported from code brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team<br>
 Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>
 🙌🏼  [Cal Henderson](https://github.com/iamcal).
-
