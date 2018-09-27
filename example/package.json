@@ -7,6 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "emoji-datasource-apple": "^4.1.0",
+    "emoji-mart-native": "^0.3.0-beta",
+    "prettier": "^1.14.3",
     "react": "16.3.1",
     "react-native": "0.55.3"
   },
