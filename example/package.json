@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "emoji-mart-native": "^0.2.15-beta",
+    "emoji-mart-native": "^v0.3.0-beta",
     "react": "16.3.1",
     "react-native": "0.55.3",
     "react-native-easy-toast": "^1.1.0"
