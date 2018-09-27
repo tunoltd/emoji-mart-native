@@ -182,6 +182,22 @@ import { ModalPicker } from 'emoji-mart-native'
 | **...PickerProps** | | | |
 | **isVisible** | | `false` | When true shows the modal with the picker |
 
+### EmojiButton
+Renders an emoji button that can be used to trigger showing a hidden picker.
+
+```jsx
+import { EmojiButton } from 'emoji-mart-native'
+const emojiImage = require('assets/emoji-image.png')
+
+<EmojiButton onButtonPress={showPickerTrigger} />
+<EmojiButton onButtonPress={showPickerTrigger} buttonImage={emojiImage} />
+```
+
+| Prop | Required | Default | Description |
+| ---- | :------: | ------- | ----------- |
+| **onButtonPress** | | | Trigger when user press the button |
+| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/thinkproductivity/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
+
 ### Emoji
 ```jsx
 import { Emoji } from 'emoji-mart-native'
