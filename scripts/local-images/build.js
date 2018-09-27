@@ -5,7 +5,7 @@ var fs = require('fs'),
 
 var { compress } = require('../../src/utils/data')
 
-var sets = ['apple', 'emojione', 'facebook', 'google', 'messenger', 'twitter']
+var sets = ['apple', 'facebook', 'google', 'messenger', 'twitter']
 
 module.exports = (options) => {
   delete require.cache[require.resolve('emoji-datasource')]

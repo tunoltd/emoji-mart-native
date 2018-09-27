@@ -16,7 +16,7 @@ To render picker in a fullscreen modal use [`<ModalPicker />`](#modalpicker).
 ```jsx
 import { Picker } from 'emoji-mart-native'
 
-<Picker set='emojione' />
+<Picker set='google' />
 <Picker onSelect={this.addEmoji} />
 <Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: 20, right: 20 }} />
@@ -41,7 +41,7 @@ import { Picker } from 'emoji-mart-native'
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
@@ -78,7 +78,6 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
 | Set       | Size (`sheetSize: 16`) | Size (`sheetSize: 20`) | Size (`sheetSize: 32`) | Size (`sheetSize: 64`) |
 | --------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
 | apple     | 334 KB                 | 459 KB                 | 1.08 MB                | 2.94 MB                |
-| emojione  | 315 KB                 | 435 KB                 | 1020 KB                | 2.33 MB                |
 | facebook  | 322 KB                 | 439 KB                 | 1020 KB                | 2.50 MB                |
 | google    | 301 KB                 | 409 KB                 |  907 KB                | 2.17 MB                |
 | messenger | 325 KB                 | 449 MB                 | 1.05 MB                | 2.69 MB                |
@@ -91,7 +90,6 @@ While all sets are available by default, you may want to include only a single s
 | --------- | -------------- |
 | all       | 570 KB         |
 | apple     | 484 KB         |
-| emojione  | 485 KB         |
 | facebook  | 421 KB         |
 | google    | 483 KB         |
 | messenger | 197 KB         |
@@ -113,7 +111,6 @@ By default the picker source the emoji images online, this may not be the best s
 | --------- | -------------- |
 | all       | 1,2 MB         |
 | apple     | 594 KB         |
-| emojione  | 607 KB         |
 | facebook  | 513 KB         |
 | google    | 596 KB         |
 | messenger | 270 KB         |
@@ -204,7 +201,7 @@ import { Emoji } from 'emoji-mart-native'
 
 <Emoji emoji={{ id: 'santa', skin: 3 }} size={16} />
 <Emoji emoji=':santa::skin-tone-3:' size={16} />
-<Emoji emoji='santa' set='emojione' size={16} />
+<Emoji emoji='santa' set='google' size={16} />
 ```
 
 | Prop | Required | Default | Description |
@@ -216,7 +213,7 @@ import { Emoji } from 'emoji-mart-native'
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji) => {}` |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
@@ -337,7 +334,7 @@ It can however be overwritten as per user preference.
 <img width="98" alt="customizable-skin" src="https://user-images.githubusercontent.com/436043/32532883-2c620e7c-c402-11e7-976c-50d32be0566c.png">
 
 #### Multiple sets supported
-Apple / Google / Twitter / EmojiOne / Messenger / Facebook
+Apple / Google / Twitter / Messenger / Facebook
 
 <img width="214" alt="sets" src="https://user-images.githubusercontent.com/436043/33786868-d4226e60-dc38-11e7-840a-e4cf490f5f4a.png">
 

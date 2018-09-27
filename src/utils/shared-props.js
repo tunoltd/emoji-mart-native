@@ -14,7 +14,6 @@ const EmojiPropTypes = {
     'apple',
     'google',
     'twitter',
-    'emojione',
     'messenger',
     'facebook',
   ]),

@@ -43,7 +43,7 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-react-native": "^4.0.0",
     "babel-runtime": "^6.26.0",
-    "emoji-datasource": "4.0.4",
+    "emoji-datasource": "4.1.0",
     "emojilib": "^2.2.1",
     "inflection": "1.10.0",
     "jasmine-core": "^2.5.2",
