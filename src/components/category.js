@@ -150,8 +150,9 @@ export default class Category extends React.Component {
     const maxMargin = this.getMaxMarginValue()
 
     this.calculateVisibility(scrollLeft)
+    thisLeftWithBleed = this.left - (this.width / 2)
 
-    if (scrollLeft >= this.left && scrollLeft < maxMargin) {
+    if (scrollLeft >= thisLeftWithBleed && scrollLeft <= maxMargin) {
       return true
     }
 
