@@ -36,7 +36,8 @@ import { Picker } from 'emoji-mart-native'
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}`  |
 | **onSkinChange** | | | Params: `(skin) => {}` |
-| **onPressClose** | | | Trigger when user press back button
+| **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
+| **onPressClose** | | | Trigger when user press close button
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
@@ -51,7 +52,6 @@ import { Picker } from 'emoji-mart-native'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™ Native` | The title shown when no emojis are hovered |
-| **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 
 #### I18n
 ```js
