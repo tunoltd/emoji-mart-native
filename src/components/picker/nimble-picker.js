@@ -411,7 +411,7 @@ export default class NimblePicker extends React.PureComponent {
         emojisToShowFilter,
         showSkinTones,
         showAnchors,
-        showBackButton,
+        showCloseButton,
         emojiTooltip,
         include,
         exclude,
@@ -461,7 +461,7 @@ export default class NimblePicker extends React.PureComponent {
             skin,
             onChange: this.handleSkinChange,
           }}
-          showBackButton={showBackButton}
+          showCloseButton={showCloseButton}
         />
 
         <ScrollView

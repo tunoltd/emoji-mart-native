@@ -51,7 +51,7 @@ import { Picker } from 'emoji-mart-native'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™ Native` | The title shown when no emojis are hovered |
-| **showBackButton** | | `false` | Shows the back button which triggers **onPressClose** |
+| **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 
 #### I18n
 ```js
@@ -174,7 +174,7 @@ Renders the picker in a fullscreen modal.
 ```jsx
 import { ModalPicker } from 'emoji-mart-native'
 
-<ModalPicker isVisible={true} showBackButton />
+<ModalPicker isVisible={true} showCloseButton />
 ```
 
 | Prop | Required | Default | Description |
