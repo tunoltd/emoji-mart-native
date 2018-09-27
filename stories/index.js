@@ -6,7 +6,7 @@ import { withKnobs, text, boolean, number, select, color } from '@storybook/addo
 
 import { Picker, Emoji, emojiIndex } from '../dist';
 
-const SETS = ['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']
+const SETS = ['apple', 'google', 'twitter', 'messenger', 'facebook']
 const CUSTOM_EMOJIS = [
   {
     name: 'Octocat',
