@@ -124,7 +124,7 @@ export default class Search extends React.PureComponent {
       onPressClose,
       skinsProps,
       showSkinTones,
-      showBackButton,
+      showCloseButton,
     } = this.props
     var { searchTerm } = this.state
 
@@ -138,7 +138,7 @@ export default class Search extends React.PureComponent {
 
     return (
       <View style={styles.searchContainer}>
-        {showBackButton ? (
+        {showCloseButton ? (
           <View style={styles.closeButtonContainer}>
             <Touchable
               onPress={onPressClose}

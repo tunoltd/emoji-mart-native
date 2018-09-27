@@ -64,7 +64,7 @@ export default class ModalPicker extends React.PureComponent {
           <View style={styles.emojiMartBackdrop} />
         </TouchableWithoutFeedback>
         <View style={styles.emojiMartPickerContainer}>
-          <NimblePicker showBackButton {...this.props} {...this.state} />
+          <NimblePicker showCloseButton {...this.props} {...this.state} />
         </View>
       </Modal>
     )
