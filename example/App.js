@@ -13,36 +13,13 @@ import {
   ModalPicker,
 } from 'emoji-mart-native'
 import data from 'emoji-mart-native/data/all.json'
-import appleDataRequires from './assets/emojis/apple'
-import twitterDataRequires from './assets/emojis/twitter'
-import googleDataRequires from './assets/emojis/google'
-import facebookDataRequires from './assets/emojis/facebook'
-import messengerDataRequires from './assets/emojis/messenger'
+import dataRequires from 'emoji-mart-native/data/local-images/all'
 
-import Toast, { DURATION } from 'react-native-easy-toast'
+const { emojis: localEmojis } = dataRequires
 export default class App extends Component {
   state = {
     set: 'twitter',
     selectedEmoji: 'santa',
-    localEmojis: () => {
-      switch (this.state.set) {
-        case 'apple':
-          return appleDataRequires.emojis
-          break
-        case 'facebook':
-          return facebookDataRequires.emojis
-          break
-        case 'google':
-          return googleDataRequires.emojis
-          break
-        case 'messenger':
-          return messengerDataRequires.emojis
-          break
-        case 'twitter':
-          return twitterDataRequires.emojis
-          break
-      }
-    },
     showEmojiPicker: false,
   }
   emojiSelectTrigger = (emoji) => {
@@ -58,14 +35,14 @@ export default class App extends Component {
         <Text style={styles.titleText}>Emoji Mart Native</Text>
         <ModalPicker
           isVisible={this.state.modalVisible}
-          showBackButton={true}
+          showCloseButton={true}
           onPressClose={() => {
             this.showPickerTrigger(false)
           }}
           set={this.state.set}
           data={data}
           onSelect={this.emojiSelectTrigger}
-          useLocalImages={this.state.localEmojis()}
+          useLocalImages={localEmojis}
         />
 
         <Picker
@@ -97,7 +74,7 @@ export default class App extends Component {
           set={this.state.set}
           data={data}
           onSelect={this.emojiSelectTrigger}
-          useLocalImages={this.state.localEmojis()}
+          useLocalImages={localEmojis}
         />
         <View style={{ flexDirection: 'row' }}>
           <Text>Open picker as modal </Text>

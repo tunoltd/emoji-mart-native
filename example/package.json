@@ -7,10 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "emoji-mart-native": "^v0.3.0-beta",
+    "emoji-datasource-apple": "^4.1.0",
+    "emoji-datasource-facebook": "^4.1.0",
+    "emoji-datasource-google": "^4.1.0",
+    "emoji-datasource-messenger": "^4.1.0",
+    "emoji-datasource-twitter": "^4.1.0",
+    "emoji-mart-native": "^v0.4.0-beta",
     "react": "16.3.1",
-    "react-native": "0.55.3",
-    "react-native-easy-toast": "^1.1.0"
+    "react-native": "0.55.3"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
