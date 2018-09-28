@@ -11,13 +11,6 @@ import {
   Text,
   View
 } from 'react-native';
-import {Picker} from 'emoji-mart-native';
-import data from 'emoji-mart-native/data/all.json'
-import appleDataRequires from './assets/emojis/apple'
-import twitterDataRequires from './assets/emojis/twitter'
-import googleDataRequires from './assets/emojis/google'
-import facebookDataRequires from './assets/emojis/facebook'
-import messengerDataRequires from './assets/emojis/messenger'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -31,11 +24,15 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Picker
-          set="apple"
-          data={data}
-          useLocalImages={appleDataRequires.emojis}
-        />
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit App.js
+        </Text>
+        <Text style={styles.instructions}>
+          {instructions}
+        </Text>
       </View>
     );
   }
