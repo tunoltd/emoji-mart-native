@@ -88,12 +88,12 @@ While all sets are available by default, you may want to include only a single s
 
 | Set       | Size (on disk) |
 | --------- | -------------- |
-| all       | 570 KB         |
-| apple     | 484 KB         |
-| facebook  | 421 KB         |
-| google    | 483 KB         |
-| messenger | 197 KB         |
-| twitter   | 484 KB         |
+| all       | 558 KB         |
+| apple     | 486 KB         |
+| facebook  | 428 KB         |
+| google    | 485 KB         |
+| messenger | 210 KB         |
+| twitter   | 486 KB         |
 
 To use these data files (or any other custom data), use the `NimblePicker` component:
 
@@ -109,19 +109,26 @@ By default the picker source the emoji images online, this may not be the best s
 
 | Set       | Size (on disk) |
 | --------- | -------------- |
-| all       | 1,2 MB         |
-| apple     | 594 KB         |
-| facebook  | 513 KB         |
-| google    | 596 KB         |
-| messenger | 270 KB         |
-| twitter   | 602 KB         |
+| all       | 1.5 MB         |
+| apple     | 708 KB         |
+| facebook  | 613 KB         |
+| google    | 712 KB         |
+| messenger | 342 KB         |
+| twitter   | 722 KB         |
 
-To use these requires files, you need to download the sets you want, as well as the `img-set-64` folder from https://github.com/iamcal/emoji-data and add them to your project. (for example assets/emojis). Usage:
+To use local image requires you need to install the individual sets you need in your project using the individual sets npm packages from https://github.com/iamcal/emoji-data#installation:
+```
+npm install emoji-datasource-apple
+npm install emoji-datasource-google
+npm install emoji-datasource-twitter
+npm install emoji-datasource-facebook
+npm install emoji-datasource-messenger
+```
 
 ```js
-import data from 'emoji-mart-native/data/messenger.json'
 import { NimblePicker } from 'emoji-mart-native'
-import dataRequires from '/assets/emojis/messenger'
+import data from 'emoji-mart-native/data/messenger'
+import dataRequires from 'emoji-mart-native/data/local-images/messenger'
 
 const {emojis: localEmojis} = dataRequires
 

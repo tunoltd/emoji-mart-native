@@ -30,7 +30,7 @@ module.exports = (options) => {
     localImageSets.forEach((set) => {
       var key = `has_img_${set}`
       if (datum[key]) {
-        datum.localImages[set] = [`require('./img-${set}-64/${datum.image}')`]
+        datum.localImages[set] = [`require('../../../emoji-datasource-${set}/img/${set}/64/${datum.image}')`]
 
         // Skin variations
         if (datum.skin_variations) {
@@ -38,7 +38,7 @@ module.exports = (options) => {
             var skinVariations = datum.skin_variations[skinKey]
             if (skinVariations[key])
               datum.localImages[set].push(
-                `require('./img-${set}-64/${skinVariations.image}')`,
+                `require('../../../emoji-datasource-${set}/img/${set}/64/${skinVariations.image}')`,
               )
           }
         }
