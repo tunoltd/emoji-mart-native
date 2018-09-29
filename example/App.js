@@ -14,12 +14,13 @@ import {
 } from 'emoji-mart-native'
 import data from 'emoji-mart-native/data/all.json'
 import dataRequires from 'emoji-mart-native/data/local-images/all'
+import { SetPicker } from './components'
 
 const { emojis: localEmojis } = dataRequires
 export default class App extends Component {
   state = {
     set: 'twitter',
-    selectedEmoji: 'santa',
+    selectedEmoji: { id: 'santa' },
     showEmojiPicker: false,
   }
   emojiSelectTrigger = (emoji) => {
@@ -32,7 +33,19 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleText}>Emoji Mart Native</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>Emoji Mart Native</Text>
+          <Emoji emoji="department_store" size={16} />
+        </View>
+        <SetPicker
+          selectedValue={this.state.set}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({
+              set: itemValue,
+              showEmojiPicker: true,
+            })
+          }
+        />
         <ModalPicker
           isVisible={this.state.modalVisible}
           showCloseButton={true}
@@ -44,39 +57,25 @@ export default class App extends Component {
           onSelect={this.emojiSelectTrigger}
           useLocalImages={localEmojis}
         />
-
-        <Picker
-          selectedValue={this.state.set}
-          style={{ height: 50, width: 250 }}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({
-              set: itemValue,
-              showEmojiPicker: true,
-            })
-          }
-        >
-          <Picker.Item label="Apple" value="apple" />
-          <Picker.Item label="Facebook" value="facebook" />
-          <Picker.Item label="Google" value="google" />
-          <Picker.Item label="Messenger" value="messenger" />
-          <Picker.Item label="Twitter" value="twitter" />
-        </Picker>
-        <Emoji
-          emoji={this.state.selectedEmoji}
-          set={this.state.set}
-          skin={this.state.selectedEmoji.skin}
-          size={64}
-          fallback={(emoji) => {
-            return `:${emoji.short_names[0]}:`
-          }}
-        />
+        <View style={styles.previewContainer}>
+          <Emoji
+            emoji={this.state.selectedEmoji}
+            set={this.state.set}
+            skin={this.state.selectedEmoji.skin}
+            size={64}
+            fallback={(emoji) => {
+              return `:${emoji.short_names[0]}:`
+            }}
+          />
+          <Text>{this.state.selectedEmoji.id}</Text>
+        </View>
         <NimblePicker
           set={this.state.set}
           data={data}
           onSelect={this.emojiSelectTrigger}
           useLocalImages={localEmojis}
         />
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.openModalText}>
           <Text>Open picker as modal </Text>
           <EmojiButton
             onButtonPress={() => {
@@ -95,6 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 25,
   },
   welcome: {
     fontSize: 20,
@@ -106,8 +106,19 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  titleContainer: {
+    flexDirection: 'row',
+  },
+  previewContainer: {
+    alignItems: 'center',
+    marginBottom: 15,
+  },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  openModalText: {
+    flexDirection: 'row',
+    marginTop: 15,
   },
 })
