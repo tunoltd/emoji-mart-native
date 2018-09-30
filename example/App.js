@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, Button, Picker } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import {
   Emoji,
   NimblePicker,
@@ -54,7 +54,10 @@ export default class App extends Component {
           }}
           set={this.state.set}
           data={data}
-          onSelect={this.emojiSelectTrigger}
+          onSelect={(emoji) => {
+            this.emojiSelectTrigger(emoji)
+            this.showPickerTrigger(false)
+          }}
           useLocalImages={localEmojis}
         />
         <View style={styles.previewContainer}>
