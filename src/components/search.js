@@ -17,10 +17,11 @@ const clearIcon = require('../assets/clear-icon.png')
 
 const styles = StyleSheet.create({
   searchContainer: {
-    paddingLeft: 5,
+    paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 2,
     paddingBottom: 2,
+    height: 52,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -136,8 +137,12 @@ export default class Search extends React.PureComponent {
       background = TouchableNativeFeedback.SelectableBackground()
     }
 
+    const searchContainerWithCloseButtonStyle = {
+      paddingLeft: 5
+    }
+
     return (
-      <View style={styles.searchContainer}>
+      <View style={[styles.searchContainer, showCloseButton ? searchContainerWithCloseButtonStyle : null]}>
         {showCloseButton ? (
           <View style={styles.closeButtonContainer}>
             <Touchable
