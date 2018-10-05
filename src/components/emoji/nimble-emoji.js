@@ -94,7 +94,7 @@ class NimbleEmoji extends React.PureComponent {
     let data = this._getData(this.props)
     if (!data) {
       if (this.props.fallback) {
-        return this.props.fallback(null)
+        return this.props.fallback(null, this.props)
       } else {
         return null
       }
@@ -110,7 +110,7 @@ class NimbleEmoji extends React.PureComponent {
 
     if (!unified && !custom) {
       if (this.props.fallback) {
-        return this.props.fallback(data)
+        return this.props.fallback(data, this.props)
       } else {
         return null
       }
@@ -146,7 +146,7 @@ class NimbleEmoji extends React.PureComponent {
 
       if (!setHasEmoji) {
         if (this.props.fallback) {
-          return this.props.fallback(data)
+          return this.props.fallback(data, this.props)
         } else {
           return null
         }
