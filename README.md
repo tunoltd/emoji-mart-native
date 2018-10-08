@@ -237,8 +237,8 @@ To have the component render `:shrug:` you would need to:
   set={'messenger'}
   emoji={'shrug'}
   size={24}
-  fallback={(emoji) => {
-    return `:${emoji.short_names[0]}:`
+  fallback={(emoji, props) => {
+    return emoji ? `:${emoji.short_names[0]}:` : props.emoji
   }}
 />
 ```
