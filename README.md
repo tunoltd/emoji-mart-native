@@ -39,7 +39,7 @@ import { Picker } from 'emoji-mart-native'
 | **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 | **onPressClose** | | | Trigger when user press close button
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
-| **pagesToLazyLoad** | | `2` | Number of pages to lazy load each side of currently active page. |
+| **pagesToEagerLoad** | | `2` | Number of pages to eager load each side of currently active page. |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
