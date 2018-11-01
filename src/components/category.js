@@ -131,18 +131,18 @@ export default class Category extends React.Component {
       typeof this.left === 'number' &&
       scrollLeft % this.width === 0
     ) {
-      let { pagesToLazyLoad } = this.props
+      let { pagesToEagerLoad } = this.props
       for (let index in this.pages) {
         const page = parseInt(index) + 1
         const pageWidth = this.maxMargin[`page-${index}`] || 0
         const pageLeft =
           this.pagesOffsetLeft[`page-${index}`] || this.left + index * pageWidth
 
-        const pageLazyLoad = pageWidth * pagesToLazyLoad
+        const pageEagerLoadWidth = pageWidth * pagesToEagerLoad
 
         this.active[`page-${index}`] =
-          scrollLeft >= pageLeft - pageLazyLoad &&
-          scrollLeft <= pageLeft + pageLazyLoad
+          scrollLeft >= pageLeft - pageEagerLoadWidth &&
+          scrollLeft <= pageLeft + pageEagerLoadWidth
       }
 
       this.forceUpdate()
@@ -239,7 +239,7 @@ export default class Category extends React.Component {
         i18n,
         perLine,
         rows,
-        pagesToLazyLoad,
+        pagesToEagerLoad,
       } = this.props,
       emojis = this.getEmojis(),
       { visible } = this.state
