@@ -1,11 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Picker, StyleSheet } from 'react-native'
+import { View, StyleSheet, Button, TouchableOpacity, Text } from 'react-native'
 
 const styles = StyleSheet.create({
-  Picker: {
-    height: 50,
-    width: 250,
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  column: {
+    marginRight: 15,
+    marginLeft: 15,
+    fontSize: 24,
   },
 })
 
@@ -19,17 +24,23 @@ export default class SetPicker extends React.PureComponent {
 
   render() {
     return (
-      <Picker
-        selectedValue={this.props.selectedValue}
-        style={styles.Picker}
-        onValueChange={this.props.onValueChange}
-      >
-        <Picker.Item label="Apple" value="apple" />
-        <Picker.Item label="Facebook" value="facebook" />
-        <Picker.Item label="Google" value="google" />
-        <Picker.Item label="Messenger" value="messenger" />
-        <Picker.Item label="Twitter" value="twitter" />
-      </Picker>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.column} onPress={this._onPressButton}>
+          <Text>Apple</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.column} onPress={this._onPressButton}>
+          <Text>Facebook</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.column} onPress={this._onPressButton}>
+          <Text>Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.column} onPress={this._onPressButton}>
+          <Text>Messenger</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.column} onPress={this._onPressButton}>
+          <Text>Twitter</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
