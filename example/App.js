@@ -19,7 +19,7 @@ const { emojis: localEmojis } = dataRequires
 export default class App extends Component {
   state = {
     set: 'twitter',
-    selectedEmoji: { id: 'department_store' },
+    selectedEmoji: { id: 'department_store', colons: ':department_store:' },
     showEmojiPicker: false,
   }
   emojiSelectTrigger = (emoji) => {
@@ -66,7 +66,7 @@ export default class App extends Component {
               return `:${emoji.short_names[0]}:`
             }}
           />
-          <Text>{this.state.selectedEmoji.id}</Text>
+          <Text>{this.state.selectedEmoji.colons}</Text>
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity style={[styles.btn, this.state.set === 'apple' ? styles.btnActive : null]} onPress={this.onPressApple}>
