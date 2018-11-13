@@ -7,7 +7,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import {
-  Emoji,
+  NimbleEmoji,
   NimblePicker,
   EmojiButton,
   ModalPicker,
@@ -57,11 +57,13 @@ export default class App extends Component {
           <Text style={styles.titleText}>Emoji Mart Native</Text>
         </View>
         <View style={styles.previewContainer}>
-          <Emoji
+          <NimbleEmoji
             emoji={this.state.selectedEmoji}
             set={this.state.set}
             skin={this.state.selectedEmoji.skin}
             size={64}
+            data={data}
+            useLocalImages={localEmojis}
             fallback={(emoji) => {
               return `:${emoji.short_names[0]}:`
             }}
@@ -88,8 +90,8 @@ export default class App extends Component {
         <NimblePicker
           set={this.state.set}
           data={data}
-          onSelect={this.emojiSelectTrigger}
           useLocalImages={localEmojis}
+          onSelect={this.emojiSelectTrigger}
         />
         <View style={styles.openModalText}>
           <Text>Open picker as modal </Text>
@@ -107,11 +109,11 @@ export default class App extends Component {
           }}
           set={this.state.set}
           data={data}
+          useLocalImages={localEmojis}
           onSelect={(emoji) => {
             this.emojiSelectTrigger(emoji)
             this.showPickerTrigger(false)
           }}
-          useLocalImages={localEmojis}
         />
       </View>
     )
