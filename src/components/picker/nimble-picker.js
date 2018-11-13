@@ -398,6 +398,7 @@ export default class NimblePicker extends React.PureComponent {
     var {
         perLine,
         rows,
+        pagesToEagerLoad,
         emojiSize,
         emojiMargin,
         anchorSize,
@@ -491,6 +492,7 @@ export default class NimblePicker extends React.PureComponent {
                 emojis={category.emojis}
                 perLine={perLine}
                 rows={rows}
+                pagesToEagerLoad={pagesToEagerLoad}
                 native={native}
                 data={this.data}
                 i18n={this.i18n}
