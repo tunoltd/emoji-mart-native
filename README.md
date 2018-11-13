@@ -126,13 +126,14 @@ npm install emoji-datasource-messenger
 ```
 
 ```js
-import { NimblePicker } from 'emoji-mart-native'
+import { NimblePicker, NimbleEmoji } from 'emoji-mart-native'
 import data from 'emoji-mart-native/data/messenger'
 import dataRequires from 'emoji-mart-native/data/local-images/messenger'
 
 const {emojis: localEmojis} = dataRequires
 
 <NimblePicker set='messenger' data={data} useLocalImages={localEmojis} />
+<NimbleEmoji emoji='santa' set='messenger' data={data} useLocalImages={localEmojis} />
 ```
 
 #### Examples of `emoji` object:
