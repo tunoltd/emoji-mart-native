@@ -1,3 +1,4 @@
 node_modules/
 stats.json
 report.html
+package-lock.json
