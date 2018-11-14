@@ -1,6 +1,6 @@
 <div align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
-  <br><a href="https://thinkproductivity.github.io/emoji-mart-native">Demo</a> #TODO: Make example RN app • <a href="https://github.com/thinkproductivity/emoji-mart-native/releases">Changelog</a>
+  <br><a href="https://github.com/thinkproductivity/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/thinkproductivity/emoji-mart-native/releases">Changelog</a>
   <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png">
 </div>
 
