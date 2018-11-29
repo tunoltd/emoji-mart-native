@@ -81,7 +81,7 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
 | apple     | 334 KB                 | 459 KB                 | 1.08 MB                | 2.94 MB                |
 | facebook  | 322 KB                 | 439 KB                 | 1020 KB                | 2.50 MB                |
 | google    | 301 KB                 | 409 KB                 |  907 KB                | 2.17 MB                |
-| messenger | 325 KB                 | 449 MB                 | 1.05 MB                | 2.69 MB                |
+| messenger | 325 KB                 | 449 KB                 | 1.05 MB                | 2.69 MB                |
 | twitter   | 288 KB                 | 389 KB                 |  839 KB                | 1.82 MB                |
 
 #### Datasets
