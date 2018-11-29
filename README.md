@@ -165,7 +165,7 @@ const {emojis: localEmojis} = dataRequires
 {
   id: 'octocat',
   name: 'Octocat',
-  colons: ':octocat',
+  colons: ':octocat:',
   text: '',
   emoticons: [],
   custom: true,
