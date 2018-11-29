@@ -10,7 +10,9 @@ import {
 } from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
-import { Skins, Touchable } from '.'
+
+import Skins from './skins'
+import Touchable from './common/touchable'
 
 const arrowBackIcon = require('../assets/arrow-back.png')
 const clearIcon = require('../assets/clear-icon.png')

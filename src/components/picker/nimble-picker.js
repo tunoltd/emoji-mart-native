@@ -16,8 +16,9 @@ import frequently from '../../utils/frequently'
 import { deepMerge } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
-
-import { Anchors, Category, Search } from '..'
+import Anchors from '../anchors'
+import Category from '../category'
+import Search from '../search'
 
 const I18N = {
   search: 'Search',

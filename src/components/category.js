@@ -10,7 +10,8 @@ import {
 
 import frequently from '../utils/frequently'
 import { getData, getSanitizedData, chunk } from '../utils'
-import { NimbleEmoji } from '.'
+
+import NimbleEmoji from './emoji/nimble-emoji'
 
 const styles = StyleSheet.create({
   labelText: {
