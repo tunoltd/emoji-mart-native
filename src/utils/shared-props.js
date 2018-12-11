@@ -90,6 +90,8 @@ const PickerPropTypes = {
     symbols: PropTypes.string.isRequired,
     flags: PropTypes.string.isRequired,
   }),
+  notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string,
 }
 
 const PickerDefaultProps = {
@@ -134,6 +136,8 @@ const PickerDefaultProps = {
     symbols: 'symbols',
     flags: 'flag-wales',
   },
+  notFound: () => {},
+  notFoundEmoji: 'sleuth_or_spy',
 }
 
 export {
