@@ -422,6 +422,8 @@ export default class NimblePicker extends React.PureComponent {
         useLocalImages,
         categoryEmojis,
         onPressClose,
+        notFound,
+        notFoundEmoji,
       } = this.props,
       { skin } = this.state
 
@@ -519,6 +521,8 @@ export default class NimblePicker extends React.PureComponent {
                   onPress: this.handleEmojiPress,
                   onLongPress: this.handleEmojiLongPress,
                 }}
+                notFound={notFound}
+                notFoundEmoji={notFoundEmoji}
               />
             )
           })}

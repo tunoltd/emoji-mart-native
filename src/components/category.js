@@ -12,23 +12,14 @@ import frequently from '../utils/frequently'
 import { getData, getSanitizedData, chunk } from '../utils'
 
 import NimbleEmoji from './emoji/nimble-emoji'
+import NotFound from './not-found'
 
 const styles = StyleSheet.create({
-  labelText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
   emojisContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
-  },
-  notFound: {
-    alignSelf: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 })
 
@@ -41,6 +32,8 @@ export default class Category extends React.Component {
     perLine: PropTypes.number.isRequired,
     emojiProps: PropTypes.object.isRequired,
     recent: PropTypes.arrayOf(PropTypes.string),
+    notFound: PropTypes.func,
+    notFoundEmoji: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -241,6 +234,8 @@ export default class Category extends React.Component {
         perLine,
         rows,
         pagesToEagerLoad,
+        notFound,
+        notFoundEmoji,
       } = this.props,
       emojis = this.getEmojis(),
       { visible } = this.state
@@ -306,31 +301,14 @@ export default class Category extends React.Component {
               )
             })
           ) : (
-            <View
+            <NotFound
               key="notFound"
-              style={[
-                styles.notFound,
-                {
-                  width: emojisListWidth,
-                  height: emojisListHeight,
-                  padding: emojiMargin / 2,
-                },
-              ]}
-            >
-              <View>
-                <NimbleEmoji
-                  data={this.data}
-                  {...emojiProps}
-                  emoji="sleuth_or_spy"
-                  onPress={null}
-                  onLongPress={null}
-                />
-              </View>
-
-              <View>
-                <Text style={styles.labelText}>{i18n.notfound}</Text>
-              </View>
-            </View>
+              i18n={i18n}
+              notFound={notFound}
+              notFoundEmoji={notFoundEmoji}
+              data={this.data}
+              emojiProps={emojiProps}
+            />
           ),
         ]
   }
