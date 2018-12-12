@@ -302,6 +302,11 @@ export default class Category extends React.Component {
             })
           ) : (
             <NotFound
+              style={{
+                width: emojisListWidth,
+                height: emojisListHeight,
+                padding: emojiMargin / 2,
+              }}
               key="notFound"
               i18n={i18n}
               notFound={notFound}

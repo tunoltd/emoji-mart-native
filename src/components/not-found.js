@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
-    height: '100%',
   },
 })
 
@@ -27,27 +25,34 @@ export default class NotFound extends React.PureComponent {
     notFound: PropTypes.func.isRequired,
     notFoundEmoji: PropTypes.string.isRequired,
     emojiProps: PropTypes.object.isRequired,
+    style: View.propTypes.style,
   }
 
   render() {
-    const { data, emojiProps, i18n, notFound, notFoundEmoji } = this.props
+    const { data, emojiProps, i18n, notFound, notFoundEmoji, style } = this.props
 
-    return notFound ? notFound() : (
-      <View style={styles.notFound}>
-        <View>
-          <NimbleEmoji
-            data={data}
-            {...emojiProps}
-            emoji={notFoundEmoji}
-            onPress={null}
-            onLongPress={null}
-          />
-        </View>
+    const component = (
+      <View style={[style ? style : null, styles.notFound]}>
+        {(notFound && notFound()) || (
+          <View style={styles.notFound}>
+            <View>
+              <NimbleEmoji
+                data={data}
+                {...emojiProps}
+                emoji={notFoundEmoji}
+                onPress={null}
+                onLongPress={null}
+              />
+            </View>
 
-        <View>
-          <Text style={styles.labelText}>{i18n.notfound}</Text>
-        </View>
+            <View>
+              <Text style={styles.labelText}>{i18n.notfound}</Text>
+            </View>
+          </View>
+        )}
       </View>
     )
+
+    return component
   }
 }
