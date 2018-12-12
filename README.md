@@ -272,7 +272,7 @@ You can provide a custom Not Found object which will allow the appearance of the
 ```js
 import { Picker } from 'emoji-mart'
 
-const notFound = () => <Image source={{ uri: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" }} />
+const notFound = () => <Image style={{width: 48, height: 48}} source={{ uri: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" }} />
 
 <Picker notFound={notFound} />
 ```
