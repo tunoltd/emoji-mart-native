@@ -117,7 +117,6 @@ export default class Anchors extends React.PureComponent {
   render() {
     var {
         categories,
-        onAnchorPress,
         color,
         i18n,
         emojiProps,

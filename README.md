@@ -53,7 +53,8 @@ import { Picker } from 'emoji-mart-native'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
-| **notFound** | | | [Not Found](#not-found) |
+| **notFound** | | | [Not found](#not-found) |
+| **categoryEmojis** | | `{}` | [Custom category emojis](#custom-category-emojis) |
 
 #### I18n
 ```js
@@ -266,7 +267,7 @@ const customEmojis = [
 <Picker custom={customEmojis} />
 ```
 
-## Not Found
+## Not found
 You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
 
 ```js
@@ -275,6 +276,28 @@ import { Picker } from 'emoji-mart'
 const notFound = () => <Image style={{width: 48, height: 48}} source={{ uri: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" }} />
 
 <Picker notFound={notFound} />
+```
+
+## Custom category emojis
+You can provide custom emojis for the category anchors. You only need to supply the ones you want changed from the default ones.
+
+```js
+import { Picker } from 'emoji-mart'
+
+const categoryEmojis = {
+  recent: 'fire',
+  people: 'see_no_evil',
+  nature: 'beetle',
+  foods: 'kiwifruit',
+  activity: 'table_tennis_paddle_and_ball',
+  places: 'airplane',
+  objects: 'postal_horn',
+  symbols: 'copyright',
+  flags: 'triangular_flag_on_post',
+  custom: 'hammer_and_wrench',
+}
+
+<Picker categoryEmojis={categoryEmojis} />
 ```
 
 ## Headless search

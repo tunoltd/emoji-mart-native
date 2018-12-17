@@ -38,6 +38,19 @@ const I18N = {
   },
 }
 
+const categoryEmojis = {
+  recent: 'clock3',
+  people: 'smiley',
+  nature: 'dog',
+  foods: 'taco',
+  activity: 'soccer',
+  places: 'rocket',
+  objects: 'bulb',
+  symbols: 'symbols',
+  flags: 'flag-wales',
+  custom: 'triangular_ruler',
+}
+
 const styles = StyleSheet.create({
   emojiMartPicker: {
     flexShrink: 0,
@@ -78,6 +91,7 @@ export default class NimblePicker extends React.PureComponent {
 
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
+    this.categoryEmojis = deepMerge(categoryEmojis, props.categoryEmojis)
     this.state = {
       skin: props.skin || skinStore.get() || props.defaultSkin,
       firstRender: true,
@@ -420,7 +434,6 @@ export default class NimblePicker extends React.PureComponent {
         recent,
         autoFocus,
         useLocalImages,
-        categoryEmojis,
         onPressClose,
         notFound,
         notFoundEmoji,
@@ -537,7 +550,7 @@ export default class NimblePicker extends React.PureComponent {
               color={color}
               categories={this.categories}
               onAnchorPress={this.handleAnchorPress}
-              categoryEmojis={categoryEmojis}
+              categoryEmojis={this.categoryEmojis}
               emojiProps={{
                 native,
                 skin,
