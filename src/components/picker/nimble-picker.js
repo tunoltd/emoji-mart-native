@@ -437,6 +437,7 @@ export default class NimblePicker extends React.PureComponent {
         onPressClose,
         notFound,
         notFoundEmoji,
+        skinEmoji,
       } = this.props,
       { skin } = this.state
 
@@ -477,6 +478,16 @@ export default class NimblePicker extends React.PureComponent {
           skinsProps={{
             skin,
             onChange: this.handleSkinChange,
+            skinEmoji: skinEmoji,
+          }}
+          emojiProps={{
+            native,
+            skin,
+            size: 28,
+            set,
+            forceSize: native,
+            emojiImageFn,
+            useLocalImages,
           }}
           showCloseButton={showCloseButton}
         />

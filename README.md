@@ -51,6 +51,7 @@ import { Picker } from 'emoji-mart-native'
 | **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
+| **skinEmoji** | | | The emoji used to pick a skin tone. Uses an emoji-less skin tone picker by default |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
 | **notFound** | | | [Not found](#not-found) |

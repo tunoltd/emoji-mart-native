@@ -12,6 +12,7 @@ import {
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
 import Skins from './skins'
+import SkinsEmoji from './skins-emoji'
 import Touchable from './common/touchable'
 
 const arrowBackIcon = require('../assets/arrow-back.png')
@@ -64,6 +65,7 @@ export default class Search extends React.PureComponent {
     autoFocus: PropTypes.bool,
     showSkinTones: PropTypes.bool,
     skinsProps: PropTypes.object.isRequired,
+    emojiProps: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -128,6 +130,7 @@ export default class Search extends React.PureComponent {
       skinsProps,
       showSkinTones,
       showCloseButton,
+      emojiProps,
     } = this.props
     var { searchTerm } = this.state
 
@@ -176,7 +179,19 @@ export default class Search extends React.PureComponent {
             </Touchable>
           </View>
         ) : null}
-        {showSkinTones && <Skins {...skinsProps} />}
+        {showSkinTones && (
+          <View>
+            {skinsProps.skinEmoji ? (
+              <SkinsEmoji
+                emojiProps={emojiProps}
+                data={this.data}
+                {...skinsProps}
+              />
+            ) : (
+              <Skins {...skinsProps} />
+            )}
+          </View>
+        )}
       </View>
     )
   }

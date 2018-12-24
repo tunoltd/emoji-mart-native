@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
 
+import NimbleEmoji from './emoji/nimble-emoji'
+
 const styles = StyleSheet.create({
   skinSwatches: {
     paddingTop: 2,
     paddingBottom: 2,
-    borderWidth: 1,
-    borderColor: '#d9d9d9',
-    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -19,46 +18,21 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   skinSwatchShown: {
-    width: 20,
-    height: 16,
+    width: 32,
+    height: 28,
     paddingLeft: 2,
     paddingRight: 2,
   },
   skin: {
-    width: 16,
-    height: 16,
-    borderRadius: 32,
+    width: 28,
+    height: 28,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  skinSelected: {
-    width: 6,
-    height: 6,
-    borderRadius: 12,
-    backgroundColor: 'rgba(255, 255, 255, 0.75)',
-  },
-  skinTone1: {
-    backgroundColor: '#ffc93a',
-  },
-  skinTone2: {
-    backgroundColor: '#fadcbc',
-  },
-  skinTone3: {
-    backgroundColor: '#e0bb95',
-  },
-  skinTone4: {
-    backgroundColor: '#bf8f68',
-  },
-  skinTone5: {
-    backgroundColor: '#9b643d',
-  },
-  skinTone6: {
-    backgroundColor: '#594539',
-  },
 })
 
-export default class Skins extends React.PureComponent {
+export default class SkinsEmoji extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -81,7 +55,7 @@ export default class Skins extends React.PureComponent {
   }
 
   render() {
-    const { skin } = this.props
+    const { skin, emojiProps, data, skinEmoji } = this.props
     const { opened } = this.state
 
     const skinToneNodes = []
@@ -98,16 +72,15 @@ export default class Skins extends React.PureComponent {
           ]}
         >
           {selected || opened ? (
-            <TouchableWithoutFeedback
-              onPress={this.handlePress.bind(this, skinTone)}
-              style={[styles.skin, styles[`skinTone${skinTone}`]]}
-            >
-              <View style={[styles.skin, styles[`skinTone${skinTone}`]]}>
-                {selected && opened ? (
-                  <View style={styles.skinSelected} />
-                ) : null}
-              </View>
-            </TouchableWithoutFeedback>
+            <View style={styles.skin}>
+              <NimbleEmoji
+                emoji={skinEmoji}
+                data={data}
+                onPress={this.handlePress.bind(this, skinTone)}
+                {...emojiProps}
+                skin={skinTone}
+              />
+            </View>
           ) : null}
         </View>,
       )
@@ -117,11 +90,15 @@ export default class Skins extends React.PureComponent {
   }
 }
 
-Skins.propTypes = {
+SkinsEmoji.propTypes = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
+  emojiProps: PropTypes.object.isRequired,
+  skinTone: PropTypes.number,
+  skinEmoji: PropTypes.string.isRequired,
 }
 
-Skins.defaultProps = {
+SkinsEmoji.defaultProps = {
   onChange: () => {},
+  skinTone: null,
 }
