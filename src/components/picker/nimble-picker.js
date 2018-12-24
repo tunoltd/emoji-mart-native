@@ -16,8 +16,9 @@ import frequently from '../../utils/frequently'
 import { deepMerge } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
-
-import { Anchors, Category, Search } from '..'
+import Anchors from '../anchors'
+import Category from '../category'
+import Search from '../search'
 
 const I18N = {
   search: 'Search',
@@ -35,6 +36,19 @@ const I18N = {
     flags: 'Flags',
     custom: 'Custom',
   },
+}
+
+const categoryEmojis = {
+  recent: 'clock3',
+  people: 'smiley',
+  nature: 'dog',
+  foods: 'taco',
+  activity: 'soccer',
+  places: 'rocket',
+  objects: 'bulb',
+  symbols: 'symbols',
+  flags: 'flag-wales',
+  custom: 'triangular_ruler',
 }
 
 const styles = StyleSheet.create({
@@ -77,6 +91,7 @@ export default class NimblePicker extends React.PureComponent {
 
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
+    this.categoryEmojis = deepMerge(categoryEmojis, props.categoryEmojis)
     this.state = {
       skin: props.skin || skinStore.get() || props.defaultSkin,
       firstRender: true,
@@ -419,8 +434,10 @@ export default class NimblePicker extends React.PureComponent {
         recent,
         autoFocus,
         useLocalImages,
-        categoryEmojis,
         onPressClose,
+        notFound,
+        notFoundEmoji,
+        skinEmoji,
       } = this.props,
       { skin } = this.state
 
@@ -461,6 +478,16 @@ export default class NimblePicker extends React.PureComponent {
           skinsProps={{
             skin,
             onChange: this.handleSkinChange,
+            skinEmoji: skinEmoji,
+          }}
+          emojiProps={{
+            native,
+            skin,
+            size: 28,
+            set,
+            forceSize: native,
+            emojiImageFn,
+            useLocalImages,
           }}
           showCloseButton={showCloseButton}
         />
@@ -518,6 +545,8 @@ export default class NimblePicker extends React.PureComponent {
                   onPress: this.handleEmojiPress,
                   onLongPress: this.handleEmojiLongPress,
                 }}
+                notFound={notFound}
+                notFoundEmoji={notFoundEmoji}
               />
             )
           })}
@@ -532,7 +561,7 @@ export default class NimblePicker extends React.PureComponent {
               color={color}
               categories={this.categories}
               onAnchorPress={this.handleAnchorPress}
-              categoryEmojis={categoryEmojis}
+              categoryEmojis={this.categoryEmojis}
               emojiProps={{
                 native,
                 skin,

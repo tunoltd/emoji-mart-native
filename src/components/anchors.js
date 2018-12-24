@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native'
 
-import { NimbleEmoji } from '.'
+import NimbleEmoji from './emoji/nimble-emoji'
 
 const styles = StyleSheet.create({
   anchors: {
@@ -117,7 +117,6 @@ export default class Anchors extends React.PureComponent {
   render() {
     var {
         categories,
-        onAnchorPress,
         color,
         i18n,
         emojiProps,
