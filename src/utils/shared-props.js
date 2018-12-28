@@ -22,6 +22,16 @@ const EmojiPropTypes = {
   useLocalImages: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   margin: PropTypes.number,
   noMargin: PropTypes.bool,
+  custom: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
+      emoticons: PropTypes.arrayOf(PropTypes.string),
+      keywords: PropTypes.arrayOf(PropTypes.string),
+      imageUrl: requiredCustomPropsCheck,
+      localImage: requiredCustomPropsCheck,
+    }),
+  ),
 }
 
 const EmojiDefaultProps = {
@@ -36,6 +46,7 @@ const EmojiDefaultProps = {
   useLocalImages: false,
   margin: 14,
   noMargin: false,
+  custom: [],
 }
 
 const requiredCustomPropsCheck = (props, propName, componentName) => {
@@ -83,16 +94,7 @@ const PickerPropTypes = {
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
-  custom: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
-      emoticons: PropTypes.arrayOf(PropTypes.string),
-      keywords: PropTypes.arrayOf(PropTypes.string),
-      imageUrl: requiredCustomPropsCheck,
-      localImage: requiredCustomPropsCheck,
-    }),
-  ),
+  custom: EmojiPropTypes.custom,
   categoryEmojis: PropTypes.objectOf(PropTypes.string),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
@@ -128,7 +130,7 @@ const PickerDefaultProps = {
   showCloseButton: false,
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
-  custom: [],
+  custom: EmojiDefaultProps.custom,
   categoryEmojis: {},
   notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',

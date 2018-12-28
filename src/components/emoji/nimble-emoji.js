@@ -29,6 +29,22 @@ class NimbleEmoji extends React.PureComponent {
   static propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
   static defaultProps = EmojiDefaultProps
 
+  constructor(props) {
+    super(props)
+
+    this.customEmojis = [];
+
+    if (props.custom.length > 0) {
+      this.customEmojis = props.custom.map((emoji) => {
+        return {
+          ...emoji,
+          id: emoji.short_names[0],
+          custom: true,
+        }
+      })
+    }
+  }
+
   _getImage = (data) => {
     const { image } = data
     const { set, useLocalImages } = this.props
@@ -63,8 +79,24 @@ class NimbleEmoji extends React.PureComponent {
     return imageSource
   }
 
+  _getCustomEmoji = (props) => {
+    const { emoji } = props
+    const customEmoji = this.customEmojis.filter((e) => e.id === emoji)[0]
+    if (customEmoji) {
+      return customEmoji
+    }
+
+    return emoji
+  }
+
   _getData = (props) => {
-    const { emoji, skin, set, data } = props
+    const { skin, set, data } = props
+    let { emoji } = props;
+
+    if (typeof emoji === 'string') {
+      emoji = this._getCustomEmoji(props)
+    }
+
     return getData(emoji, skin, set, data)
   }
 
