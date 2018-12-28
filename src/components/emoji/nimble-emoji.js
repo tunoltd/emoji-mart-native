@@ -47,6 +47,22 @@ class NimbleEmoji extends React.PureComponent {
     return imageSource
   }
 
+  _getCustomImage = (data) => {
+    const { imageUrl, localImage } = data
+    const { useLocalImages } = this.props
+    const emoji = this._getSanitizedData(this.props)
+
+    let imageSource = {
+      uri: imageUrl
+    }
+
+    if (useLocalImages && localImage) {
+      return localImage
+    }
+
+    return imageSource
+  }
+
   _getData = (props) => {
     const { emoji, skin, set, data } = props
     return getData(emoji, skin, set, data)
@@ -100,7 +116,7 @@ class NimbleEmoji extends React.PureComponent {
       }
     }
 
-    let { unified, custom, short_names, imageUrl } = data,
+    let { unified, custom, short_names } = data,
       style = {},
       imageStyle = {},
       labelStyle = {},
@@ -138,7 +154,14 @@ class NimbleEmoji extends React.PureComponent {
         height: this.props.size,
       }
 
-      emojiImage = <Image style={imageStyle} source={{ uri: imageUrl }} />
+      const emojiImageFile = this._getCustomImage(data)
+
+      emojiImage = (
+        <Image
+          style={imageStyle}
+          source={this.props.emojiImageFn(emojiImageFile)}
+        />
+      )
     } else {
       const setHasEmoji =
         data[`has_img_${this.props.set}`] == undefined ||

@@ -38,6 +38,20 @@ const EmojiDefaultProps = {
   noMargin: false,
 }
 
+const requiredCustomPropsCheck = (props, propName, componentName) => {
+  if (!props.imageUrl && !props.localImage) {
+    return new Error(`One of 'imageUrl' or 'localImage' is required by '${componentName}' component.`)
+  }
+
+  if (props.imageUrl && typeof props.imageUrl !== 'string') {
+    return new Error(`'imageUrl' is required to be a string by '${componentName}' component.`)
+  }
+
+  if (props.localImage && typeof props.localImage !== 'number') {
+    return new Error(`'localImage' is required to be a number by '${componentName}' component.`)
+  }
+}
+
 const PickerPropTypes = {
   onPress: PropTypes.func,
   onLongPress: PropTypes.func,
@@ -75,7 +89,8 @@ const PickerPropTypes = {
       short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
       emoticons: PropTypes.arrayOf(PropTypes.string),
       keywords: PropTypes.arrayOf(PropTypes.string),
-      imageUrl: PropTypes.string.isRequired,
+      imageUrl: requiredCustomPropsCheck,
+      localImage: requiredCustomPropsCheck,
     }),
   ),
   categoryEmojis: PropTypes.objectOf(PropTypes.string),

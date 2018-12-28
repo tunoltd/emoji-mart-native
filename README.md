@@ -263,6 +263,14 @@ const customEmojis = [
     keywords: ['github'],
     imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
   },
+  {
+    name: 'Trollface',
+    short_names: ['troll', 'trollface'],
+    text: '',
+    emoticons: [],
+    keywords: ['troll'],
+    localImage: require('assets/trollface.png')
+  },
 ]
 
 <Picker custom={customEmojis} />
