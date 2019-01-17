@@ -136,10 +136,12 @@ export default class Search extends React.PureComponent {
 
     let background
 
-    if (Platform.Version >= 21) {
-      background = TouchableNativeFeedback.SelectableBackgroundBorderless()
-    } else {
-      background = TouchableNativeFeedback.SelectableBackground()
+    if (Platform.OS === 'android') {
+      if (Platform.Version >= 21) {
+        background = TouchableNativeFeedback.SelectableBackgroundBorderless()
+      } else {
+        background = TouchableNativeFeedback.SelectableBackground()
+      }
     }
 
     const searchContainerWithCloseButtonStyle = {
