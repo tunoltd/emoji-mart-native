@@ -79,23 +79,9 @@ class NimbleEmoji extends React.PureComponent {
     return imageSource
   }
 
-  _getCustomEmoji = (props) => {
-    const { emoji } = props
-    const customEmoji = this.customEmojis.filter((e) => e.id === emoji)[0]
-    if (customEmoji) {
-      return customEmoji
-    }
-
-    return emoji
-  }
-
   _getData = (props) => {
     const { skin, set, data } = props
     let { emoji } = props;
-
-    if (typeof emoji === 'string') {
-      emoji = this._getCustomEmoji(props)
-    }
 
     return getData(emoji, skin, set, data)
   }
