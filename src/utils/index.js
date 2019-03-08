@@ -180,7 +180,6 @@ function getEmojiDataFromCustom(emoji, custom, data) {
   const customEmojis = custom.map((emoji) => {
     return {
       ...emoji,
-      // `<Category />` expects emoji to have an `id`.
       id: emoji.short_names[0],
       custom: true,
     }
