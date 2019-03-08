@@ -1,5 +1,19 @@
 import PropTypes from 'prop-types'
 
+const requiredCustomPropsCheck = (props, propName, componentName) => {
+  if (!props.imageUrl && !props.localImage) {
+    return new Error(`One of 'imageUrl' or 'localImage' is required by '${componentName}' component.`)
+  }
+
+  if (props.imageUrl && typeof props.imageUrl !== 'string') {
+    return new Error(`'imageUrl' is required to be a string by '${componentName}' component.`)
+  }
+
+  if (props.localImage && typeof props.localImage !== 'number') {
+    return new Error(`'localImage' is required to be a number by '${componentName}' component.`)
+  }
+}
+
 const EmojiPropTypes = {
   data: PropTypes.object.isRequired,
   onPress: PropTypes.func,
@@ -69,7 +83,16 @@ const PickerPropTypes = {
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
-  custom: EmojiPropTypes.custom,
+  custom: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
+      emoticons: PropTypes.arrayOf(PropTypes.string),
+      keywords: PropTypes.arrayOf(PropTypes.string),
+      imageUrl: requiredCustomPropsCheck,
+      localImage: requiredCustomPropsCheck,
+    }),
+  ),
   categoryEmojis: PropTypes.objectOf(PropTypes.string),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
@@ -105,7 +128,7 @@ const PickerDefaultProps = {
   showCloseButton: false,
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
-  custom: EmojiDefaultProps.custom,
+  custom: [],
   categoryEmojis: {},
   notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',
