@@ -1,7 +1,7 @@
 import emojiIndex from './utils/emoji-index/emoji-index'
 import store from './utils/store'
 import frequently from './utils/frequently'
-import { getEmojiDataFromNative } from './utils'
+import { getEmojiDataFromNative, getEmojiDataFromCustom } from './utils'
 
 export {
   Picker,
@@ -16,4 +16,4 @@ export {
 export {
   default as NimbleEmojiIndex,
 } from './utils/emoji-index/nimble-emoji-index'
-export { emojiIndex, store, frequently, getEmojiDataFromNative }
+export { emojiIndex, store, frequently, getEmojiDataFromNative, getEmojiDataFromCustom }

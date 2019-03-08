@@ -252,7 +252,7 @@ To have the component render `:shrug:` you would need to:
 You can provide custom emojis which will show up in their own category.
 
 ```js
-import { Picker } from 'emoji-mart-native'
+import { Picker, NimbleEmoji, getEmojiDataFromCustom } from 'emoji-mart-native'
 
 const customEmojis = [
   {
@@ -263,9 +263,28 @@ const customEmojis = [
     keywords: ['github'],
     imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
   },
+  {
+    name: 'Trollface',
+    short_names: ['troll', 'trollface'],
+    text: '',
+    emoticons: [],
+    keywords: ['troll'],
+    localImage: require('assets/trollface.png')
+  },
 ]
 
 <Picker custom={customEmojis} />
+
+const emoji = getEmojiDataFromCustom('troll', customEmojis, emojiData);
+
+<NimbleEmoji
+  data={emojiData}
+  useLocalImages={emojiRequires}
+  custom={customEmojis}
+  skin={emoji.skin || null}
+  set={emojiSet}
+  emoji={emoji}
+/>
 ```
 
 ## Not found

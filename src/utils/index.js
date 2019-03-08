@@ -1,6 +1,7 @@
 import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 import { uncompress } from './data'
+import NimbleEmojiIndex from './emoji-index/nimble-emoji-index'
 
 const _JSON = JSON
 
@@ -24,6 +25,7 @@ function sanitize(emoji) {
       unified,
       custom,
       imageUrl,
+      localImage,
     } = emoji,
     id = emoji.id || short_names[0],
     colons = `:${id}:`
@@ -36,6 +38,7 @@ function sanitize(emoji) {
       emoticons,
       custom,
       imageUrl,
+      localImage,
     }
   }
 
@@ -169,6 +172,28 @@ function getEmojiDataFromNative(nativeString, set, data) {
   return getSanitizedData(emojiData, skin, set, data)
 }
 
+function getEmojiDataFromCustom(emoji, custom, data) {
+  if (data.compressed) {
+    uncompress(data)
+  }
+
+  const customEmojis = custom.map((emoji) => {
+    return {
+      ...emoji,
+      id: emoji.short_names[0],
+      custom: true,
+    }
+  })
+
+  const emojiIndex = new NimbleEmojiIndex(data)
+  const [customEmoji] = emojiIndex.search(emoji, {
+    maxResults: 1,
+    custom: customEmojis,
+  });
+
+  return customEmoji;
+}
+
 function uniq(arr) {
   return arr.reduce((acc, item) => {
     if (acc.indexOf(item) === -1) {
@@ -253,6 +278,7 @@ function chunk(array, size) {
 export {
   getData,
   getEmojiDataFromNative,
+  getEmojiDataFromCustom,
   getSanitizedData,
   uniq,
   intersect,
