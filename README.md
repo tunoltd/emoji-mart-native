@@ -131,7 +131,7 @@ npm install emoji-datasource-messenger
 
 ```js
 import { NimblePicker, NimbleEmoji } from 'emoji-mart-native'
-import data from 'emoji-mart-native/data/messenger'
+import data from 'emoji-mart-native/data/messenger.json'
 import dataRequires from 'emoji-mart-native/data/local-images/messenger'
 
 const {emojis: localEmojis} = dataRequires
@@ -337,6 +337,37 @@ import { NimbleEmojiIndex } from 'emoji-mart-native'
 
 let emojiIndex = new NimbleEmojiIndex(data)
 emojiIndex.search('christmas')
+```
+
+## Get emoji data from Native
+
+You can get emoji data from native emoji unicode using the `getEmojiDataFromNative` util function.
+
+```js
+import { getEmojiDataFromNative, Emoji } from 'emoji-mart-native'
+import data from 'emoji-mart-native/data/google.json'
+
+const emojiData = getEmojiDataFromNative('🏊🏽‍♀️', 'google', data)
+
+<Emoji
+  emoji={emojiData}
+  set={'google'}
+  skin={emojiData.skin || 1}
+  size={48}
+/>
+```
+
+#### Example of `emojiData` object:
+```js
+emojiData: {
+  "id": "woman-swimming",
+  "name": "Woman Swimming",
+  "colons": ":woman-swimming::skin-tone-4:",
+  "emoticons": [],
+  "unified": "1f3ca-1f3fd-200d-2640-fe0f",
+  "skin": 4,
+  "native": "🏊🏽‍♀️"
+}
 ```
 
 ## Storage

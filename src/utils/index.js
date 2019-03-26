@@ -143,25 +143,37 @@ function getEmojiDataFromNative(nativeString, set, data) {
     uncompress(data)
   }
 
-  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
+  const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿']
+  const skinCodes = ['1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
   let skin
+  let skinCode
   let baseNativeString = nativeString
 
-  skinTones.forEach((skinTone) => {
-    baseNativeString = baseNativeString.replace(skinTone, '')
+  skinTones.forEach((skinTone, skinToneIndex) => {
     if (nativeString.indexOf(skinTone) > 0) {
-      skin = skinTones.indexOf(skinTone) + 1
+      skin = skinToneIndex + 2
+      skinCode = skinCodes[skinToneIndex]
     }
   })
 
-  const emojiData = Object.values(data.emojis).find((emoji) => {
+  let emojiData
+
+  for (let id in data.emojis) {
+    let emoji = data.emojis[id]
+
+    let emojiUnified = emoji.unified
+
     if (emoji.variations && emoji.variations.length) {
-      emoji.unifed = emoji.variations.shift()
+      emojiUnified = emoji.variations.shift()
     }
 
-    return unifiedToNative(emoji.unified) === baseNativeString
-  })
+    if (skin && emoji.skin_variations && emoji.skin_variations[skinCode]) {
+      emojiUnified = emoji.skin_variations[skinCode].unified
+    }
+
+    if (unifiedToNative(emojiUnified) === baseNativeString) emojiData = emoji
+  }
 
   if (!emojiData) {
     return null
