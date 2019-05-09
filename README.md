@@ -221,9 +221,8 @@ import { Emoji } from 'emoji-mart-native'
 | **emoji** | ✓ | | Either a string or an `emoji` object |
 | **size** | ✓ | | The emoji width and height. |
 | **native** | | `false` | Renders the native unicode emoji |
-| **onClick** | | | Params: `(emoji, event) => {}` |
-| **onLeave** | | | Params: `(emoji, event) => {}` |
-| **onOver** | | | Params: `(emoji, event) => {}` |
+| **onPress** | | | Params: `(emoji, event) => {}` |
+| **onLongPress** | | | Params: `(emoji, event) => {}` |
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
