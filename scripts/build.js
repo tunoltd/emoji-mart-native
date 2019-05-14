@@ -44,6 +44,7 @@ module.exports = (options) => {
       categoryIndex
 
     if (!datum.category) {
+      return;
       throw new Error('“' + datum.short_name + '” doesn’t have a category')
     }
 

@@ -44,7 +44,7 @@
     "babel-preset-react-native": "^4.0.0",
     "babel-runtime": "^6.26.0",
     "emoji-datasource": "4.1.0",
-    "emojilib": "^2.2.1",
+    "emojilib": "^2.4.0",
     "inflection": "1.10.0",
     "jasmine-core": "^2.5.2",
     "karma": "^1.4.0",
