@@ -29,7 +29,14 @@ export default class NotFound extends React.PureComponent {
   }
 
   render() {
-    const { data, emojiProps, i18n, notFound, notFoundEmoji, style } = this.props
+    const {
+      data,
+      emojiProps,
+      i18n,
+      notFound,
+      notFoundEmoji,
+      style,
+    } = this.props
 
     const component = (
       <View style={[style ? style : null, styles.notFound]}>

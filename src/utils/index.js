@@ -201,9 +201,9 @@ function getEmojiDataFromCustom(emoji, custom, data) {
   const [customEmoji] = emojiIndex.search(emoji, {
     maxResults: 1,
     custom: customEmojis,
-  });
+  })
 
-  return customEmoji;
+  return customEmoji
 }
 
 function uniq(arr) {

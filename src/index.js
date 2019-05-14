@@ -16,4 +16,10 @@ export {
 export {
   default as NimbleEmojiIndex,
 } from './utils/emoji-index/nimble-emoji-index'
-export { emojiIndex, store, frequently, getEmojiDataFromNative, getEmojiDataFromCustom }
+export {
+  emojiIndex,
+  store,
+  frequently,
+  getEmojiDataFromNative,
+  getEmojiDataFromCustom,
+}

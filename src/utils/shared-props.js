@@ -2,15 +2,21 @@ import PropTypes from 'prop-types'
 
 const requiredCustomPropsCheck = (props, propName, componentName) => {
   if (!props.imageUrl && !props.localImage) {
-    return new Error(`One of 'imageUrl' or 'localImage' is required by '${componentName}' component.`)
+    return new Error(
+      `One of 'imageUrl' or 'localImage' is required by '${componentName}' component.`,
+    )
   }
 
   if (props.imageUrl && typeof props.imageUrl !== 'string') {
-    return new Error(`'imageUrl' is required to be a string by '${componentName}' component.`)
+    return new Error(
+      `'imageUrl' is required to be a string by '${componentName}' component.`,
+    )
   }
 
   if (props.localImage && typeof props.localImage !== 'number') {
-    return new Error(`'localImage' is required to be a number by '${componentName}' component.`)
+    return new Error(
+      `'localImage' is required to be a number by '${componentName}' component.`,
+    )
   }
 }
 
@@ -24,13 +30,7 @@ const EmojiPropTypes = {
   forceSize: PropTypes.bool,
   tooltip: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  set: PropTypes.oneOf([
-    'apple',
-    'google',
-    'twitter',
-    'messenger',
-    'facebook',
-  ]),
+  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'messenger', 'facebook']),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   useLocalImages: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),

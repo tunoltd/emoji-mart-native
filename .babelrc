@@ -40,9 +40,21 @@
     ]
   ],
   "env": {
-    "cjs": {
+    "legacy-cjs": {
       "plugins": [
         "transform-es2015-modules-commonjs",
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
       ]
     }
   }
