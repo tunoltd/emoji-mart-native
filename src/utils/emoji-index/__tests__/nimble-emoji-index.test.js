@@ -7,7 +7,6 @@ const nimbleEmojiIndex = new NimbleEmojiIndex(data)
 
 function getEmojiData(skinTone) {
   store.update({ skin: skinTone })
-
   return nimbleEmojiIndex.search('thumbsup')[0]
 }
 

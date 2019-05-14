@@ -159,7 +159,6 @@ export default class Category extends React.Component {
 
   getEmojis() {
     var { name, emojis, recent, perLine, emojiProps } = this.props
-    const { set: emojiSet } = emojiProps
 
     if (name == 'Recent') {
       let { custom } = this.props
