@@ -1,3 +1,4 @@
+import React from 'react'
 import { getEmojiDataFromNative } from '..'
 
 import data from '../../../data/apple'
