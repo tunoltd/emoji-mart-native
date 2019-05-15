@@ -145,11 +145,16 @@ export default class Search extends React.PureComponent {
     }
 
     const searchContainerWithCloseButtonStyle = {
-      paddingLeft: 5
+      paddingLeft: 5,
     }
 
     return (
-      <View style={[styles.searchContainer, showCloseButton ? searchContainerWithCloseButtonStyle : null]}>
+      <View
+        style={[
+          styles.searchContainer,
+          showCloseButton ? searchContainerWithCloseButtonStyle : null,
+        ]}
+      >
         {showCloseButton ? (
           <View style={styles.closeButtonContainer}>
             <Touchable

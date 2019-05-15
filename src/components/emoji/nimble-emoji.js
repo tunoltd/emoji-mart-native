@@ -53,7 +53,7 @@ class NimbleEmoji extends React.PureComponent {
     const emoji = this._getSanitizedData(this.props)
 
     let imageSource = {
-      uri: imageUrl
+      uri: imageUrl,
     }
 
     if (useLocalImages && localImage) {

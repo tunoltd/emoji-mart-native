@@ -147,7 +147,8 @@ export default class Category extends React.Component {
     const maxMargin = this.getMaxMarginValue()
 
     this.calculateVisibility(scrollLeft)
-    const thisLeftWithBleed = this.left - (this.width / 2)
+    const bleed = this.width / 2
+    const thisLeftWithBleed = this.left - bleed
 
     if (scrollLeft >= thisLeftWithBleed && scrollLeft <= maxMargin) {
       return true
@@ -158,7 +159,6 @@ export default class Category extends React.Component {
 
   getEmojis() {
     var { name, emojis, recent, perLine, emojiProps } = this.props
-    const { set: emojiSet } = emojiProps
 
     if (name == 'Recent') {
       let { custom } = this.props

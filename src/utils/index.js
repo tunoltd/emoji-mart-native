@@ -34,6 +34,7 @@ function sanitize(emoji) {
     return {
       id,
       name,
+      short_names,
       colons,
       emoticons,
       custom,
@@ -49,6 +50,7 @@ function sanitize(emoji) {
   return {
     id,
     name,
+    short_names,
     colons,
     emoticons,
     unified: unified.toLowerCase(),
@@ -107,7 +109,7 @@ function getData(emoji, skin, set, data) {
   emojiData.emoticons || (emojiData.emoticons = [])
   emojiData.variations || (emojiData.variations = [])
 
-  if (emojiData.skin_variations && skin > 1 && set) {
+  if (emojiData.skin_variations && skin > 1) {
     emojiData = JSON.parse(_JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
@@ -118,8 +120,10 @@ function getData(emoji, skin, set, data) {
     }
 
     if (
-      variationData[`has_img_${set}`] == undefined ||
-      variationData[`has_img_${set}`]
+      (set &&
+        (variationData[`has_img_${set}`] == undefined ||
+          variationData[`has_img_${set}`])) ||
+      !set
     ) {
       emojiData.skin_tone = skin
 
@@ -201,9 +205,9 @@ function getEmojiDataFromCustom(emoji, custom, data) {
   const [customEmoji] = emojiIndex.search(emoji, {
     maxResults: 1,
     custom: customEmojis,
-  });
+  })
 
-  return customEmoji;
+  return customEmoji
 }
 
 function uniq(arr) {

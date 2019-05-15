@@ -1,4 +1,4 @@
-var NAMESPACE = 'emoji-mart'
+var NAMESPACE = 'emoji-mart-native'
 
 const _JSON = JSON
 

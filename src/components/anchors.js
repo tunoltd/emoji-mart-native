@@ -115,13 +115,7 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var {
-        categories,
-        color,
-        i18n,
-        emojiProps,
-        categoryEmojis,
-      } = this.props,
+    var { categories, color, i18n, emojiProps, categoryEmojis } = this.props,
       { selected } = this.state
 
     return (

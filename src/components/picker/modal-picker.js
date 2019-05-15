@@ -1,11 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  StyleSheet,
-  Modal,
-  View,
-  TouchableWithoutFeedback,
-} from 'react-native'
+import { StyleSheet, Modal, View, TouchableWithoutFeedback } from 'react-native'
 
 import data from '../../../data/all.json'
 import NimblePicker from './nimble-picker'
@@ -45,10 +40,10 @@ export default class ModalPicker extends React.PureComponent {
   }
 
   render() {
-    var { onPressClose, isVisible } = this.props;
+    var { onPressClose, isVisible } = this.props
 
     if (!isVisible) {
-      return null;
+      return null
     }
 
     return (
