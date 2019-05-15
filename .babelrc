@@ -40,7 +40,7 @@
     ]
   ],
   "env": {
-    "legacy-cjs": {
+    "cjs": {
       "plugins": [
         "transform-es2015-modules-commonjs",
       ]
