@@ -165,7 +165,6 @@ export default class NimbleEmojiIndex {
                   return aScore - bScore
                 }
               })
-
             }
 
             aPool = aIndex.pool
