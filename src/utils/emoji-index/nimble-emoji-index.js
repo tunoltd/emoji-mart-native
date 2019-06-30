@@ -164,7 +164,7 @@ export default class NimbleEmojiIndex {
                 } else {
                   return aScore - bScore
                 }
-              });
+              })
 
             }
 
