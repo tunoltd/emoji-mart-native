@@ -1,7 +1,7 @@
 <div align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
-  <br><a href="https://github.com/thinkproductivity/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/thinkproductivity/emoji-mart-native/releases">Changelog</a>
-  <br><br><a href="https://travis-ci.com/thinkproductivity/emoji-mart-native"><img src="https://travis-ci.com/thinkproductivity/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
+  <br><a href="https://github.com/tunoltd/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/tunoltd/emoji-mart-native/releases">Changelog</a>
+  <br><br><a href="https://travis-ci.com/tunoltd/emoji-mart-native"><img src="https://travis-ci.com/tunoltd/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
   <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png">
 </div>
 
@@ -206,7 +206,7 @@ const emojiImage = require('assets/emoji-image.png')
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
 | **onButtonPress** | | | Trigger when user press the button |
-| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/thinkproductivity/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
+| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
 
 ### Emoji
 ```jsx
