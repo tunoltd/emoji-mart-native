@@ -431,7 +431,7 @@ It can however be overwritten as per user preference.
 #### Multiple sets supported
 Apple / Google / Twitter / Messenger / Facebook
 
-<img width="214" alt="sets" src="https://user-images.githubusercontent.com/436043/33786868-d4226e60-dc38-11e7-840a-e4cf490f5f4a.png">
+<img width="214" alt="sets" src="https://user-images.githubusercontent.com/1238485/64777626-86603f80-d552-11e9-87cd-a899b845a81d.png">
 
 ## Not opinionated
 **Emoji Mart Native** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMartNative.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
