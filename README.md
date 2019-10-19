@@ -1,9 +1,8 @@
-<p align="center"><a href="https://tunoltd.github.io/emoji-mart-native/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png" alt="Picker"></a></p>
-
-
-<p align="center">
-  <a href="https://travis-ci.com/tunoltd/emoji-mart-native"><img src="https://travis-ci.com/tunoltd/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
-</p>
+<div align="center">
+  <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
+  <br><a href="https://github.com/tunoltd/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/tunoltd/emoji-mart-native/releases">Changelog</a>
+  <br><br><a href="https://travis-ci.com/tunoltd/emoji-mart-native"><img src="https://travis-ci.com/tunoltd/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
+</div>
 
 <h2 align="center">Supporting emoji-mart-native</h2>
 
@@ -28,6 +27,8 @@
   </tbody>
 </table>
 <!--gold end-->
+
+<p align="center"><a href="https://tunoltd.github.io/emoji-mart-native/" target="_blank" rel="noopener noreferrer"><img width="338" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png" alt="Picker"></a></p>
 
 ## Installation
 
