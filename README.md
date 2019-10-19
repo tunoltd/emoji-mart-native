@@ -6,7 +6,7 @@
 
 <h2 align="center">Supporting emoji-mart-native</h2>
 
-The ongoing development of <b>Emoji Mart Native</b> is made possible entirely by the support of these awesome [backers](https://github.com/tunoltd/emoji-mart-native/blob/dev/BACKERS.md). If you'd like to join them, please consider becoming a [backer or sponsor on GitHub](https://github.com/sponsors/pederjohnsen).
+The ongoing development of <b>Emoji Mart Native</b> is made possible entirely by the support of these awesome [backers](https://github.com/tunoltd/emoji-mart-native/blob/master/BACKERS.md). If you'd like to join them, please consider becoming a [backer or sponsor on GitHub](https://github.com/sponsors/pederjohnsen).
 
 <h3 align="center">Platinum Sponsors</h3>
 
