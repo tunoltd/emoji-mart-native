@@ -10,6 +10,37 @@ The ongoing development of <b>Emoji Mart Native</b> is made possible entirely by
 
 <h3 align="center">Platinum Sponsors</h3>
 
+<!--platinum start-->
+<!--<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>-->
+<!--platinum end-->
+
+<h3 align="center">Gold Sponsors</h3>
+
 <!--gold start-->
 <!--<table>
   <tbody>
@@ -47,15 +78,6 @@ The ongoing development of <b>Emoji Mart Native</b> is made possible entirely by
     </tr><tr></tr>
   </tbody>
 </table>-->
-<!--gold end-->
-
-<h3 align="center">Gold Sponsors</h3>
-
-<!--gold start-->
-<table>
-  <tbody>
-  </tbody>
-</table>
 <!--gold end-->
 
 ---
