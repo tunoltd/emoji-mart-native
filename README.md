@@ -1,9 +1,90 @@
-<div align="center">
+<p align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
   <br><a href="https://github.com/tunoltd/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/tunoltd/emoji-mart-native/releases">Changelog</a>
   <br><br><a href="https://travis-ci.com/tunoltd/emoji-mart-native"><img src="https://travis-ci.com/tunoltd/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
-  <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png">
-</div>
+</p>
+
+<h2 align="center">Supporting emoji-mart-native</h2>
+
+The ongoing development of <b>Emoji Mart Native</b> is made possible entirely by the support of these awesome [backers](https://github.com/tunoltd/emoji-mart-native/blob/master/BACKERS.md). If you'd like to join them, please consider becoming a [backer or sponsor on GitHub](https://github.com/sponsors/pederjohnsen).
+
+<h3 align="center">Platinum Sponsors</h3>
+
+<!--platinum start-->
+<!--<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="222px" src="" style="max-width:100%;">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>-->
+<!--platinum end-->
+
+<h3 align="center">Gold Sponsors</h3>
+
+<!--gold start-->
+<!--<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="" rel="nofollow">
+          <img width="148px" src="" style="max-width:100%;">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>-->
+<!--gold end-->
+
+---
+
+<p align="center">
+  <img width="338" alt="picker" src="https://user-images.githubusercontent.com/12134822/40007137-ecf6cfc2-5793-11e8-9943-08a9ba8c7fee.png">
+</p>
 
 ## Installation
 
