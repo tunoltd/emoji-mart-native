@@ -37,7 +37,7 @@ class NimbleEmoji extends React.PureComponent {
   }
 
   _getPosition = (props) => {
-    const { sheet_x, sheet_y } = props
+    const { sheet_x, sheet_y } = this._getData(props)
 
     return {
       x: `-${sheet_x * 100}%`,
@@ -127,14 +127,14 @@ class NimbleEmoji extends React.PureComponent {
       }
 
       if (data.spriteSheet) {
-        const emojiPosition = this._getPosition(props)
+        const emojiPosition = this._getPosition(this.props)
 
         imageStyle = {
           position: 'absolute',
           top: emojiPosition.y,
           left: emojiPosition.x,
-          width: `${100 * this.props.sheetColumns}`,
-          height: `${100 * this.props.sheetRows}`,
+          width: `${100 * this.props.sheetColumns}%`,
+          height: `${100 * this.props.sheetRows}%`,
         }
 
         emojiImage = <Image style={imageStyle} source={data.spriteSheet} />
@@ -161,14 +161,20 @@ class NimbleEmoji extends React.PureComponent {
         }
       }
 
-      const emojiPosition = this._getPosition(props)
+      style = {
+        width: this.props.size,
+        height: this.props.size,
+        margin: this.props.noMargin ? 0 : this.props.margin / 2,
+      }
+
+      const emojiPosition = this._getPosition(this.props)
 
       imageStyle = {
         position: 'absolute',
         top: emojiPosition.y,
         left: emojiPosition.x,
-        width: `${100 * this.props.sheetColumns}`,
-        height: `${100 * this.props.sheetRows}`,
+        width: `${100 * this.props.sheetColumns}%`,
+        height: `${100 * this.props.sheetRows}%`,
       }
 
       emojiImage = (
