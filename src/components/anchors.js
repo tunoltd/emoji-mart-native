@@ -149,11 +149,10 @@ export default class Anchors extends React.PureComponent {
                   ]}
                 >
                   <NimbleEmoji
+                    emoji={categoryEmojis[id]}
                     data={this.data}
                     {...emojiProps}
-                    emoji={categoryEmojis[id]}
-                    onPress={null}
-                    onLongPress={null}
+                    onPress={this.handlePress.bind(this, i)}
                   />
                   <View
                     style={[
