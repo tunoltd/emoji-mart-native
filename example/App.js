@@ -13,9 +13,40 @@ import {
   ModalPicker,
 } from 'emoji-mart-native'
 import data from 'emoji-mart-native/data/all.json'
-import dataRequires from 'emoji-mart-native/data/local-images/all'
 
-const { emojis: localEmojis } = dataRequires
+const localSpriteSheets = {
+  apple: {
+    '16': require('../../../emoji-datasource-apple/img/apple/sheets/16.png'),
+    '20': require('../../../emoji-datasource-apple/img/apple/sheets/20.png'),
+    '32': require('../../../emoji-datasource-apple/img/apple/sheets/32.png'),
+    '64': require('../../../emoji-datasource-apple/img/apple/sheets/64.png'),
+  },
+  google: {
+    '16': require('../../../emoji-datasource-google/img/google/sheets/16.png'),
+    '20': require('../../../emoji-datasource-google/img/google/sheets/20.png'),
+    '32': require('../../../emoji-datasource-google/img/google/sheets/32.png'),
+    '64': require('../../../emoji-datasource-google/img/google/sheets/64.png'),
+  },
+  twitter: {
+    '16': require('../../../emoji-datasource-twitter/img/twitter/sheets/16.png'),
+    '20': require('../../../emoji-datasource-twitter/img/twitter/sheets/20.png'),
+    '32': require('../../../emoji-datasource-twitter/img/twitter/sheets/32.png'),
+    '64': require('../../../emoji-datasource-twitter/img/twitter/sheets/64.png'),
+  },
+  messenger: {
+    '16': require('../../../emoji-datasource-messenger/img/messenger/sheets/16.png'),
+    '20': require('../../../emoji-datasource-messenger/img/messenger/sheets/20.png'),
+    '32': require('../../../emoji-datasource-messenger/img/messenger/sheets/32.png'),
+    '64': require('../../../emoji-datasource-messenger/img/messenger/sheets/64.png'),
+  },
+  facebook: {
+    '16': require('../../../emoji-datasource-facebook/img/facebook/sheets/16.png'),
+    '20': require('../../../emoji-datasource-facebook/img/facebook/sheets/20.png'),
+    '32': require('../../../emoji-datasource-facebook/img/facebook/sheets/32.png'),
+    '64': require('../../../emoji-datasource-facebook/img/facebook/sheets/64.png'),
+  },
+}
+
 export default class App extends Component {
   state = {
     set: 'twitter',
@@ -63,7 +94,9 @@ export default class App extends Component {
             skin={this.state.selectedEmoji.skin}
             size={64}
             data={data}
-            useLocalImages={localEmojis}
+            spriteSheetFn={(set, sheetSize) =>
+              localSpriteSheets[set][sheetSize]
+            }
             fallback={(emoji) => {
               return `:${emoji.short_names[0]}:`
             }}
@@ -71,26 +104,56 @@ export default class App extends Component {
           <Text>{this.state.selectedEmoji.colons}</Text>
         </View>
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={[styles.btn, this.state.set === 'apple' ? styles.btnActive : null]} onPress={this.onPressApple}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              this.state.set === 'apple' ? styles.btnActive : null,
+            ]}
+            onPress={this.onPressApple}
+          >
             <Text>apple</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, this.state.set === 'google' ? styles.btnActive : null]} onPress={this.onPressGoogle}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              this.state.set === 'google' ? styles.btnActive : null,
+            ]}
+            onPress={this.onPressGoogle}
+          >
             <Text>google</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, this.state.set === 'twitter' ? styles.btnActive : null]} onPress={this.onPressTwitter}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              this.state.set === 'twitter' ? styles.btnActive : null,
+            ]}
+            onPress={this.onPressTwitter}
+          >
             <Text>twitter</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, this.state.set === 'messenger' ? styles.btnActive : null]} onPress={this.onPressMessenger}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              this.state.set === 'messenger' ? styles.btnActive : null,
+            ]}
+            onPress={this.onPressMessenger}
+          >
             <Text>messenger</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.btn, this.state.set === 'facebook' ? styles.btnActive : null]} onPress={this.onPressFacebook}>
+          <TouchableOpacity
+            style={[
+              styles.btn,
+              this.state.set === 'facebook' ? styles.btnActive : null,
+            ]}
+            onPress={this.onPressFacebook}
+          >
             <Text>facebook</Text>
           </TouchableOpacity>
         </View>
         <NimblePicker
           set={this.state.set}
           data={data}
-          useLocalImages={localEmojis}
+          spriteSheetFn={(set, sheetSize) => localSpriteSheets[set][sheetSize]}
           onSelect={this.emojiSelectTrigger}
         />
         <View style={styles.openModalText}>
@@ -109,7 +172,7 @@ export default class App extends Component {
           }}
           set={this.state.set}
           data={data}
-          useLocalImages={localEmojis}
+          spriteSheetFn={(set, sheetSize) => localSpriteSheets[set][sheetSize]}
           onSelect={(emoji) => {
             this.emojiSelectTrigger(emoji)
             this.showPickerTrigger(false)

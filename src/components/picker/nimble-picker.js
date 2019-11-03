@@ -15,7 +15,8 @@ import skinStore from '../../utils/skin'
 import frequently from '../../utils/frequently'
 import { deepMerge } from '../../utils'
 import { uncompress } from '../../utils/data'
-import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
+import { PickerPropTypes } from '../../utils/shared-props'
+import { PickerDefaultProps } from '../../utils/shared-default-props'
 import Anchors from '../anchors'
 import Category from '../category'
 import Search from '../search'
@@ -418,11 +419,15 @@ export default class NimblePicker extends React.PureComponent {
         emojiMargin,
         anchorSize,
         set,
+        sheetSize,
+        sheetColumns,
+        sheetRows,
         style,
         title,
         emoji,
         color,
         native,
+        spriteSheetFn,
         emojiImageFn,
         emojisToShowFilter,
         showSkinTones,
@@ -433,7 +438,6 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
-        useLocalImages,
         onPressClose,
         notFound,
         notFoundEmoji,
@@ -487,7 +491,6 @@ export default class NimblePicker extends React.PureComponent {
             set,
             forceSize: native,
             emojiImageFn,
-            useLocalImages,
           }}
           showCloseButton={showCloseButton}
         />
@@ -538,10 +541,13 @@ export default class NimblePicker extends React.PureComponent {
                   size: emojiSize,
                   margin: emojiMargin,
                   set,
+                  sheetSize,
+                  sheetColumns,
+                  sheetRows,
                   forceSize: native,
                   tooltip: emojiTooltip,
+                  spriteSheetFn,
                   emojiImageFn,
-                  useLocalImages,
                   onPress: this.handleEmojiPress,
                   onLongPress: this.handleEmojiLongPress,
                 }}
@@ -567,9 +573,12 @@ export default class NimblePicker extends React.PureComponent {
                 skin,
                 size: anchorSize,
                 set,
+                sheetSize,
+                sheetColumns,
+                sheetRows,
                 forceSize: native,
+                spriteSheetFn,
                 emojiImageFn,
-                useLocalImages,
               }}
             />
           </View>
