@@ -31,7 +31,7 @@ const localSpriteSheets = {
     '16': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/16.png'),
     '20': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/20.png'),
     '32': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/32.png'),
-    '64': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/64.png'),
+    '64': { uri: 'twitter_emoji_64' },
   },
   messenger: {
     '16': require('./node_modules/emoji-datasource-messenger/img/messenger/sheets/16.png'),
