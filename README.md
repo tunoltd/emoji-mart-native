@@ -225,6 +225,40 @@ import { NimblePicker } from 'emoji-mart-native'
 <NimblePicker set='messenger' data={data} />
 ```
 
+#### Examples of `emoji` object:
+```js
+{
+  id: 'smiley',
+  name: 'Smiling Face with Open Mouth',
+  colons: ':smiley:',
+  text: ':)',
+  emoticons: [
+    '=)',
+    '=-)'
+  ],
+  skin: null,
+  native: '😃'
+}
+{
+  id: 'santa',
+  name: 'Father Christmas',
+  colons: ':santa::skin-tone-3:',
+  text: '',
+  emoticons: [],
+  skin: 3,
+  native: '🎅🏼'
+}
+{
+  id: 'octocat',
+  name: 'Octocat',
+  colons: ':octocat:',
+  text: '',
+  emoticons: [],
+  custom: true,
+  image: {uri: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'}
+}
+```
+
 ### ModalPicker
 Renders the picker in a fullscreen modal.
 

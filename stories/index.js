@@ -1,10 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number, select, color } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select,
+  color,
+} from '@storybook/addon-knobs'
 
-import { Picker, Emoji, emojiIndex } from '../dist';
+import { Picker, Emoji, emojiIndex } from '../dist'
 
 const SETS = ['apple', 'google', 'twitter', 'messenger', 'facebook']
 const CUSTOM_EMOJIS = [
@@ -12,14 +19,18 @@ const CUSTOM_EMOJIS = [
     name: 'Octocat',
     short_names: ['octocat'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+    image: {
+      uri: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7',
+    },
   },
   {
     name: 'Squirrel',
     short_names: ['shipit', 'squirrel'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
-  }
+    image: {
+      uri: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7',
+    },
+  },
 ]
 
 storiesOf('Picker', module)
@@ -41,7 +52,7 @@ storiesOf('Picker', module)
       showSkinTones={boolean('Show skin tones', true)}
       custom={CUSTOM_EMOJIS}
     />
-  ));
+  ))
 
 storiesOf('Emoji', module)
   .addDecorator(withKnobs)
@@ -57,19 +68,27 @@ storiesOf('Emoji', module)
         return `:${emoji.short_names[0]}:`
       }}
     />
-  ));
+  ))
 
 storiesOf('Headless Search', module)
   .addDecorator(withKnobs)
   .add('default', () => {
-    let results = emojiIndex.search(text('Search', 'christmas'), { custom: CUSTOM_EMOJIS })
-    if (!results) { return null }
+    let results = emojiIndex.search(text('Search', 'christmas'), {
+      custom: CUSTOM_EMOJIS,
+    })
+    if (!results) {
+      return null
+    }
 
-    return <div>
-      {results.map((emoji) => {
-        return <span key={emoji.id} style={{ marginLeft: '1.4em' }}>
-          <Emoji native={true} emoji={emoji} size={48} />
-        </span>
-      })}
-    </div>
-  });
+    return (
+      <div>
+        {results.map((emoji) => {
+          return (
+            <span key={emoji.id} style={{ marginLeft: '1.4em' }}>
+              <Emoji native={true} emoji={emoji} size={48} />
+            </span>
+          )
+        })}
+      </div>
+    )
+  })
