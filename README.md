@@ -126,7 +126,7 @@ import { Picker } from 'emoji-mart-native'
 | **native** | | `false` | Renders the native unicode emoji |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
-| **spriteSheetFn** | | ```((set, sheetSize) => …)``` | A Fn that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **spriteSheetFn** | | ```((set, sheetSize) => …)``` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
 | **showSkinTones** | | `true` | Display skin tones picker |
@@ -156,6 +156,41 @@ categories: {
   flags: 'Flags',
   custom: 'Custom',
 }
+```
+
+#### SpriteSheetFn
+By default the picker source the emoji sheets online, this may not be the best solution and you may want to bundle the emoji sheets with your app.
+For the best results it's recommended to include any emoji sheets you use in the platform specific app package.
+
+You can either provide your own emoji sheets or use ones available from libraries such as [`iamcal/emoji-data`](https://github.com/iamcal/emoji-data#installation):
+```
+npm install emoji-datasource-apple
+npm install emoji-datasource-google
+npm install emoji-datasource-twitter
+npm install emoji-datasource-facebook
+npm install emoji-datasource-messenger
+```
+
+```jsx
+import { Picker } from 'emoji-mart-native'
+
+const localSpriteSheets = {
+  ...
+  twitter: {
+    ...
+    '20': {uri: `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`}, // Loads asset from web
+    '32': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/32.png'), // Loads static asset
+    '64': {uri: 'twitter_emoji_64'}, // Loads asset from app package
+  },
+  ...
+};
+
+<Picker spriteSheetFn={(set, sheetSize) =>
+  {uri: `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`}
+}>
+<Picker spriteSheetFn={(set, sheetSize) =>
+  localSpriteSheets[set][sheetSize]
+}>
 ```
 
 #### Sheet sizes
@@ -240,7 +275,7 @@ import { Emoji } from 'emoji-mart-native'
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
-| **spriteSheetFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **spriteSheetFn** | | ```((set, sheetSize) => {uri: `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`})``` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 | **tooltip** | | `false` | Show emoji short name when hovering (title) |
 | [**html**](#using-with-dangerouslysetinnerhtml) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
@@ -481,7 +516,8 @@ $ yarn start
 $ yarn storybook
 ```
 
-To easier test changes as you make them, you can run `npm run build:link -- --out-dir /$project/node_modules/emoji-mart-native/dist` replacing `$project` with your projects location.
+### Testing Changes
+To easier test changes as you make them, you can run `npm run build:link -- --out-dir /$project/node_modules/emoji-mart-native/dist` replacing `$project` with your projects or the example apps location.
 
 ## 🎩 Hat tips!
 Ported from code brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team<br>
