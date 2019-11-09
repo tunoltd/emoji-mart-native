@@ -38,7 +38,7 @@ test('with custom emoji', () => {
       text: '',
       emoticons: [],
       keywords: ['custom_name'],
-      imageUrl: 'https://example.com/emoji',
+      image: { uri: 'https://example.com/emoji' },
       custom: true,
     },
     {
@@ -48,7 +48,7 @@ test('with custom emoji', () => {
       text: '',
       emoticons: [],
       keywords: ['custom_name2'],
-      imageUrl: 'https://example.com/emoji',
+      image: { uri: 'https://example.com/emoji' },
       custom: true,
     },
   ]

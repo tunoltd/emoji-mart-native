@@ -11,10 +11,12 @@ import {
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
 import { uncompress } from '../../utils/data'
-import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
+import { EmojiPropTypes } from '../../utils/shared-props'
+import { EmojiDefaultProps } from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiWrapper: {
+    position: 'relative',
     overflow: 'hidden',
   },
   labelStyle: {
@@ -29,43 +31,18 @@ class NimbleEmoji extends React.PureComponent {
   static propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
   static defaultProps = EmojiDefaultProps
 
-  _getImage = (data) => {
-    const { image } = data
-    const { set, useLocalImages } = this.props
-    const emoji = this._getSanitizedData(this.props)
-
-    let imageSource = {
-      uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`,
-    }
-
-    if (useLocalImages && useLocalImages[emoji.id]) {
-      return useLocalImages[emoji.id].localImages[set][
-        (emoji.skin || NimbleEmoji.defaultProps.skin) - 1
-      ]
-    }
-
-    return imageSource
-  }
-
-  _getCustomImage = (data) => {
-    const { imageUrl, localImage } = data
-    const { useLocalImages } = this.props
-    const emoji = this._getSanitizedData(this.props)
-
-    let imageSource = {
-      uri: imageUrl,
-    }
-
-    if (useLocalImages && localImage) {
-      return localImage
-    }
-
-    return imageSource
-  }
-
   _getData = (props) => {
     const { emoji, skin, set, data } = props
     return getData(emoji, skin, set, data)
+  }
+
+  _getPosition = (props) => {
+    const { sheet_x, sheet_y } = this._getData(props)
+
+    return {
+      x: `-${sheet_x * 100}%`,
+      y: `-${sheet_y * 100}%`,
+    }
   }
 
   _getSanitizedData = (props) => {
@@ -116,7 +93,7 @@ class NimbleEmoji extends React.PureComponent {
       }
     }
 
-    let { unified, custom, short_names } = data,
+    let { unified, custom, short_names, image } = data,
       style = {},
       imageStyle = {},
       labelStyle = {},
@@ -149,19 +126,28 @@ class NimbleEmoji extends React.PureComponent {
         margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
-      imageStyle = {
-        width: this.props.size,
-        height: this.props.size,
+      if (data.spriteSheet) {
+        const emojiPosition = this._getPosition(this.props)
+
+        imageStyle = {
+          position: 'absolute',
+          top: emojiPosition.y,
+          left: emojiPosition.x,
+          width: `${100 * this.props.sheetColumns}%`,
+          height: `${100 * this.props.sheetRows}%`,
+        }
+
+        emojiImage = <Image style={imageStyle} source={data.spriteSheet} />
+      } else {
+        imageStyle = {
+          width: this.props.size,
+          height: this.props.size,
+        }
+
+        emojiImage = (
+          <Image style={imageStyle} source={this.props.emojiImageFn(image)} />
+        )
       }
-
-      const emojiImageFile = this._getCustomImage(data)
-
-      emojiImage = (
-        <Image
-          style={imageStyle}
-          source={this.props.emojiImageFn(emojiImageFile)}
-        />
-      )
     } else {
       const setHasEmoji =
         data[`has_img_${this.props.set}`] == undefined ||
@@ -181,17 +167,23 @@ class NimbleEmoji extends React.PureComponent {
         margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
-      const emojiImageFile = this._getImage(data)
+      const emojiPosition = this._getPosition(this.props)
 
       imageStyle = {
-        width: this.props.size,
-        height: this.props.size,
+        position: 'absolute',
+        top: emojiPosition.y,
+        left: emojiPosition.x,
+        width: `${100 * this.props.sheetColumns}%`,
+        height: `${100 * this.props.sheetRows}%`,
       }
 
       emojiImage = (
         <Image
           style={imageStyle}
-          source={this.props.emojiImageFn(emojiImageFile)}
+          source={this.props.spriteSheetFn(
+            this.props.set,
+            this.props.sheetSize,
+          )}
         />
       )
     }

@@ -5,7 +5,8 @@ import { StyleSheet, Modal, View, TouchableWithoutFeedback } from 'react-native'
 import data from '../../../data/all.json'
 import NimblePicker from './nimble-picker'
 
-import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
+import { PickerPropTypes } from '../../utils/shared-props'
+import { PickerDefaultProps } from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiMartBackdrop: {
