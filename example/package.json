@@ -15,7 +15,7 @@
     "emoji-datasource-google": "^4.1.0",
     "emoji-datasource-messenger": "^4.1.0",
     "emoji-datasource-twitter": "^4.1.0",
-    "emoji-mart-native": "^v0.4.7-beta",
+    "emoji-mart-native": "^v0.5.0-alpha",
     "react": "16.9.0",
     "react-native": "0.61.4"
   },
