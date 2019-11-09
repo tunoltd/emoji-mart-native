@@ -1,18 +1,20 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
+ *
+ * @format
  * @flow
  */
 
-import React, { Component } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React, {Component} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {
   NimbleEmoji,
   NimblePicker,
   EmojiButton,
   ModalPicker,
-} from 'emoji-mart-native'
-import data from 'emoji-mart-native/data/all.json'
+} from 'emoji-mart-native';
+import data from 'emoji-mart-native/data/all.json';
 
 const localSpriteSheets = {
   apple: {
@@ -31,7 +33,7 @@ const localSpriteSheets = {
     '16': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/16.png'),
     '20': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/20.png'),
     '32': require('./node_modules/emoji-datasource-twitter/img/twitter/sheets/32.png'),
-    '64': { uri: 'twitter_emoji_64' },
+    '64': {uri: 'twitter_emoji_64'},
   },
   messenger: {
     '16': require('./node_modules/emoji-datasource-messenger/img/messenger/sheets/16.png'),
@@ -45,41 +47,41 @@ const localSpriteSheets = {
     '32': require('./node_modules/emoji-datasource-facebook/img/facebook/sheets/32.png'),
     '64': require('./node_modules/emoji-datasource-facebook/img/facebook/sheets/64.png'),
   },
-}
+};
 
 export default class App extends Component {
   state = {
     set: 'twitter',
-    selectedEmoji: { id: 'department_store', colons: ':department_store:' },
+    selectedEmoji: {id: 'department_store', colons: ':department_store:'},
     showEmojiPicker: false,
-  }
-  emojiSelectTrigger = (emoji) => {
-    this.setState({ selectedEmoji: emoji })
-  }
+  };
+  emojiSelectTrigger = emoji => {
+    this.setState({selectedEmoji: emoji});
+  };
 
-  showPickerTrigger = (visible) => {
-    this.setState({ modalVisible: visible })
-  }
+  showPickerTrigger = visible => {
+    this.setState({modalVisible: visible});
+  };
 
   onPressApple = () => {
-    this.setState({ set: 'apple' })
-  }
+    this.setState({set: 'apple'});
+  };
 
   onPressGoogle = () => {
-    this.setState({ set: 'google' })
-  }
+    this.setState({set: 'google'});
+  };
 
   onPressTwitter = () => {
-    this.setState({ set: 'twitter' })
-  }
+    this.setState({set: 'twitter'});
+  };
 
   onPressMessenger = () => {
-    this.setState({ set: 'messenger' })
-  }
+    this.setState({set: 'messenger'});
+  };
 
   onPressFacebook = () => {
-    this.setState({ set: 'facebook' })
-  }
+    this.setState({set: 'facebook'});
+  };
 
   render() {
     return (
@@ -97,8 +99,8 @@ export default class App extends Component {
             spriteSheetFn={(set, sheetSize) =>
               localSpriteSheets[set][sheetSize]
             }
-            fallback={(emoji) => {
-              return `:${emoji.short_names[0]}:`
+            fallback={emoji => {
+              return `:${emoji.short_names[0]}:`;
             }}
           />
           <Text>{this.state.selectedEmoji.colons}</Text>
@@ -109,8 +111,7 @@ export default class App extends Component {
               styles.btn,
               this.state.set === 'apple' ? styles.btnActive : null,
             ]}
-            onPress={this.onPressApple}
-          >
+            onPress={this.onPressApple}>
             <Text>apple</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -118,8 +119,7 @@ export default class App extends Component {
               styles.btn,
               this.state.set === 'google' ? styles.btnActive : null,
             ]}
-            onPress={this.onPressGoogle}
-          >
+            onPress={this.onPressGoogle}>
             <Text>google</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -127,8 +127,7 @@ export default class App extends Component {
               styles.btn,
               this.state.set === 'twitter' ? styles.btnActive : null,
             ]}
-            onPress={this.onPressTwitter}
-          >
+            onPress={this.onPressTwitter}>
             <Text>twitter</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -136,8 +135,7 @@ export default class App extends Component {
               styles.btn,
               this.state.set === 'messenger' ? styles.btnActive : null,
             ]}
-            onPress={this.onPressMessenger}
-          >
+            onPress={this.onPressMessenger}>
             <Text>messenger</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -145,8 +143,7 @@ export default class App extends Component {
               styles.btn,
               this.state.set === 'facebook' ? styles.btnActive : null,
             ]}
-            onPress={this.onPressFacebook}
-          >
+            onPress={this.onPressFacebook}>
             <Text>facebook</Text>
           </TouchableOpacity>
         </View>
@@ -160,7 +157,7 @@ export default class App extends Component {
           <Text>Open picker as modal </Text>
           <EmojiButton
             onButtonPress={() => {
-              this.showPickerTrigger(true)
+              this.showPickerTrigger(true);
             }}
           />
         </View>
@@ -168,18 +165,18 @@ export default class App extends Component {
           isVisible={this.state.modalVisible}
           showCloseButton={true}
           onPressClose={() => {
-            this.showPickerTrigger(false)
+            this.showPickerTrigger(false);
           }}
           set={this.state.set}
           data={data}
           spriteSheetFn={(set, sheetSize) => localSpriteSheets[set][sheetSize]}
-          onSelect={(emoji) => {
-            this.emojiSelectTrigger(emoji)
-            this.showPickerTrigger(false)
+          onSelect={emoji => {
+            this.emojiSelectTrigger(emoji);
+            this.showPickerTrigger(false);
           }}
         />
       </View>
-    )
+    );
   }
 }
 
@@ -230,4 +227,4 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 24,
   },
-})
+});
