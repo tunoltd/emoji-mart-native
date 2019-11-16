@@ -13,6 +13,7 @@ const EmojiDefaultProps = {
   emojiImageFn: (image) => image,
   onPress: () => {},
   onLongPress: () => {},
+  useLocalImages: false,
   margin: 14,
   noMargin: false,
 }
@@ -42,6 +43,7 @@ const PickerDefaultProps = {
   spriteSheetFn: EmojiDefaultProps.spriteSheetFn,
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,
+  useLocalImages: EmojiDefaultProps.useLocalImages,
   showSkinTones: true,
   showAnchors: true,
   showCloseButton: false,

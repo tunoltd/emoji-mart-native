@@ -99,7 +99,8 @@ class NimbleEmoji extends React.PureComponent {
       labelStyle = {},
       children = this.props.children,
       title = null,
-      emojiImage
+      emojiImage,
+      emojiImageSource
 
     if (!unified && !custom) {
       if (this.props.fallback) {
@@ -167,25 +168,37 @@ class NimbleEmoji extends React.PureComponent {
         margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
-      const emojiPosition = this._getPosition(this.props)
+      const { useLocalImages } = this.props
+      const emoji = this._getSanitizedData(this.props)
 
-      imageStyle = {
-        position: 'absolute',
-        top: emojiPosition.y,
-        left: emojiPosition.x,
-        width: `${100 * this.props.sheetColumns}%`,
-        height: `${100 * this.props.sheetRows}%`,
+      if (useLocalImages && useLocalImages[emoji.id]) {
+        imageStyle = {
+          width: this.props.size,
+          height: this.props.size,
+        }
+
+        emojiImageSource =
+          useLocalImages[emoji.id].localImages[this.props.set][
+            (emoji.skin || NimbleEmoji.defaultProps.skin) - 1
+          ]
+      } else {
+        const emojiPosition = this._getPosition(this.props)
+
+        imageStyle = {
+          position: 'absolute',
+          top: emojiPosition.y,
+          left: emojiPosition.x,
+          width: `${100 * this.props.sheetColumns}%`,
+          height: `${100 * this.props.sheetRows}%`,
+        }
+
+        emojiImageSource = this.props.spriteSheetFn(
+          this.props.set,
+          this.props.sheetSize,
+        )
       }
 
-      emojiImage = (
-        <Image
-          style={imageStyle}
-          source={this.props.spriteSheetFn(
-            this.props.set,
-            this.props.sheetSize,
-          )}
-        />
-      )
+      emojiImage = <Image style={imageStyle} source={emojiImageSource} />
     }
 
     const emojiComponent = (

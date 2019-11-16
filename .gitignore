@@ -1,5 +1,6 @@
+.DS_Store
 node_modules/
+dist/
 stats.json
 report.html
 package-lock.json
-.DS_Store
