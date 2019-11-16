@@ -15,6 +15,9 @@ import {
   ModalPicker,
 } from 'emoji-mart-native';
 import data from 'emoji-mart-native/data/all.json';
+import dataRequires from 'emoji-mart-native/data/local-images/all';
+
+const {emojis: localEmojis} = dataRequires;
 
 const localSpriteSheets = {
   apple: {
@@ -169,7 +172,7 @@ export default class App extends Component {
           }}
           set={this.state.set}
           data={data}
-          spriteSheetFn={(set, sheetSize) => localSpriteSheets[set][sheetSize]}
+          useLocalImages={localEmojis}
           onSelect={emoji => {
             this.emojiSelectTrigger(emoji);
             this.showPickerTrigger(false);

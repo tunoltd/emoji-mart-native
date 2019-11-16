@@ -438,6 +438,7 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
+        useLocalImages,
         onPressClose,
         notFound,
         notFoundEmoji,
@@ -491,6 +492,7 @@ export default class NimblePicker extends React.PureComponent {
             set,
             forceSize: native,
             emojiImageFn,
+            useLocalImages,
           }}
           showCloseButton={showCloseButton}
         />
@@ -548,6 +550,7 @@ export default class NimblePicker extends React.PureComponent {
                   tooltip: emojiTooltip,
                   spriteSheetFn,
                   emojiImageFn,
+                  useLocalImages,
                   onPress: this.handleEmojiPress,
                   onLongPress: this.handleEmojiLongPress,
                 }}
@@ -579,6 +582,7 @@ export default class NimblePicker extends React.PureComponent {
                 forceSize: native,
                 spriteSheetFn,
                 emojiImageFn,
+                useLocalImages,
               }}
             />
           </View>

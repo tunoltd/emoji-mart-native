@@ -13,9 +13,7 @@ export {
   EmojiButton,
 } from './components'
 
-export {
-  default as NimbleEmojiIndex,
-} from './utils/emoji-index/nimble-emoji-index'
+export { default as NimbleEmojiIndex } from './utils/emoji-index/nimble-emoji-index'
 export {
   emojiIndex,
   store,

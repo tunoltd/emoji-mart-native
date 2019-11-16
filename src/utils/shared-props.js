@@ -17,6 +17,7 @@ const EmojiPropTypes = {
   set: PropTypes.oneOf(['apple', 'google', 'twitter', 'messenger', 'facebook']),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  useLocalImages: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   margin: PropTypes.number,
   noMargin: PropTypes.bool,
 }
@@ -45,6 +46,7 @@ const PickerPropTypes = {
   sheetSize: EmojiPropTypes.sheetSize,
   emojiImageFn: EmojiPropTypes.emojiImageFn,
   emojisToShowFilter: PropTypes.func,
+  useLocalImages: EmojiPropTypes.useLocalImages,
   showSkinTones: PropTypes.bool,
   showAnchors: PropTypes.bool,
   showCloseButton: PropTypes.bool,
