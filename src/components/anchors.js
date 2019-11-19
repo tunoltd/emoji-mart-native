@@ -1,11 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  ScrollView,
-} from 'react-native'
+import {StyleSheet, View, TouchableWithoutFeedback, ScrollView} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
@@ -53,9 +48,7 @@ export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    let defaultCategory = props.categories.filter(
-      (category) => category.first,
-    )[0]
+    let defaultCategory = props.categories.filter((category) => category.first)[0]
 
     this.data = props.data
     this.state = {
@@ -70,8 +63,8 @@ export default class Anchors extends React.PureComponent {
   }
 
   onSelectAnchor(categoryName) {
-    this.setState({ selected: categoryName }, () => {
-      const { selected } = this.state
+    this.setState({selected: categoryName}, () => {
+      const {selected} = this.state
       let contentOffset = 0
 
       if (this.clientWidth) {
@@ -86,12 +79,12 @@ export default class Anchors extends React.PureComponent {
           contentOffset = anchorOffset - scrollStart
         }
       }
-      this.scrollView.scrollTo({ x: contentOffset, animated: true })
+      this.scrollView.scrollTo({x: contentOffset, animated: true})
     })
   }
 
   handlePress(index) {
-    var { categories, onAnchorPress } = this.props
+    var {categories, onAnchorPress} = this.props
 
     onAnchorPress(categories[index], index)
   }
@@ -105,8 +98,8 @@ export default class Anchors extends React.PureComponent {
   }
 
   onAnchorLayout = (index, event) => {
-    var { categories } = this.props
-    const { x: left, width } = event.nativeEvent.layout
+    var {categories} = this.props
+    const {x: left, width} = event.nativeEvent.layout
 
     const category = categories[index]
 
@@ -115,8 +108,8 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var { categories, color, i18n, emojiProps, categoryEmojis } = this.props,
-      { selected } = this.state
+    var {categories, color, i18n, emojiProps, categoryEmojis} = this.props,
+      {selected} = this.state
 
     return (
       <ScrollView
@@ -128,7 +121,7 @@ export default class Anchors extends React.PureComponent {
       >
         <View style={styles.anchors}>
           {categories.map((category, i) => {
-            var { id, name, anchor } = category,
+            var {id, name, anchor} = category,
               isSelected = name == selected
 
             if (anchor === false) {
@@ -142,12 +135,7 @@ export default class Anchors extends React.PureComponent {
                 onPress={this.handlePress.bind(this, i)}
                 onLayout={this.onAnchorLayout.bind(this, i)}
               >
-                <View
-                  style={[
-                    styles.anchor,
-                    isSelected ? styles.anchorSelected : null,
-                  ]}
-                >
+                <View style={[styles.anchor, isSelected ? styles.anchorSelected : null]}>
                   <NimbleEmoji
                     emoji={categoryEmojis[id]}
                     data={this.data}
@@ -155,11 +143,7 @@ export default class Anchors extends React.PureComponent {
                     onPress={this.handlePress.bind(this, i)}
                   />
                   <View
-                    style={[
-                      styles.anchorBar,
-                      isSelected ? styles.anchorBarSelected : null,
-                      { backgroundColor: color },
-                    ]}
+                    style={[styles.anchorBar, isSelected ? styles.anchorBarSelected : null, {backgroundColor: color}]}
                   />
                 </View>
               </TouchableWithoutFeedback>

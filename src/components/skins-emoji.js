@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
+import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
@@ -42,12 +42,12 @@ export default class SkinsEmoji extends React.PureComponent {
   }
 
   handlePress(skin) {
-    var { onChange } = this.props
+    var {onChange} = this.props
 
     if (!this.state.opened) {
-      this.setState({ opened: true })
+      this.setState({opened: true})
     } else {
-      this.setState({ opened: false })
+      this.setState({opened: false})
       if (skin != this.props.skin) {
         onChange(skin)
       }
@@ -55,8 +55,8 @@ export default class SkinsEmoji extends React.PureComponent {
   }
 
   render() {
-    const { skin, emojiProps, data, skinEmoji } = this.props
-    const { opened } = this.state
+    const {skin, emojiProps, data, skinEmoji} = this.props
+    const {opened} = this.state
 
     const skinToneNodes = []
 
@@ -66,10 +66,7 @@ export default class SkinsEmoji extends React.PureComponent {
       skinToneNodes.push(
         <View
           key={`skin-tone-${skinTone}`}
-          style={[
-            styles.skinSwatch,
-            selected || opened ? styles.skinSwatchShown : null,
-          ]}
+          style={[styles.skinSwatch, selected || opened ? styles.skinSwatchShown : null]}
         >
           {selected || opened ? (
             <View style={styles.skin}>

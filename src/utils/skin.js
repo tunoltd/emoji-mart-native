@@ -20,4 +20,4 @@ function get() {
   return skin
 }
 
-export default { set, get }
+export default {set, get}

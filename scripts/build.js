@@ -3,7 +3,7 @@ var fs = require('fs'),
   inflection = require('inflection'),
   mkdirp = require('mkdirp')
 
-var { compress } = require('../src/utils/data')
+var {compress} = require('../src/utils/data')
 
 var categories = [
   ['Smileys & People', 'people'],
@@ -22,12 +22,12 @@ module.exports = (options) => {
   delete require.cache[require.resolve('emoji-datasource')]
   var emojiData = require('emoji-datasource')
 
-  var data = { compressed: true, categories: [], emojis: {}, aliases: {} },
+  var data = {compressed: true, categories: [], emojis: {}, aliases: {}},
     categoriesIndex = {}
 
   categories.forEach((category, i) => {
     let [name, id] = category
-    data.categories[i] = { id: id, name: name, emojis: [] }
+    data.categories[i] = {id: id, name: name, emojis: []}
     categoriesIndex[name] = i
   })
 

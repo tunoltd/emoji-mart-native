@@ -1,18 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Platform,
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableWithoutFeedback,
-} from 'react-native'
+import {Platform, StyleSheet, View, Text, Image, TouchableWithoutFeedback} from 'react-native'
 
-import { getData, getSanitizedData, unifiedToNative } from '../../utils'
-import { uncompress } from '../../utils/data'
-import { EmojiPropTypes } from '../../utils/shared-props'
-import { EmojiDefaultProps } from '../../utils/shared-default-props'
+import {getData, getSanitizedData, unifiedToNative} from '../../utils'
+import {uncompress} from '../../utils/data'
+import {EmojiPropTypes} from '../../utils/shared-props'
+import {EmojiDefaultProps} from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiWrapper: {
@@ -28,16 +21,16 @@ const styles = StyleSheet.create({
 // TODO: Use functional components?
 // const NimbleEmoji = (props) => {
 class NimbleEmoji extends React.PureComponent {
-  static propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
+  static propTypes = {...EmojiPropTypes, data: PropTypes.object.isRequired}
   static defaultProps = EmojiDefaultProps
 
   _getData = (props) => {
-    const { emoji, skin, set, data } = props
+    const {emoji, skin, set, data} = props
     return getData(emoji, skin, set, data)
   }
 
   _getPosition = (props) => {
-    const { sheet_x, sheet_y } = this._getData(props)
+    const {sheet_x, sheet_y} = this._getData(props)
 
     return {
       x: `-${sheet_x * 100}%`,
@@ -46,12 +39,12 @@ class NimbleEmoji extends React.PureComponent {
   }
 
   _getSanitizedData = (props) => {
-    const { emoji, skin, set, data } = props
+    const {emoji, skin, set, data} = props
     return getSanitizedData(emoji, skin, set, data)
   }
 
   _handlePress = (e) => {
-    const { onPress } = this.props
+    const {onPress} = this.props
     if (!onPress) {
       return
     }
@@ -61,7 +54,7 @@ class NimbleEmoji extends React.PureComponent {
   }
 
   _handleLongPress = (e) => {
-    const { onLongPress } = this.props
+    const {onLongPress} = this.props
     if (!onLongPress) {
       return
     }
@@ -76,10 +69,7 @@ class NimbleEmoji extends React.PureComponent {
     }
 
     for (const k in NimbleEmoji.defaultProps) {
-      if (
-        this.props[k] === undefined &&
-        NimbleEmoji.defaultProps[k] != undefined
-      ) {
+      if (this.props[k] === undefined && NimbleEmoji.defaultProps[k] != undefined) {
         this.props[k] = NimbleEmoji.defaultProps[k]
       }
     }
@@ -93,7 +83,7 @@ class NimbleEmoji extends React.PureComponent {
       }
     }
 
-    let { unified, custom, short_names, image } = data,
+    let {unified, custom, short_names, image} = data,
       style = {},
       imageStyle = {},
       labelStyle = {},
@@ -116,7 +106,7 @@ class NimbleEmoji extends React.PureComponent {
 
     if (this.props.native && unified) {
       const fontSize = this.props.size
-      labelStyle = { fontSize }
+      labelStyle = {fontSize}
       children = unifiedToNative(unified)
       style.width = this.props.size + this.props.margin
       style.height = this.props.size + this.props.margin
@@ -145,14 +135,10 @@ class NimbleEmoji extends React.PureComponent {
           height: this.props.size,
         }
 
-        emojiImage = (
-          <Image style={imageStyle} source={this.props.emojiImageFn(image)} />
-        )
+        emojiImage = <Image style={imageStyle} source={this.props.emojiImageFn(image)} />
       }
     } else {
-      const setHasEmoji =
-        data[`has_img_${this.props.set}`] == undefined ||
-        data[`has_img_${this.props.set}`]
+      const setHasEmoji = data[`has_img_${this.props.set}`] == undefined || data[`has_img_${this.props.set}`]
 
       if (!setHasEmoji) {
         if (this.props.fallback) {
@@ -168,7 +154,7 @@ class NimbleEmoji extends React.PureComponent {
         margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
-      const { useLocalImages } = this.props
+      const {useLocalImages} = this.props
       const emoji = this._getSanitizedData(this.props)
 
       if (useLocalImages && useLocalImages[emoji.id]) {
@@ -178,9 +164,7 @@ class NimbleEmoji extends React.PureComponent {
         }
 
         emojiImageSource =
-          useLocalImages[emoji.id].localImages[this.props.set][
-            (emoji.skin || NimbleEmoji.defaultProps.skin) - 1
-          ]
+          useLocalImages[emoji.id].localImages[this.props.set][(emoji.skin || NimbleEmoji.defaultProps.skin) - 1]
       } else {
         const emojiPosition = this._getPosition(this.props)
 
@@ -192,10 +176,7 @@ class NimbleEmoji extends React.PureComponent {
           height: `${100 * this.props.sheetRows}%`,
         }
 
-        emojiImageSource = this.props.spriteSheetFn(
-          this.props.set,
-          this.props.sheetSize,
-        )
+        emojiImageSource = this.props.spriteSheetFn(this.props.set, this.props.sheetSize)
       }
 
       emojiImage = <Image style={imageStyle} source={emojiImageSource} />
@@ -203,17 +184,12 @@ class NimbleEmoji extends React.PureComponent {
 
     const emojiComponent = (
       <View style={[styles.emojiWrapper, style]}>
-        {emojiImage || (
-          <Text style={[styles.labelStyle, labelStyle]}>{children}</Text>
-        )}
+        {emojiImage || <Text style={[styles.labelStyle, labelStyle]}>{children}</Text>}
       </View>
     )
 
     return this.props.onPress || this.props.onLongPress ? (
-      <TouchableWithoutFeedback
-        onPress={this._handlePress}
-        onLongPress={this._handleLongPress}
-      >
+      <TouchableWithoutFeedback onPress={this._handlePress} onLongPress={this._handleLongPress}>
         {emojiComponent}
       </TouchableWithoutFeedback>
     ) : (

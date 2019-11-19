@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, Text } from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
@@ -29,27 +29,14 @@ export default class NotFound extends React.PureComponent {
   }
 
   render() {
-    const {
-      data,
-      emojiProps,
-      i18n,
-      notFound,
-      notFoundEmoji,
-      style,
-    } = this.props
+    const {data, emojiProps, i18n, notFound, notFoundEmoji, style} = this.props
 
     const component = (
       <View style={[style ? style : null, styles.notFound]}>
         {(notFound && notFound()) || (
           <View style={styles.notFound}>
             <View>
-              <NimbleEmoji
-                data={data}
-                {...emojiProps}
-                emoji={notFoundEmoji}
-                onPress={null}
-                onLongPress={null}
-              />
+              <NimbleEmoji data={data} {...emojiProps} emoji={notFoundEmoji} onPress={null} onLongPress={null} />
             </View>
 
             <View>

@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 import frequently from '../utils/frequently'
-import { getData, getSanitizedData, chunk } from '../utils'
+import {getData, getSanitizedData, chunk} from '../utils'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 import NotFound from './not-found'
@@ -69,15 +69,8 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var {
-        name,
-        perLine,
-        native,
-        hasStickyPosition,
-        emojis,
-        emojiProps,
-      } = this.props,
-      { skin, size, set } = emojiProps,
+    var {name, perLine, native, hasStickyPosition, emojis, emojiProps} = this.props,
+      {skin, size, set} = emojiProps,
       {
         perLine: nextPerLine,
         native: nextNative,
@@ -85,7 +78,7 @@ export default class Category extends React.Component {
         emojis: nextEmojis,
         emojiProps: nextEmojiProps,
       } = nextProps,
-      { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
+      {skin: nextSkin, size: nextSize, set: nextSet} = nextEmojiProps,
       shouldUpdate = false
 
     if (name == 'Recent' && perLine != nextPerLine) {
@@ -120,23 +113,17 @@ export default class Category extends React.Component {
   }
 
   calculateVisibility(scrollLeft) {
-    if (
-      this.pages &&
-      typeof this.left === 'number' &&
-      scrollLeft % this.width === 0
-    ) {
-      let { pagesToEagerLoad } = this.props
+    if (this.pages && typeof this.left === 'number' && scrollLeft % this.width === 0) {
+      let {pagesToEagerLoad} = this.props
       for (let index in this.pages) {
         const page = parseInt(index) + 1
         const pageWidth = this.maxMargin[`page-${index}`] || 0
-        const pageLeft =
-          this.pagesOffsetLeft[`page-${index}`] || this.left + index * pageWidth
+        const pageLeft = this.pagesOffsetLeft[`page-${index}`] || this.left + index * pageWidth
 
         const pageEagerLoadWidth = pageWidth * pagesToEagerLoad
 
         this.active[`page-${index}`] =
-          scrollLeft >= pageLeft - pageEagerLoadWidth &&
-          scrollLeft <= pageLeft + pageEagerLoadWidth
+          scrollLeft >= pageLeft - pageEagerLoadWidth && scrollLeft <= pageLeft + pageEagerLoadWidth
       }
 
       this.forceUpdate()
@@ -158,10 +145,10 @@ export default class Category extends React.Component {
   }
 
   getEmojis() {
-    var { name, emojis, recent, perLine, emojiProps } = this.props
+    var {name, emojis, recent, perLine, emojiProps} = this.props
 
     if (name == 'Recent') {
-      let { custom } = this.props
+      let {custom} = this.props
       let frequentlyUsed = recent || frequently.get(perLine)
 
       if (frequentlyUsed.length) {
@@ -196,7 +183,7 @@ export default class Category extends React.Component {
       return
     }
 
-    this.setState({ visible })
+    this.setState({visible})
   }
 
   setPagesRef(index, c) {
@@ -208,7 +195,7 @@ export default class Category extends React.Component {
   }
 
   onLayout = (index, event) => {
-    const { x: left, width } = event.nativeEvent.layout
+    const {x: left, width} = event.nativeEvent.layout
 
     if (index === 0) {
       this.left = left
@@ -220,7 +207,7 @@ export default class Category extends React.Component {
   }
 
   _getSanitizedData = (props) => {
-    const { emoji, skin, set } = props
+    const {emoji, skin, set} = props
     return getSanitizedData(emoji, skin, set, this.data)
   }
 
@@ -238,9 +225,9 @@ export default class Category extends React.Component {
         notFoundEmoji,
       } = this.props,
       emojis = this.getEmojis(),
-      { visible } = this.state
+      {visible} = this.state
 
-    const { size: emojiSize, margin: emojiMargin } = emojiProps
+    const {size: emojiSize, margin: emojiMargin} = emojiProps
 
     const emojiSizing = emojiSize + emojiMargin
     // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
@@ -289,12 +276,7 @@ export default class Category extends React.Component {
                     })
 
                     return pageVisible ? (
-                      <NimbleEmoji
-                        key={`${name}_emoji_${emoji.id}`}
-                        emoji={emoji}
-                        data={this.data}
-                        {...emojiProps}
-                      />
+                      <NimbleEmoji key={`${name}_emoji_${emoji.id}`} emoji={emoji} data={this.data} {...emojiProps} />
                     ) : null
                   })}
                 </View>

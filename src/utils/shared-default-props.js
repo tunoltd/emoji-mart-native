@@ -56,4 +56,4 @@ const PickerDefaultProps = {
   categoryEmojis: {},
 }
 
-export { PickerDefaultProps, EmojiDefaultProps }
+export {PickerDefaultProps, EmojiDefaultProps}
