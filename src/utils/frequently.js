@@ -29,7 +29,7 @@ function init() {
 
 function add(emoji) {
   if (!initialized) init()
-  var { id } = emoji
+  var {id} = emoji
 
   frequently || (frequently = defaults)
   frequently[id] || (frequently[id] = 0)
@@ -63,9 +63,7 @@ function get(perLine) {
     }
   }
 
-  const sorted = frequentlyKeys
-    .sort((a, b) => frequently[a] - frequently[b])
-    .reverse()
+  const sorted = frequentlyKeys.sort((a, b) => frequently[a] - frequently[b]).reverse()
   const sliced = sorted.slice(0, quantity)
 
   const last = store.get('last')
@@ -78,4 +76,4 @@ function get(perLine) {
   return sliced
 }
 
-export default { add, get }
+export default {add, get}

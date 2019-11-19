@@ -8,11 +8,7 @@ export default (function createClass() {
     var _e = undefined
 
     try {
-      for (
-        var _i = _Object.getIterator(arr), _s;
-        !(_n = (_s = _i.next()).done);
-        _n = true
-      ) {
+      for (var _i = _Object.getIterator(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
         _arr.push(_s.value)
 
         if (i && _arr.length === i) break
@@ -37,9 +33,7 @@ export default (function createClass() {
     } else if (_Object.isIterable(Object(arr))) {
       return sliceIterator(arr, i)
     } else {
-      throw new TypeError(
-        'Invalid attempt to destructure non-iterable instance',
-      )
+      throw new TypeError('Invalid attempt to destructure non-iterable instance')
     }
   }
 })()

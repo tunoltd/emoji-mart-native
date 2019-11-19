@@ -1,6 +1,6 @@
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
 var hasOwnProperty = Object.prototype.hasOwnProperty,
-  hasDontEnumBug = !{ toString: null }.propertyIsEnumerable('toString'),
+  hasDontEnumBug = !{toString: null}.propertyIsEnumerable('toString'),
   dontEnums = [
     'toString',
     'toLocaleString',

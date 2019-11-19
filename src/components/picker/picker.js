@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import {StyleSheet, View} from 'react-native'
 
 import data from '../../../data/all.json'
 import NimblePicker from './nimble-picker'
 
-import { PickerPropTypes } from '../../utils/shared-props'
-import { PickerDefaultProps } from '../../utils/shared-default-props'
+import {PickerPropTypes} from '../../utils/shared-props'
+import {PickerDefaultProps} from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiMartPickerContainer: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 export default class Picker extends React.PureComponent {
   static propTypes = PickerPropTypes
-  static defaultProps = { ...PickerDefaultProps, data }
+  static defaultProps = {...PickerDefaultProps, data}
 
   render() {
     return (

@@ -1,13 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Platform,
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableNativeFeedback,
-  Image,
-} from 'react-native'
+import {Platform, StyleSheet, View, TextInput, TouchableNativeFeedback, Image} from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
@@ -123,16 +116,8 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var {
-      i18n,
-      autoFocus,
-      onPressClose,
-      skinsProps,
-      showSkinTones,
-      showCloseButton,
-      emojiProps,
-    } = this.props
-    var { searchTerm } = this.state
+    var {i18n, autoFocus, onPressClose, skinsProps, showSkinTones, showCloseButton, emojiProps} = this.props
+    var {searchTerm} = this.state
 
     let background
 
@@ -149,12 +134,7 @@ export default class Search extends React.PureComponent {
     }
 
     return (
-      <View
-        style={[
-          styles.searchContainer,
-          showCloseButton ? searchContainerWithCloseButtonStyle : null,
-        ]}
-      >
+      <View style={[styles.searchContainer, showCloseButton ? searchContainerWithCloseButtonStyle : null]}>
         {showCloseButton ? (
           <View style={styles.closeButtonContainer}>
             <Touchable
@@ -189,11 +169,7 @@ export default class Search extends React.PureComponent {
         {showSkinTones && (
           <View>
             {skinsProps.skinEmoji ? (
-              <SkinsEmoji
-                emojiProps={emojiProps}
-                data={this.data}
-                {...skinsProps}
-              />
+              <SkinsEmoji emojiProps={emojiProps} data={this.data} {...skinsProps} />
             ) : (
               <Skins {...skinsProps} />
             )}

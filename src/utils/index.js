@@ -1,6 +1,6 @@
-import { buildSearch } from './data'
+import {buildSearch} from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
-import { uncompress } from './data'
+import {uncompress} from './data'
 import NimbleEmojiIndex from './emoji-index/nimble-emoji-index'
 
 const _JSON = JSON
@@ -16,16 +16,7 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  var {
-      name,
-      short_names,
-      skin_tone,
-      skin_variations,
-      emoticons,
-      unified,
-      custom,
-      image,
-    } = emoji,
+  var {name, short_names, skin_tone, skin_variations, emoticons, unified, custom, image} = emoji,
     id = emoji.id || short_names[0],
     colons = `:${id}:`
 
@@ -117,12 +108,7 @@ function getData(emoji, skin, set, data) {
       delete emojiData.variations
     }
 
-    if (
-      (set &&
-        (variationData[`has_img_${set}`] == undefined ||
-          variationData[`has_img_${set}`])) ||
-      !set
-    ) {
+    if ((set && (variationData[`has_img_${set}`] == undefined || variationData[`has_img_${set}`])) || !set) {
       emojiData.skin_tone = skin
 
       for (let k in variationData) {

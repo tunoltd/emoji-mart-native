@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, Modal, View, TouchableWithoutFeedback } from 'react-native'
+import {StyleSheet, Modal, View, TouchableWithoutFeedback} from 'react-native'
 
 import data from '../../../data/all.json'
 import NimblePicker from './nimble-picker'
 
-import { PickerPropTypes } from '../../utils/shared-props'
-import { PickerDefaultProps } from '../../utils/shared-default-props'
+import {PickerPropTypes} from '../../utils/shared-props'
+import {PickerDefaultProps} from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiMartBackdrop: {
@@ -41,22 +41,15 @@ export default class ModalPicker extends React.PureComponent {
   }
 
   render() {
-    var { onPressClose, isVisible } = this.props
+    var {onPressClose, isVisible} = this.props
 
     if (!isVisible) {
       return null
     }
 
     return (
-      <Modal
-        transparent={true}
-        onRequestClose={onPressClose}
-        visible={isVisible}
-      >
-        <TouchableWithoutFeedback
-          onPress={onPressClose}
-          style={styles.emojiMartBackdrop}
-        >
+      <Modal transparent={true} onRequestClose={onPressClose} visible={isVisible}>
+        <TouchableWithoutFeedback onPress={onPressClose} style={styles.emojiMartBackdrop}>
           <View style={styles.emojiMartBackdrop} />
         </TouchableWithoutFeedback>
         <View style={styles.emojiMartPickerContainer}>

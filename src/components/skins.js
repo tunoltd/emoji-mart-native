@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
+import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native'
 
 const styles = StyleSheet.create({
   skinSwatches: {
@@ -68,12 +68,12 @@ export default class Skins extends React.PureComponent {
   }
 
   handlePress(skin) {
-    var { onChange } = this.props
+    var {onChange} = this.props
 
     if (!this.state.opened) {
-      this.setState({ opened: true })
+      this.setState({opened: true})
     } else {
-      this.setState({ opened: false })
+      this.setState({opened: false})
       if (skin != this.props.skin) {
         onChange(skin)
       }
@@ -81,8 +81,8 @@ export default class Skins extends React.PureComponent {
   }
 
   render() {
-    const { skin } = this.props
-    const { opened } = this.state
+    const {skin} = this.props
+    const {opened} = this.state
 
     const skinToneNodes = []
 
@@ -92,10 +92,7 @@ export default class Skins extends React.PureComponent {
       skinToneNodes.push(
         <View
           key={`skin-tone-${skinTone}`}
-          style={[
-            styles.skinSwatch,
-            selected || opened ? styles.skinSwatchShown : null,
-          ]}
+          style={[styles.skinSwatch, selected || opened ? styles.skinSwatchShown : null]}
         >
           {selected || opened ? (
             <TouchableWithoutFeedback
@@ -103,9 +100,7 @@ export default class Skins extends React.PureComponent {
               style={[styles.skin, styles[`skinTone${skinTone}`]]}
             >
               <View style={[styles.skin, styles[`skinTone${skinTone}`]]}>
-                {selected && opened ? (
-                  <View style={styles.skinSelected} />
-                ) : null}
+                {selected && opened ? <View style={styles.skinSelected} /> : null}
               </View>
             </TouchableWithoutFeedback>
           ) : null}

@@ -81,4 +81,4 @@ const PickerPropTypes = {
   categoryEmojis: PropTypes.objectOf(PropTypes.string),
 }
 
-export { EmojiPropTypes, PickerPropTypes }
+export {EmojiPropTypes, PickerPropTypes}

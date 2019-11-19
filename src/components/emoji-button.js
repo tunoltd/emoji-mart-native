@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
+import {StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 
 const emojiIcon = require('../assets/emoji-icon.png')
 
@@ -28,7 +28,7 @@ export default class EmojiButton extends React.PureComponent {
   }
 
   render() {
-    const { buttonImage } = this.props
+    const {buttonImage} = this.props
 
     return (
       <TouchableOpacity onPress={this.props.onButtonPress}>

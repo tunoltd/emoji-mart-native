@@ -2,8 +2,7 @@ var NAMESPACE = 'emoji-mart-native'
 
 const _JSON = JSON
 
-var isLocalStorageSupported =
-  typeof window !== 'undefined' && 'localStorage' in window
+var isLocalStorageSupported = typeof window !== 'undefined' && 'localStorage' in window
 
 let getter
 let setter
@@ -54,4 +53,4 @@ function get(key) {
   }
 }
 
-export default { update, set, get, setNamespace, setHandlers }
+export default {update, set, get, setNamespace, setHandlers}
