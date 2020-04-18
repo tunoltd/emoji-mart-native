@@ -1,6 +1,6 @@
 <p align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
-  <br><a href="https://github.com/tunoltd/emoji-mart-native/tree/master/example">Example app</a> • <a href="https://github.com/tunoltd/emoji-mart-native/releases">Changelog</a>
+  <br><a href="https://github.com/tunoltd/emoji-mart-native-example/">Example app</a> • <a href="https://github.com/tunoltd/emoji-mart-native/releases">Changelog</a>
   <br><br><a href="https://travis-ci.com/tunoltd/emoji-mart-native"><img src="https://travis-ci.com/tunoltd/emoji-mart-native.svg?branch=master" alt="Build Status"></a>
 </p>
 
@@ -228,8 +228,7 @@ To use these data files (or any other custom data), use the `NimblePicker` compo
 
 ```js
 import data from 'emoji-mart-native/data/messenger.json'
-import { NimblePicker } from 'emoji-mart-native'
-
+import {NimblePicker} from 'emoji-mart-native'
 ;<NimblePicker set="messenger" data={data} />
 ```
 
@@ -305,8 +304,7 @@ const {emojis: localEmojis} = dataRequires
 Renders the picker in a fullscreen modal.
 
 ```jsx
-import { ModalPicker } from 'emoji-mart-native'
-
+import {ModalPicker} from 'emoji-mart-native'
 ;<ModalPicker isVisible={true} showCloseButton />
 ```
 
@@ -481,7 +479,7 @@ const categoryEmojis = {
 The `Picker` doesn’t have to be mounted for you to take advantage of the advanced search results.
 
 ```js
-import { emojiIndex } from 'emoji-mart-native'
+import {emojiIndex} from 'emoji-mart-native'
 
 emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
@@ -491,7 +489,7 @@ emojiIndex.search('christmas').map((o) => o.native)
 
 ```js
 import data from 'emoji-mart-native/datasets/messenger'
-import { NimbleEmojiIndex } from 'emoji-mart-native'
+import {NimbleEmojiIndex} from 'emoji-mart-native'
 
 let emojiIndex = new NimbleEmojiIndex(data)
 emojiIndex.search('christmas')
@@ -534,7 +532,7 @@ emojiData: {
 By default EmojiMartNative will store user chosen skin and frequently used emojis in `localStorage`. That can however be overwritten should you want to store these in your own storage.
 
 ```js
-import { store } from 'emoji-mart-native'
+import {store} from 'emoji-mart-native'
 
 store.setHandlers({
   getter: (key) => {
