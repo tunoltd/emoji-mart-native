@@ -1,5 +1,10 @@
 import React from 'react'
-import {Platform, TouchableNativeFeedback, TouchableWithoutFeedback, View} from 'react-native'
+import {
+  Platform,
+  TouchableNativeFeedback,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native'
 
 let TouchableComponent
 
@@ -18,17 +23,26 @@ if (TouchableComponent !== TouchableNativeFeedback) {
 
 export default class PlatformTouchable extends React.PureComponent {
   static SelectableBackground = TouchableComponent.SelectableBackground
-  static SelectableBackgroundBorderless = TouchableComponent.SelectableBackgroundBorderless
+  static SelectableBackgroundBorderless =
+    TouchableComponent.SelectableBackgroundBorderless
   static Ripple = TouchableComponent.Ripple
   static canUseNativeForeground = TouchableComponent.canUseNativeForeground
 
   render() {
-    let {children, style, foreground, background, useForeground, ...props} = this.props
+    let {
+      children,
+      style,
+      foreground,
+      background,
+      useForeground,
+      ...props
+    } = this.props
 
     children = React.Children.only(children)
 
     if (TouchableComponent === TouchableNativeFeedback) {
-      useForeground = foreground && TouchableNativeFeedback.canUseNativeForeground()
+      useForeground =
+        foreground && TouchableNativeFeedback.canUseNativeForeground()
 
       if (foreground && background) {
         console.warn(

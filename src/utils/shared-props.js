@@ -14,7 +14,7 @@ const EmojiPropTypes = {
   sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
   sheetColumns: PropTypes.number,
   sheetRows: PropTypes.number,
-  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'messenger', 'facebook']),
+  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'facebook']),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   useLocalImages: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
@@ -51,10 +51,12 @@ const PickerPropTypes = {
   showAnchors: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   emojiTooltip: EmojiPropTypes.tooltip,
+  theme: PropTypes.oneOf(['auto', 'light', 'dark']),
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
+  enableFrequentEmojiSort: PropTypes.bool,
   custom: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

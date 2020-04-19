@@ -1,8 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Platform, StyleSheet, View, TextInput, TouchableNativeFeedback, Image} from 'react-native'
+import {
+  Platform,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableNativeFeedback,
+  Image,
+} from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
+import {throttleIdleTask} from '../utils/index'
 
 import Skins from './skins'
 import SkinsEmoji from './skins-emoji'
@@ -50,7 +58,7 @@ const styles = StyleSheet.create({
 })
 
 export default class Search extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     onSearch: PropTypes.func,
     onPressClose: PropTypes.func,
     maxResults: PropTypes.number,
@@ -72,6 +80,9 @@ export default class Search extends React.PureComponent {
 
   constructor(props) {
     super(props)
+    this.state = {
+      searchTerm: '',
+    }
 
     this.data = props.data
     this.emojiIndex = new NimbleEmojiIndex(this.data)
@@ -79,12 +90,19 @@ export default class Search extends React.PureComponent {
     this.handleChange = this.handleChange.bind(this)
     this.pressCancel = this.pressCancel.bind(this)
 
-    this.state = {
-      searchTerm: '',
+    // throttle keyboard input so that typing isn't delayed
+    this.handleChange = throttleIdleTask(this.handleChange.bind(this))
+  }
+
+  componentDidMount() {
+    // in some cases (e.g. preact) the input may already be pre-populated
+    // this.input is undefined in Jest tests
+    if (this.input && this.input.value) {
+      this.search(this.input.value)
     }
   }
 
-  handleChange(value) {
+  search(value) {
     this.setState({
       searchTerm: value,
     })
@@ -100,24 +118,36 @@ export default class Search extends React.PureComponent {
     )
   }
 
-  pressCancel() {
-    this.props.onSearch(null)
-    this.clear()
+  clear() {
+    if (this.input.value == '') return
+    this.input.value = ''
+    this.input.focus()
+    this.search('')
+  }
+
+  handleChange() {
+    this.search(this.input.value)
   }
 
   setRef(c) {
     this.input = c
   }
 
-  clear() {
-    this.setState({
-      searchTerm: '',
-    })
+  pressCancel() {
+    this.clear()
   }
 
   render() {
-    var {i18n, autoFocus, onPressClose, skinsProps, showSkinTones, showCloseButton, emojiProps} = this.props
-    var {searchTerm} = this.state
+    const {
+      i18n,
+      autoFocus,
+      onPressClose,
+      skinsProps,
+      showSkinTones,
+      showCloseButton,
+      emojiProps,
+    } = this.props
+    const {searchTerm} = this.state
 
     let background
 
@@ -134,7 +164,12 @@ export default class Search extends React.PureComponent {
     }
 
     return (
-      <View style={[styles.searchContainer, showCloseButton ? searchContainerWithCloseButtonStyle : null]}>
+      <View
+        style={[
+          styles.searchContainer,
+          showCloseButton ? searchContainerWithCloseButtonStyle : null,
+        ]}
+      >
         {showCloseButton ? (
           <View style={styles.closeButtonContainer}>
             <Touchable
@@ -169,7 +204,11 @@ export default class Search extends React.PureComponent {
         {showSkinTones && (
           <View>
             {skinsProps.skinEmoji ? (
-              <SkinsEmoji emojiProps={emojiProps} data={this.data} {...skinsProps} />
+              <SkinsEmoji
+                emojiProps={emojiProps}
+                data={this.data}
+                {...skinsProps}
+              />
             ) : (
               <Skins {...skinsProps} />
             )}

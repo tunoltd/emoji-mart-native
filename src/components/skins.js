@@ -92,7 +92,10 @@ export default class Skins extends React.PureComponent {
       skinToneNodes.push(
         <View
           key={`skin-tone-${skinTone}`}
-          style={[styles.skinSwatch, selected || opened ? styles.skinSwatchShown : null]}
+          style={[
+            styles.skinSwatch,
+            selected || opened ? styles.skinSwatchShown : null,
+          ]}
         >
           {selected || opened ? (
             <TouchableWithoutFeedback
@@ -100,7 +103,9 @@ export default class Skins extends React.PureComponent {
               style={[styles.skin, styles[`skinTone${skinTone}`]]}
             >
               <View style={[styles.skin, styles[`skinTone${skinTone}`]]}>
-                {selected && opened ? <View style={styles.skinSelected} /> : null}
+                {selected && opened ? (
+                  <View style={styles.skinSelected} />
+                ) : null}
               </View>
             </TouchableWithoutFeedback>
           ) : null}
@@ -112,7 +117,7 @@ export default class Skins extends React.PureComponent {
   }
 }
 
-Skins.propTypes = {
+Skins.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
 }

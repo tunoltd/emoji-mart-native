@@ -18,11 +18,11 @@ import {EmojiDefaultProps} from '../../utils/shared-default-props'
 // }
 
 export default class Emoji extends React.PureComponent {
-  static propTypes = EmojiPropTypes
+  static propTypes /* remove-proptypes */ = EmojiPropTypes
   static defaultProps = {...EmojiDefaultProps, data}
 
   render() {
-    for (const k in Emoji.defaultProps) {
+    for (let k in Emoji.defaultProps) {
       if (this.props[k] === undefined && Emoji.defaultProps[k] != undefined) {
         this.props[k] = Emoji.defaultProps[k]
       }

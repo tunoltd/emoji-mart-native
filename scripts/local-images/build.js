@@ -5,7 +5,7 @@ var fs = require('fs'),
 
 var {compress} = require('../../src/utils/data')
 
-var sets = ['apple', 'facebook', 'google', 'messenger', 'twitter']
+var sets = ['apple', 'facebook', 'google', 'twitter']
 
 module.exports = (options) => {
   delete require.cache[require.resolve('emoji-datasource')]
@@ -30,7 +30,11 @@ module.exports = (options) => {
     localImageSets.forEach((set) => {
       var key = `has_img_${set}`
       if (datum[key]) {
-        datum.localImages[set] = [`require('../../../emoji-datasource-${set}/img/${set}/64/${datum.image}')`]
+        datum.localImages[set] = [
+          `require('../../../emoji-datasource-${set}/img/${set}/64/${
+            datum.image
+          }')`,
+        ]
 
         // Skin variations
         if (datum.skin_variations) {
@@ -38,7 +42,9 @@ module.exports = (options) => {
             var skinVariations = datum.skin_variations[skinKey]
             if (skinVariations[key])
               datum.localImages[set].push(
-                `require('../../../emoji-datasource-${set}/img/${set}/64/${skinVariations.image}')`,
+                `require('../../../emoji-datasource-${set}/img/${set}/64/${
+                  skinVariations.image
+                }')`,
               )
           }
         }
@@ -98,7 +104,9 @@ module.exports = (options) => {
 
   var stingified = JSON.stringify(data)
     .replace(/\"([A-Za-z_]+)\":/g, '$1:')
-    .replace(/(["'])require(?:(?=(\\?))\2.)*?\1/g, (value) => value.replace(/"/g, ''))
+    .replace(/(["'])require(?:(?=(\\?))\2.)*?\1/g, (value) =>
+      value.replace(/"/g, ''),
+    )
 
   fs.writeFile(options.output, `export default ${stingified}`, (err) => {
     if (err) throw err

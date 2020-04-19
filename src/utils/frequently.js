@@ -63,7 +63,9 @@ function get(perLine) {
     }
   }
 
-  const sorted = frequentlyKeys.sort((a, b) => frequently[a] - frequently[b]).reverse()
+  const sorted = frequentlyKeys
+    .sort((a, b) => frequently[a] - frequently[b])
+    .reverse()
   const sliced = sorted.slice(0, quantity)
 
   const last = store.get('last')

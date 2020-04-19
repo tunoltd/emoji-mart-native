@@ -116,6 +116,7 @@ import { Picker } from 'emoji-mart-native'
 | **exclude**            |          | `[]`                      | Don't load excluded categories. Accepts [I18n categories keys](#i18n).                                                                                              |
 | **custom**             |          | `[]`                      | [Custom emojis](#custom-emojis)                                                                                                                                     |
 | **recent**             |          |                           | Pass your own frequently used emojis as array of string IDs                                                                                                         |
+| **enableFrequentEmojiSort** |     | `false`                   | Instantly sort “Frequently Used” category                                                                                                                           |
 | **emojiSize**          |          | `24`                      | The emoji width and height                                                                                                                                          |
 | **onClick**            |          |                           | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter`                                                                                      |
 | **onSelect**           |          |                           | Params: `(emoji) => {}`                                                                                                                                             |
@@ -127,6 +128,7 @@ import { Picker } from 'emoji-mart-native'
 | **i18n**               |          | [`{…}`](#i18n)            | [An object](#i18n) containing localized strings                                                                                                                     |
 | **native**             |          | `false`                   | Renders the native unicode emoji                                                                                                                                    |
 | **set**                |          | `apple`                   | The emoji set: `'apple', 'google', 'twitter', 'messenger', 'facebook'`                                                                                              |
+| **theme**              |          | `light`                   | The picker theme: `'auto', 'light', 'dark'`                                                                                                                         |
 | **sheetSize**          |          | `64`                      | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64`                                                                                                              |
 | **spriteSheetFn**      |          | `((set, sheetSize) => …)` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally.                                 |
 | **useLocalImages**     |          | false                     | [Local image requires](#local-image-requires)                                                                                                                       |
@@ -263,7 +265,7 @@ import {NimblePicker} from 'emoji-mart-native'
   text: '',
   emoticons: [],
   custom: true,
-  image: {uri: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'}
+  image: {uri: 'https://github.githubassets.com/images/icons/emoji/octocat.png'}
 }
 ```
 
@@ -323,7 +325,7 @@ const emojiImage = require('assets/emoji-image.png')
 
 <EmojiButton onButtonPress={showPickerTrigger} />
 <EmojiButton onButtonPress={showPickerTrigger} buttonImage={emojiImage} />
-<EmojiButton onButtonPress={showPickerTrigger} buttonImage={{uri: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'}} />
+<EmojiButton onButtonPress={showPickerTrigger} buttonImage={{uri: 'https://github.githubassets.com/images/icons/emoji/octocat.png'}} />
 ```
 
 | Prop              | Required | Default                                                                                                          | Description                                                    |
@@ -388,7 +390,8 @@ const customEmojis = [
     text: '',
     emoticons: [],
     keywords: ['github'],
-    image: {uri: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'}
+    image: {uri: 'https://github.githubassets.com/images/icons/emoji/octocat.png'},
+    customCategory: 'GitHub'
   },
   {
     name: 'Trollface',
@@ -439,6 +442,9 @@ const emoji = getEmojiDataFromCustom('troll', customEmojis, emojiData);
 />
 ```
 
+The `customCategory` string is optional. If you include it, then the custom emoji will be shown in whatever categories you define.
+If you don't include it, then there will just be one category called "Custom".
+
 ## Not found
 
 You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
@@ -446,7 +452,7 @@ You can provide a custom Not Found object which will allow the appearance of the
 ```js
 import { Picker } from 'emoji-mart'
 
-const notFound = () => <Image style={{width: 48, height: 48}} source={{ uri: "https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" }} />
+const notFound = () => <Image style={{width: 48, height: 48}} source={{ uri: "https://github.githubassets.com/images/icons/emoji/octocat.png" }} />
 
 <Picker notFound={notFound} />
 ```

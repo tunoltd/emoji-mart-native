@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 })
 
 export default class Picker extends React.PureComponent {
-  static propTypes = PickerPropTypes
+  static propTypes /* remove-proptypes */ = PickerPropTypes
   static defaultProps = {...PickerDefaultProps, data}
 
   render() {

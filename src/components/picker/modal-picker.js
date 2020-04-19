@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 })
 
 export default class ModalPicker extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     ...PickerPropTypes,
     isVisible: PropTypes.bool,
   }
@@ -48,8 +48,15 @@ export default class ModalPicker extends React.PureComponent {
     }
 
     return (
-      <Modal transparent={true} onRequestClose={onPressClose} visible={isVisible}>
-        <TouchableWithoutFeedback onPress={onPressClose} style={styles.emojiMartBackdrop}>
+      <Modal
+        transparent={true}
+        onRequestClose={onPressClose}
+        visible={isVisible}
+      >
+        <TouchableWithoutFeedback
+          onPress={onPressClose}
+          style={styles.emojiMartBackdrop}
+        >
           <View style={styles.emojiMartBackdrop} />
         </TouchableWithoutFeedback>
         <View style={styles.emojiMartPickerContainer}>

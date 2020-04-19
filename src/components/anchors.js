@@ -1,6 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, TouchableWithoutFeedback, ScrollView} from 'react-native'
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
@@ -33,22 +38,12 @@ const styles = StyleSheet.create({
 })
 
 export default class Anchors extends React.PureComponent {
-  static propTypes = {
-    categories: PropTypes.array,
-    onAnchorPress: PropTypes.func,
-    emojiProps: PropTypes.object.isRequired,
-    categoryEmojis: PropTypes.object.isRequired,
-  }
-
-  static defaultProps = {
-    categories: [],
-    onAnchorPress: () => {},
-  }
-
   constructor(props) {
     super(props)
 
-    let defaultCategory = props.categories.filter((category) => category.first)[0]
+    let defaultCategory = props.categories.filter(
+      (category) => category.first,
+    )[0]
 
     this.data = props.data
     this.state = {
@@ -128,6 +123,8 @@ export default class Anchors extends React.PureComponent {
               return null
             }
 
+            const categoryEmojiId = id.startsWith('custom-') ? 'custom' : id
+
             return (
               <TouchableWithoutFeedback
                 key={id}
@@ -135,15 +132,24 @@ export default class Anchors extends React.PureComponent {
                 onPress={this.handlePress.bind(this, i)}
                 onLayout={this.onAnchorLayout.bind(this, i)}
               >
-                <View style={[styles.anchor, isSelected ? styles.anchorSelected : null]}>
+                <View
+                  style={[
+                    styles.anchor,
+                    isSelected ? styles.anchorSelected : null,
+                  ]}
+                >
                   <NimbleEmoji
-                    emoji={categoryEmojis[id]}
+                    emoji={categoryEmojis[categoryEmojiId]}
                     data={this.data}
                     {...emojiProps}
                     onPress={this.handlePress.bind(this, i)}
                   />
                   <View
-                    style={[styles.anchorBar, isSelected ? styles.anchorBarSelected : null, {backgroundColor: color}]}
+                    style={[
+                      styles.anchorBar,
+                      isSelected ? styles.anchorBarSelected : null,
+                      {backgroundColor: color},
+                    ]}
                   />
                 </View>
               </TouchableWithoutFeedback>
@@ -153,4 +159,16 @@ export default class Anchors extends React.PureComponent {
       </ScrollView>
     )
   }
+}
+
+Anchors.propTypes /* remove-proptypes */ = {
+  categories: PropTypes.array,
+  onAnchorPress: PropTypes.func,
+  emojiProps: PropTypes.object.isRequired,
+  categoryEmojis: PropTypes.object.isRequired,
+}
+
+Anchors.defaultProps = {
+  categories: [],
+  onAnchorPress: () => {},
 }
