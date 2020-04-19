@@ -376,7 +376,7 @@ To have the component render `:shrug:` you would need to:
 
 ## Custom emojis
 
-You can provide custom emojis which will show up in their own category.
+You can provide custom emojis which will show up in their own category. You can either use a single image as `image` or use a spritesheet as `spriteSheet`.
 
 ```js
 import { Picker, NimbleEmoji, getEmojiDataFromCustom } from 'emoji-mart-native'
