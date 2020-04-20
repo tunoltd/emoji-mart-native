@@ -252,7 +252,7 @@ export default class NimblePicker extends React.PureComponent {
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
 
-    if (this.colorScheme) {
+    if (this.colorScheme && Appearance) {
       Appearance.removeChangeListener(this.handleAppearanceChange)
     }
   }
@@ -261,7 +261,7 @@ export default class NimblePicker extends React.PureComponent {
     if (this.props.theme != 'auto') return this.props.theme
     if (this.state.theme) return this.state.theme
 
-    if (!this.colorScheme) {
+    if (!this.colorScheme && Appearance) {
       this.colorScheme = Appearance.getColorScheme()
       Appearance.addChangeListener(this.handleAppearanceChange)
     }
