@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
-import {throttleIdleTask} from '../utils/index'
 
 import Skins from './skins'
 import SkinsEmoji from './skins-emoji'
@@ -89,20 +88,9 @@ export default class Search extends React.PureComponent {
     this.setRef = this.setRef.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.pressCancel = this.pressCancel.bind(this)
-
-    // throttle keyboard input so that typing isn't delayed
-    this.handleChange = throttleIdleTask(this.handleChange.bind(this))
   }
 
-  componentDidMount() {
-    // in some cases (e.g. preact) the input may already be pre-populated
-    // this.input is undefined in Jest tests
-    if (this.input && this.input.value) {
-      this.search(this.input.value)
-    }
-  }
-
-  search(value) {
+  handleChange(value) {
     this.setState({
       searchTerm: value,
     })
@@ -118,23 +106,19 @@ export default class Search extends React.PureComponent {
     )
   }
 
-  clear() {
-    if (this.input.value == '') return
-    this.input.value = ''
-    this.input.focus()
-    this.search('')
-  }
-
-  handleChange() {
-    this.search(this.input.value)
+  pressCancel() {
+    this.props.onSearch(null)
+    this.clear()
   }
 
   setRef(c) {
     this.input = c
   }
 
-  pressCancel() {
-    this.clear()
+  clear() {
+    this.setState({
+      searchTerm: '',
+    })
   }
 
   render() {
