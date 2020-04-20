@@ -4,12 +4,16 @@ import {StyleSheet, View, Text, ViewPropTypes} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
-const emojiIcon = require('../assets/emoji-icon.png')
-
 const styles = StyleSheet.create({
   labelText: {
     fontSize: 15,
     fontWeight: 'bold',
+  },
+  labelTextLight: {
+    color: '#414141',
+  },
+  labelTextDark: {
+    color: '#bebebe',
   },
   notFound: {
     flex: 1,
@@ -26,10 +30,23 @@ export default class NotFound extends React.PureComponent {
     notFoundEmoji: PropTypes.string.isRequired,
     emojiProps: PropTypes.object.isRequired,
     style: ViewPropTypes.style,
+    theme: PropTypes.oneOf(['light', 'dark']),
+  }
+
+  static defaultProps = {
+    theme: 'light',
   }
 
   render() {
-    const {data, emojiProps, i18n, notFound, notFoundEmoji, style} = this.props
+    const {
+      data,
+      emojiProps,
+      i18n,
+      notFound,
+      notFoundEmoji,
+      style,
+      theme,
+    } = this.props
 
     const component = (
       <View style={[style ? style : null, styles.notFound]}>
@@ -46,7 +63,16 @@ export default class NotFound extends React.PureComponent {
             </View>
 
             <View>
-              <Text style={styles.labelText}>{i18n.notfound}</Text>
+              <Text
+                style={[
+                  styles.labelText,
+                  theme === 'light'
+                    ? styles.labelTextLight
+                    : styles.labelTextDark,
+                ]}
+              >
+                {i18n.notfound}
+              </Text>
             </View>
           </View>
         )}

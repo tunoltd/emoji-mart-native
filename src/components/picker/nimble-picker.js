@@ -553,6 +553,7 @@ export default class NimblePicker extends React.PureComponent {
             useLocalImages,
           }}
           showCloseButton={showCloseButton}
+          theme={theme}
         />
 
         <ScrollView
@@ -614,6 +615,7 @@ export default class NimblePicker extends React.PureComponent {
                 }}
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
+                theme={theme}
               />
             )
           })}
@@ -642,6 +644,7 @@ export default class NimblePicker extends React.PureComponent {
                 emojiImageFn,
                 useLocalImages,
               }}
+              theme={theme}
             />
           </View>
         ) : null}

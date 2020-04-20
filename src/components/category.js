@@ -34,11 +34,13 @@ export default class Category extends React.Component {
     recent: PropTypes.arrayOf(PropTypes.string),
     notFound: PropTypes.func,
     notFoundEmoji: PropTypes.string.isRequired,
+    theme: PropTypes.oneOf(['light', 'dark']),
   }
 
   static defaultProps = {
     emojis: [],
     hasStickyPosition: true,
+    theme: 'light',
   }
 
   constructor(props) {
@@ -236,6 +238,7 @@ export default class Category extends React.Component {
         pagesToEagerLoad,
         notFound,
         notFoundEmoji,
+        theme,
       } = this.props,
       emojis = this.getEmojis(),
       {visible} = this.state
@@ -313,6 +316,7 @@ export default class Category extends React.Component {
               notFoundEmoji={notFoundEmoji}
               data={this.data}
               emojiProps={emojiProps}
+              theme={theme}
             />
           ),
         ]
