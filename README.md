@@ -128,7 +128,7 @@ import { Picker } from 'emoji-mart-native'
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
-| **theme** | | `light` | The picker theme: `'auto', 'light', 'dark'` |
+| **theme** | | `light` | The picker theme: `'auto', 'light', 'dark'` Note: `auto` uses `Appearance` and only works when using `react-native` 0.62.0 or above |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **spriteSheetFn** | | `((set, sheetSize) => …)` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
