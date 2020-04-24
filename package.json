@@ -54,7 +54,7 @@
     "react-native": "^0.62.2",
     "react-test-renderer": "^16.8.4",
     "rimraf": "2.5.2",
-    "webpack": "^3.6.0"
+    "webpack": "^4.43.0"
   },
   "scripts": {
     "clean": "rm -rf dist/",
