@@ -1,15 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, Text} from 'react-native'
+import {StyleSheet, View, Text, ViewPropTypes} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
-
-const emojiIcon = require('../assets/emoji-icon.png')
 
 const styles = StyleSheet.create({
   labelText: {
     fontSize: 15,
     fontWeight: 'bold',
+  },
+  labelTextLight: {
+    color: '#414141',
+  },
+  labelTextDark: {
+    color: '#bebebe',
   },
   notFound: {
     flex: 1,
@@ -21,26 +25,54 @@ const styles = StyleSheet.create({
 })
 
 export default class NotFound extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     notFound: PropTypes.func.isRequired,
     notFoundEmoji: PropTypes.string.isRequired,
     emojiProps: PropTypes.object.isRequired,
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
+    theme: PropTypes.oneOf(['light', 'dark']),
+  }
+
+  static defaultProps = {
+    theme: 'light',
   }
 
   render() {
-    const {data, emojiProps, i18n, notFound, notFoundEmoji, style} = this.props
+    const {
+      data,
+      emojiProps,
+      i18n,
+      notFound,
+      notFoundEmoji,
+      style,
+      theme,
+    } = this.props
 
     const component = (
       <View style={[style ? style : null, styles.notFound]}>
         {(notFound && notFound()) || (
           <View style={styles.notFound}>
             <View>
-              <NimbleEmoji data={data} {...emojiProps} emoji={notFoundEmoji} onPress={null} onLongPress={null} />
+              <NimbleEmoji
+                data={data}
+                {...emojiProps}
+                emoji={notFoundEmoji}
+                onPress={null}
+                onLongPress={null}
+              />
             </View>
 
             <View>
-              <Text style={styles.labelText}>{i18n.notfound}</Text>
+              <Text
+                style={[
+                  styles.labelText,
+                  theme === 'light'
+                    ? styles.labelTextLight
+                    : styles.labelTextDark,
+                ]}
+              >
+                {i18n.notfound}
+              </Text>
             </View>
           </View>
         )}

@@ -3,6 +3,7 @@ import '../../vendor/raf-polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Appearance,
   Platform,
   StyleSheet,
   View,
@@ -56,7 +57,14 @@ const styles = StyleSheet.create({
   emojiMartPicker: {
     flexShrink: 0,
     flexDirection: 'column',
+  },
+  emojiMartPickerLight: {
+    color: '#222427',
     backgroundColor: '#eceff1',
+  },
+  emojiMartPickerDark: {
+    color: '#fff',
+    backgroundColor: '#222',
   },
   emojiMartScroll: {
     flexShrink: 0,
@@ -68,7 +76,7 @@ const styles = StyleSheet.create({
 })
 
 export default class NimblePicker extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     ...PickerPropTypes,
     data: PropTypes.object.isRequired,
   }
@@ -77,8 +85,9 @@ export default class NimblePicker extends React.PureComponent {
   constructor(props) {
     super(props)
 
+    this.CUSTOM = []
+
     this.RECENT_CATEGORY = {id: 'recent', name: 'Recent', emojis: null}
-    this.CUSTOM_CATEGORY = {id: 'custom', name: 'Custom', emojis: []}
     this.SEARCH_CATEGORY = {
       id: 'search',
       name: 'Search',
@@ -93,10 +102,7 @@ export default class NimblePicker extends React.PureComponent {
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.categoryEmojis = deepMerge(categoryEmojis, props.categoryEmojis)
-    this.state = {
-      skin: props.skin || skinStore.get() || props.defaultSkin,
-      firstRender: true,
-    }
+    this.state = {firstRender: true}
 
     this.scrollViewScrollLeft = 0
 
@@ -104,16 +110,39 @@ export default class NimblePicker extends React.PureComponent {
     let allCategories = [].concat(this.data.categories)
 
     if (props.custom.length > 0) {
-      this.CUSTOM_CATEGORY.emojis = props.custom.map((emoji) => {
-        return {
+      const customCategories = {}
+      let customCategoriesCreated = 0
+
+      props.custom.forEach((emoji) => {
+        if (!customCategories[emoji.customCategory]) {
+          customCategories[emoji.customCategory] = {
+            id: emoji.customCategory
+              ? `custom-${emoji.customCategory}`
+              : 'custom',
+            name: emoji.customCategory || 'Custom',
+            emojis: [],
+            anchor: customCategoriesCreated === 0,
+          }
+
+          customCategoriesCreated++
+        }
+
+        const category = customCategories[emoji.customCategory]
+
+        const customEmoji = {
           ...emoji,
           // `<Category />` expects emoji to have an `id`.
           id: emoji.short_names[0],
           custom: true,
         }
+
+        category.emojis.push(customEmoji)
+        this.CUSTOM.push(customEmoji)
       })
 
-      allCategories.push(this.CUSTOM_CATEGORY)
+      allCategories = allCategories.concat(
+        Object.keys(customCategories).map((key) => customCategories[key]),
+      )
     }
 
     this.hideRecent = true
@@ -128,10 +157,20 @@ export default class NimblePicker extends React.PureComponent {
       })
     }
 
-    for (let categoryIndex = 0; categoryIndex < allCategories.length; categoryIndex++) {
+    for (
+      let categoryIndex = 0;
+      categoryIndex < allCategories.length;
+      categoryIndex++
+    ) {
       const category = allCategories[categoryIndex]
-      let isIncluded = props.include && props.include.length ? props.include.indexOf(category.id) > -1 : true
-      let isExcluded = props.exclude && props.exclude.length ? props.exclude.indexOf(category.id) > -1 : false
+      let isIncluded =
+        props.include && props.include.length
+          ? props.include.indexOf(category.id) > -1
+          : true
+      let isExcluded =
+        props.exclude && props.exclude.length
+          ? props.exclude.indexOf(category.id) > -1
+          : false
       if (!isIncluded || isExcluded) {
         continue
       }
@@ -162,9 +201,13 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     let includeRecent =
-      props.include && props.include.length ? props.include.indexOf(this.RECENT_CATEGORY.id) > -1 : true
+      props.include && props.include.length
+        ? props.include.indexOf(this.RECENT_CATEGORY.id) > -1
+        : true
     let excludeRecent =
-      props.exclude && props.exclude.length ? props.exclude.indexOf(this.RECENT_CATEGORY.id) > -1 : false
+      props.exclude && props.exclude.length
+        ? props.exclude.indexOf(this.RECENT_CATEGORY.id) > -1
+        : false
     if (includeRecent && !excludeRecent) {
       this.hideRecent = false
       this.categories.unshift(this.RECENT_CATEGORY)
@@ -188,14 +231,7 @@ export default class NimblePicker extends React.PureComponent {
     this.handleEmojiSelect = this.handleEmojiSelect.bind(this)
     this.handleEmojiLongPress = this.handleEmojiLongPress.bind(this)
     this.handleSkinChange = this.handleSkinChange.bind(this)
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.skin) {
-      this.setState({skin: props.skin})
-    } else if (props.defaultSkin && !skinStore.get()) {
-      this.setState({skin: props.defaultSkin})
-    }
+    this.handleAppearanceChange = this.handleAppearanceChange.bind(this)
   }
 
   componentDidMount() {
@@ -215,6 +251,30 @@ export default class NimblePicker extends React.PureComponent {
 
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
+
+    if (this.colorScheme && Appearance) {
+      Appearance.removeChangeListener(this.handleAppearanceChange)
+    }
+  }
+
+  getPreferredTheme() {
+    if (this.props.theme != 'auto') return this.props.theme
+    if (this.state.theme) return this.state.theme
+
+    if (!this.colorScheme && Appearance) {
+      this.colorScheme = Appearance.getColorScheme()
+      Appearance.addChangeListener(this.handleAppearanceChange)
+    }
+
+    if (!this.colorScheme) return PickerDefaultProps.theme
+    return this.colorScheme
+  }
+
+  handleAppearanceChange = (preferences) => {
+    const {colorScheme} = preferences
+    this.setState({
+      theme: colorScheme,
+    })
   }
 
   handleEmojiPress(emoji, e) {
@@ -226,10 +286,12 @@ export default class NimblePicker extends React.PureComponent {
     this.props.onSelect(emoji)
     if (!this.hideRecent && !this.props.recent) frequently.add(emoji)
 
-    var component = this.categoryRefs['category-1']
+    const component = this.categoryRefs['category-1']
     if (component) {
       let maxMargin = component.maxMargin
-      component.forceUpdate()
+      if (this.props.enableFrequentEmojiSort) {
+        component.forceUpdate()
+      }
     }
   }
 
@@ -238,7 +300,13 @@ export default class NimblePicker extends React.PureComponent {
 
     // TODO: Implement solution for iOS!
     if (Platform.OS === 'android') {
-      ToastAndroid.showWithGravityAndOffset(emoji.id, ToastAndroid.SHORT, ToastAndroid.BOTTOM, 0, 190)
+      ToastAndroid.showWithGravityAndOffset(
+        emoji.id,
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM,
+        0,
+        190,
+      )
     }
   }
 
@@ -262,7 +330,7 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     let activeCategory = null
-    var scrollLeft = this.scrollViewScrollLeft
+    const scrollLeft = this.scrollViewScrollLeft
 
     if (this.SEARCH_CATEGORY.emojis) {
       activeCategory = this.SEARCH_CATEGORY
@@ -323,9 +391,10 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleAnchorPress(category, i) {
-    var component = this.categoryRefs[`category-${i}`],
-      {scrollView, anchors} = this,
-      scrollToComponent = null
+    const component = this.categoryRefs[`category-${i}`],
+      {scrollView} = this
+
+    let scrollToComponent = null
 
     scrollToComponent = () => {
       if (component) {
@@ -349,7 +418,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleSkinChange(skin) {
-    var newState = {skin},
+    const newState = {skin},
       {onSkinChange} = this.props
 
     this.setState(newState)
@@ -359,7 +428,9 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   getCategories() {
-    return this.state.firstRender ? this.categories.slice(0, 3) : this.categories
+    return this.state.firstRender
+      ? this.categories.slice(0, 3)
+      : this.categories
   }
 
   setAnchorsRef(c) {
@@ -389,40 +460,39 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   render() {
-    var {
-        perLine,
-        rows,
-        pagesToEagerLoad,
-        emojiSize,
-        emojiMargin,
-        anchorSize,
-        set,
-        sheetSize,
-        sheetColumns,
-        sheetRows,
-        style,
-        title,
-        emoji,
-        color,
-        native,
-        spriteSheetFn,
-        emojiImageFn,
-        emojisToShowFilter,
-        showSkinTones,
-        showAnchors,
-        showCloseButton,
-        emojiTooltip,
-        include,
-        exclude,
-        recent,
-        autoFocus,
-        useLocalImages,
-        onPressClose,
-        notFound,
-        notFoundEmoji,
-        skinEmoji,
-      } = this.props,
-      {skin} = this.state
+    const {
+      perLine,
+      rows,
+      pagesToEagerLoad,
+      emojiSize,
+      emojiMargin,
+      anchorSize,
+      set,
+      sheetSize,
+      sheetColumns,
+      sheetRows,
+      style,
+      title,
+      emoji,
+      color,
+      native,
+      spriteSheetFn,
+      emojiImageFn,
+      emojisToShowFilter,
+      showSkinTones,
+      showAnchors,
+      showCloseButton,
+      emojiTooltip,
+      include,
+      exclude,
+      recent,
+      autoFocus,
+      useLocalImages,
+      onPressClose,
+      notFound,
+      notFoundEmoji,
+      skinEmoji,
+    } = this.props
 
     const emojiSizing = emojiSize + emojiMargin
     // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
@@ -438,8 +508,24 @@ export default class NimblePicker extends React.PureComponent {
     const emojisListWidth = 320
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
+    const theme = this.getPreferredTheme()
+    const skin =
+      this.props.skin ||
+      this.state.skin ||
+      skinStore.get() ||
+      this.props.defaultSkin
+
     return (
-      <View style={[styles.emojiMartPicker, {...style}, {width: emojisListWidth}]}>
+      <View
+        style={[
+          styles.emojiMartPicker,
+          theme === 'light'
+            ? styles.emojiMartPickerLight
+            : styles.emojiMartPickerDark,
+          {...style},
+          {width: emojisListWidth},
+        ]}
+      >
         <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
@@ -448,7 +534,7 @@ export default class NimblePicker extends React.PureComponent {
           emojisToShowFilter={emojisToShowFilter}
           include={include}
           exclude={exclude}
-          custom={this.CUSTOM_CATEGORY.emojis}
+          custom={this.CUSTOM}
           autoFocus={autoFocus}
           onPressClose={onPressClose}
           showSkinTones={showSkinTones}
@@ -467,6 +553,7 @@ export default class NimblePicker extends React.PureComponent {
             useLocalImages,
           }}
           showCloseButton={showCloseButton}
+          theme={theme}
         />
 
         <ScrollView
@@ -500,8 +587,14 @@ export default class NimblePicker extends React.PureComponent {
                 native={native}
                 data={this.data}
                 i18n={this.i18n}
-                recent={category.id == this.RECENT_CATEGORY.id ? recent : undefined}
-                custom={category.id == this.RECENT_CATEGORY.id ? this.CUSTOM_CATEGORY.emojis : undefined}
+                recent={
+                  category.id == this.RECENT_CATEGORY.id ? recent : undefined
+                }
+                custom={
+                  category.id == this.RECENT_CATEGORY.id
+                    ? this.CUSTOM
+                    : undefined
+                }
                 initialPosition={this.scrollViewScrollLeft}
                 emojiProps={{
                   native,
@@ -522,6 +615,7 @@ export default class NimblePicker extends React.PureComponent {
                 }}
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
+                theme={theme}
               />
             )
           })}
@@ -550,6 +644,7 @@ export default class NimblePicker extends React.PureComponent {
                 emojiImageFn,
                 useLocalImages,
               }}
+              theme={theme}
             />
           </View>
         ) : null}

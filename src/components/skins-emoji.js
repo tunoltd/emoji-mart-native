@@ -66,7 +66,10 @@ export default class SkinsEmoji extends React.PureComponent {
       skinToneNodes.push(
         <View
           key={`skin-tone-${skinTone}`}
-          style={[styles.skinSwatch, selected || opened ? styles.skinSwatchShown : null]}
+          style={[
+            styles.skinSwatch,
+            selected || opened ? styles.skinSwatchShown : null,
+          ]}
         >
           {selected || opened ? (
             <View style={styles.skin}>
@@ -87,7 +90,7 @@ export default class SkinsEmoji extends React.PureComponent {
   }
 }
 
-SkinsEmoji.propTypes = {
+SkinsEmoji.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
   emojiProps: PropTypes.object.isRequired,

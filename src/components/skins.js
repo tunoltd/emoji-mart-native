@@ -7,11 +7,16 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     paddingBottom: 2,
     borderWidth: 1,
-    borderColor: '#d9d9d9',
     borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  skinSwatchesLight: {
+    borderColor: '#d9d9d9',
+  },
+  skinSwatchesDark: {
+    borderColor: '#3f3f3f',
   },
   skinSwatch: {
     width: 0,
@@ -81,7 +86,7 @@ export default class Skins extends React.PureComponent {
   }
 
   render() {
-    const {skin} = this.props
+    const {skin, theme} = this.props
     const {opened} = this.state
 
     const skinToneNodes = []
@@ -92,7 +97,10 @@ export default class Skins extends React.PureComponent {
       skinToneNodes.push(
         <View
           key={`skin-tone-${skinTone}`}
-          style={[styles.skinSwatch, selected || opened ? styles.skinSwatchShown : null]}
+          style={[
+            styles.skinSwatch,
+            selected || opened ? styles.skinSwatchShown : null,
+          ]}
         >
           {selected || opened ? (
             <TouchableWithoutFeedback
@@ -100,7 +108,9 @@ export default class Skins extends React.PureComponent {
               style={[styles.skin, styles[`skinTone${skinTone}`]]}
             >
               <View style={[styles.skin, styles[`skinTone${skinTone}`]]}>
-                {selected && opened ? <View style={styles.skinSelected} /> : null}
+                {selected && opened ? (
+                  <View style={styles.skinSelected} />
+                ) : null}
               </View>
             </TouchableWithoutFeedback>
           ) : null}
@@ -108,15 +118,28 @@ export default class Skins extends React.PureComponent {
       )
     }
 
-    return <View style={styles.skinSwatches}>{skinToneNodes}</View>
+    return (
+      <View
+        style={[
+          styles.skinSwatches,
+          theme === 'light'
+            ? styles.skinSwatchesLight
+            : styles.skinSwatchesDark,
+        ]}
+      >
+        {skinToneNodes}
+      </View>
+    )
   }
 }
 
-Skins.propTypes = {
+Skins.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']),
 }
 
 Skins.defaultProps = {
   onChange: () => {},
+  theme: 'light',
 }

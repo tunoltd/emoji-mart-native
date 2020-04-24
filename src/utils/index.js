@@ -3,8 +3,6 @@ import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 import {uncompress} from './data'
 import NimbleEmojiIndex from './emoji-index/nimble-emoji-index'
 
-const _JSON = JSON
-
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
@@ -16,7 +14,17 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  var {name, short_names, skin_tone, skin_variations, emoticons, unified, custom, image} = emoji,
+  var {
+      name,
+      short_names,
+      skin_tone,
+      skin_variations,
+      emoticons,
+      unified,
+      custom,
+      customCategory,
+      image,
+    } = emoji,
     id = emoji.id || short_names[0],
     colons = `:${id}:`
 
@@ -28,6 +36,7 @@ function sanitize(emoji) {
       colons,
       emoticons,
       custom,
+      customCategory,
       image,
     }
   }
@@ -99,27 +108,34 @@ function getData(emoji, skin, set, data) {
   emojiData.variations || (emojiData.variations = [])
 
   if (emojiData.skin_variations && skin > 1) {
-    emojiData = JSON.parse(_JSON.stringify(emojiData))
+    emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
       variationData = emojiData.skin_variations[skinKey]
 
-    if (!variationData.variations && emojiData.variations) {
-      delete emojiData.variations
-    }
+    if (variationData) {
+      if (!variationData.variations && emojiData.variations) {
+        delete emojiData.variations
+      }
 
-    if ((set && (variationData[`has_img_${set}`] == undefined || variationData[`has_img_${set}`])) || !set) {
-      emojiData.skin_tone = skin
+      if (
+        (set &&
+          (variationData[`has_img_${set}`] == undefined ||
+            variationData[`has_img_${set}`])) ||
+        !set
+      ) {
+        emojiData.skin_tone = skin
 
-      for (let k in variationData) {
-        let v = variationData[k]
-        emojiData[k] = v
+        for (let k in variationData) {
+          let v = variationData[k]
+          emojiData[k] = v
+        }
       }
     }
   }
 
   if (emojiData.variations && emojiData.variations.length) {
-    emojiData = JSON.parse(_JSON.stringify(emojiData))
+    emojiData = JSON.parse(JSON.stringify(emojiData))
     emojiData.unified = emojiData.variations.shift()
   }
 

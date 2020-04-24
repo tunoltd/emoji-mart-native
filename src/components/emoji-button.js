@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 })
 
 export default class EmojiButton extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     onButtonPress: PropTypes.func,
     buttonImage: PropTypes.oneOfType([
       PropTypes.shape({

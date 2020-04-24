@@ -3,10 +3,11 @@ var fs = require('fs'),
   inflection = require('inflection'),
   mkdirp = require('mkdirp')
 
-var {compress} = require('../src/utils/data')
+var {compress} = require('../dist/utils/data')
 
 var categories = [
-  ['Smileys & People', 'people'],
+  ['Smileys & Emotion', 'smileys'],
+  ['People & Body', 'people'],
   ['Animals & Nature', 'nature'],
   ['Food & Drink', 'foods'],
   ['Activities', 'activity'],
@@ -16,7 +17,7 @@ var categories = [
   ['Flags', 'flags'],
 ]
 
-var sets = ['apple', 'facebook', 'google', 'messenger', 'twitter']
+var sets = ['apple', 'facebook', 'google', 'twitter']
 
 module.exports = (options) => {
   delete require.cache[require.resolve('emoji-datasource')]
@@ -52,7 +53,6 @@ module.exports = (options) => {
 
       options.sets.forEach((set) => {
         if (keepEmoji) return
-
         if (datum[`has_img_${set}`]) {
           keepEmoji = true
         }
@@ -103,6 +103,7 @@ module.exports = (options) => {
     delete datum.au
     delete datum.softbank
     delete datum.google
+    delete datum.image
     delete datum.category
     delete datum.sort_order
 
@@ -117,6 +118,18 @@ module.exports = (options) => {
       return true
     })
     .sort()
+
+  // Merge “Smileys & Emotion” and “People & Body” into a single category
+  let smileys = data.categories[0]
+  let people = data.categories[1]
+  let smileysAndPeople = {id: 'people', name: 'Smileys & People'}
+  smileysAndPeople.emojis = []
+    .concat(smileys.emojis.slice(0, 114))
+    .concat(people.emojis)
+    .concat(smileys.emojis.slice(114))
+
+  data.categories.unshift(smileysAndPeople)
+  data.categories.splice(1, 2)
 
   fs.writeFile(options.output, JSON.stringify(data), (err) => {
     if (err) throw err

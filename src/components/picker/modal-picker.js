@@ -10,27 +10,19 @@ import {PickerDefaultProps} from '../../utils/shared-default-props'
 
 const styles = StyleSheet.create({
   emojiMartBackdrop: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    ...StyleSheet.absoluteFillObject,
   },
   emojiMartPickerContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
+    ...StyleSheet.absoluteFillObject,
   },
 })
 
 export default class ModalPicker extends React.PureComponent {
-  static propTypes = {
+  static propTypes /* remove-proptypes */ = {
     ...PickerPropTypes,
     isVisible: PropTypes.bool,
   }
@@ -48,11 +40,18 @@ export default class ModalPicker extends React.PureComponent {
     }
 
     return (
-      <Modal transparent={true} onRequestClose={onPressClose} visible={isVisible}>
-        <TouchableWithoutFeedback onPress={onPressClose} style={styles.emojiMartBackdrop}>
-          <View style={styles.emojiMartBackdrop} />
-        </TouchableWithoutFeedback>
+      <Modal
+        transparent={true}
+        onRequestClose={onPressClose}
+        visible={isVisible}
+      >
         <View style={styles.emojiMartPickerContainer}>
+          <TouchableWithoutFeedback
+            onPress={onPressClose}
+            style={styles.emojiMartBackdrop}
+          >
+            <View style={styles.emojiMartBackdrop} />
+          </TouchableWithoutFeedback>
           <NimblePicker showCloseButton {...this.props} {...this.state} />
         </View>
       </Modal>

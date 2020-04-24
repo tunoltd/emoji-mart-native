@@ -1,16 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, TouchableWithoutFeedback, ScrollView} from 'react-native'
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+} from 'react-native'
 
 import NimbleEmoji from './emoji/nimble-emoji'
 
 const styles = StyleSheet.create({
   anchors: {
     borderTopWidth: 1,
-    borderTopColor: '#f6f7f8',
-    backgroundColor: '#e4e7e9',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  anchorsLight: {
+    borderTopColor: '#f6f7f8',
+    backgroundColor: '#e4e7e9',
+  },
+  anchorsDark: {
+    borderTopColor: '#090807',
+    backgroundColor: '#1b1816',
   },
   anchor: {
     flex: 1,
@@ -33,22 +44,12 @@ const styles = StyleSheet.create({
 })
 
 export default class Anchors extends React.PureComponent {
-  static propTypes = {
-    categories: PropTypes.array,
-    onAnchorPress: PropTypes.func,
-    emojiProps: PropTypes.object.isRequired,
-    categoryEmojis: PropTypes.object.isRequired,
-  }
-
-  static defaultProps = {
-    categories: [],
-    onAnchorPress: () => {},
-  }
-
   constructor(props) {
     super(props)
 
-    let defaultCategory = props.categories.filter((category) => category.first)[0]
+    let defaultCategory = props.categories.filter(
+      (category) => category.first,
+    )[0]
 
     this.data = props.data
     this.state = {
@@ -108,7 +109,14 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var {categories, color, i18n, emojiProps, categoryEmojis} = this.props,
+    var {
+        categories,
+        color,
+        i18n,
+        emojiProps,
+        categoryEmojis,
+        theme,
+      } = this.props,
       {selected} = this.state
 
     return (
@@ -119,7 +127,12 @@ export default class Anchors extends React.PureComponent {
         keyboardShouldPersistTaps="handled"
         onLayout={this.onAnchorsScrollViewLayout}
       >
-        <View style={styles.anchors}>
+        <View
+          style={[
+            styles.anchors,
+            theme === 'light' ? styles.anchorsLight : styles.anchorsDark,
+          ]}
+        >
           {categories.map((category, i) => {
             var {id, name, anchor} = category,
               isSelected = name == selected
@@ -128,6 +141,8 @@ export default class Anchors extends React.PureComponent {
               return null
             }
 
+            const categoryEmojiId = id.startsWith('custom-') ? 'custom' : id
+
             return (
               <TouchableWithoutFeedback
                 key={id}
@@ -135,15 +150,24 @@ export default class Anchors extends React.PureComponent {
                 onPress={this.handlePress.bind(this, i)}
                 onLayout={this.onAnchorLayout.bind(this, i)}
               >
-                <View style={[styles.anchor, isSelected ? styles.anchorSelected : null]}>
+                <View
+                  style={[
+                    styles.anchor,
+                    isSelected ? styles.anchorSelected : null,
+                  ]}
+                >
                   <NimbleEmoji
-                    emoji={categoryEmojis[id]}
+                    emoji={categoryEmojis[categoryEmojiId]}
                     data={this.data}
                     {...emojiProps}
                     onPress={this.handlePress.bind(this, i)}
                   />
                   <View
-                    style={[styles.anchorBar, isSelected ? styles.anchorBarSelected : null, {backgroundColor: color}]}
+                    style={[
+                      styles.anchorBar,
+                      isSelected ? styles.anchorBarSelected : null,
+                      {backgroundColor: color},
+                    ]}
                   />
                 </View>
               </TouchableWithoutFeedback>
@@ -153,4 +177,18 @@ export default class Anchors extends React.PureComponent {
       </ScrollView>
     )
   }
+}
+
+Anchors.propTypes /* remove-proptypes */ = {
+  categories: PropTypes.array,
+  onAnchorPress: PropTypes.func,
+  emojiProps: PropTypes.object.isRequired,
+  categoryEmojis: PropTypes.object.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']),
+}
+
+Anchors.defaultProps = {
+  categories: [],
+  onAnchorPress: () => {},
+  theme: 'light',
 }
