@@ -1925,11 +1925,14 @@
   dependencies:
     "@storybook/addons" "^3.2.10"
 
-"@storybook/addon-options@3.2.10":
-  version "3.2.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.2.10.tgz#b8220876493babcbff4a861836aea580cf706c20"
+"@storybook/addon-options@5.3.18":
+  version "5.3.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-5.3.18.tgz#cd40fa137213e4f738691771c404a255eee5b39a"
+  integrity sha512-AlejrKB0oiG/tVpqziA0zyKa9KhIwL7xGZYy+kdgTmXiWVJzp4OQgxaOrVD6trPrPpx8/YIwe5ivClxD5HuUpA==
   dependencies:
-    "@storybook/addons" "^3.2.10"
+    "@storybook/addons" "5.3.18"
+    core-js "^3.0.1"
+    util-deprecate "^1.0.2"
 
 "@storybook/addons@5.3.18":
   version "5.3.18"
