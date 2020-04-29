@@ -46,7 +46,7 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "inflection": "1.10.0",
-    "jest": "^24.9.0",
+    "jest": "^25.5.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "mkdirp": "0.5.1",
     "prettier": "^1.16.4",
