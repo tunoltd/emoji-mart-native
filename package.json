@@ -38,7 +38,7 @@
     "@storybook/addon-links": "^3.2.10",
     "@storybook/addon-options": "3.2.10",
     "@storybook/react": "^3.2.11",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^25.5.1",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-define": "^2.0.0",
     "emoji-datasource": "5.0.1",
