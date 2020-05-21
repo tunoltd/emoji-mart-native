@@ -1,4 +1,4 @@
-import {getData, getSanitizedData, intersect} from '..'
+import {getData, getSanitizedData, intersect} from '../'
 import {uncompress} from '../data'
 import store from '../store'
 
