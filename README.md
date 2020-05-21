@@ -292,7 +292,7 @@ import data from 'emoji-mart-native/data/facebook.json'
 import dataRequires from 'emoji-mart-native/data/local-images/facebook'
 const {emojis: localEmojis} = dataRequires
 <NimblePicker set='facebook' data={data} useLocalImages={localEmojis} />
-<NimbleEmoji emoji='santa' set='facebook' data={data} useLocalImages={localEmojis} />
+<NimbleEmoji emoji='santa' set='facebook' data={data} useLocalImages={localEmojis} size={16} />
 ```
 
 ### ModalPicker
@@ -428,6 +428,7 @@ const emoji = getEmojiDataFromCustom('troll', customEmojis, emojiData);
   skin={emoji.skin || null}
   set={emojiSet}
   emoji={emoji}
+  size={16}
 />
 ```
 
