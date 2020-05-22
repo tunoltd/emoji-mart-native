@@ -1925,6 +1925,22 @@
   dependencies:
     "@storybook/addons" "^3.2.10"
 
+"@storybook/addon-links@^5.3.18":
+  version "5.3.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-5.3.18.tgz#6b4aec83e158c000221bfe1f43e4a473f0727193"
+  integrity sha512-rDpsAQUr60BEM83TBh7mwKjaZvqTR+CAAMLAxXN+J8DMoOjymjd2sjq4UVJsOQVTnw3wjIc4+xpAL/eYqkJAIQ==
+  dependencies:
+    "@storybook/addons" "5.3.18"
+    "@storybook/client-logger" "5.3.18"
+    "@storybook/core-events" "5.3.18"
+    "@storybook/csf" "0.0.1"
+    "@storybook/router" "5.3.18"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    prop-types "^15.7.2"
+    qs "^6.6.0"
+    ts-dedent "^1.1.0"
+
 "@storybook/addon-options@3.2.10":
   version "3.2.10"
   resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.2.10.tgz#b8220876493babcbff4a861836aea580cf706c20"
