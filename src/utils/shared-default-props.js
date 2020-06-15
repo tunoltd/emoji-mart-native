@@ -8,7 +8,7 @@ const EmojiDefaultProps = {
   forceSize: false,
   tooltip: false,
   spriteSheetFn: (set, sheetSize) => ({
-    uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`
+    uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
   }),
   emojiImageFn: (image) => image,
   onPress: () => {},
