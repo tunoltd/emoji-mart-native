@@ -470,8 +470,6 @@ export default class NimblePicker extends React.PureComponent {
       sheetColumns,
       sheetRows,
       style,
-      title,
-      emoji,
       color,
       native,
       spriteSheetFn,

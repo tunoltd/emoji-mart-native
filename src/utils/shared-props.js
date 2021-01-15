@@ -36,8 +36,6 @@ const PickerPropTypes = {
   anchorSize: PropTypes.number,
   i18n: PropTypes.object,
   style: PropTypes.object,
-  title: PropTypes.string,
-  emoji: PropTypes.string,
   color: PropTypes.string,
   set: EmojiPropTypes.set,
   skin: EmojiPropTypes.skin,

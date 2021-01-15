@@ -102,7 +102,6 @@ import { Picker } from 'emoji-mart-native'
 
 <Picker set='apple' />
 <Picker onSelect={this.addEmoji} />
-<Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: 20, right: 20 }} />
 <Picker i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />
 ```
@@ -111,19 +110,18 @@ import { Picker } from 'emoji-mart-native'
 | ---- | :------: | ------- | ----------- |
 | **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
-| **emoji** | | `department_store` | The emoji shown when no emojis are hovered, set to an empty string to show nothing |
 | **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
 | **recent** | | | Pass your own frequently used emojis as array of string IDs |
 | **enableFrequentEmojiSort** | | `false` | Instantly sort “Frequently Used” category |
-| **emojiSize** | | `24` | The emoji width and height |
+| **emojiSize** | | `30` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}` |
 | **onSkinChange** | | | Params: `(skin) => {}` |
 | **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 | **onPressClose** | | | Trigger when user press close button |
-| **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * 4`) |
+| **perLine** | | `7` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * 3`) |
 | **pagesToEagerLoad** | | `2` | Number of pages to eager load each side of currently active page. |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
@@ -135,7 +133,6 @@ import { Picker } from 'emoji-mart-native'
 | **emojisToShowFilter** | | `((emoji) => true)` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
 | **showSkinTones** | | `true` | Display skin tones picker |
-| **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **skinEmoji** | | | The emoji used to pick a skin tone. Uses an emoji-less skin tone picker by default |
@@ -348,7 +345,6 @@ import { Emoji } from 'emoji-mart-native'
 | **spriteSheetFn** | | ``((set, sheetSize) => {uri: `https://unpkg.com/emoji-datasource@5.0.1/sheet_${set}_${sheetSize}.png`})`` | [A Fn](#spritesheetfn) that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
-| **tooltip** | | `false` | Show emoji short name when hovering (title) |
 | [**html**](#using-with-dangerouslysetinnerhtml) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
 
 #### Unsupported emojis fallback
@@ -455,7 +451,6 @@ import { Picker } from 'emoji-mart'
 
 const categoryEmojis = {
   recent: 'fire',
-  smileys: 'kissing_heart',
   people: 'see_no_evil',
   nature: 'beetle',
   foods: 'kiwifruit',
