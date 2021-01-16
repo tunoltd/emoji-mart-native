@@ -1,5 +1,6 @@
 var NAMESPACE = 'emoji-mart-native'
 
+// TODO: Use a react native alternative to browser local storage
 var isLocalStorageSupported =
   typeof window !== 'undefined' && 'localStorage' in window
 

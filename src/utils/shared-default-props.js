@@ -32,8 +32,6 @@ const PickerDefaultProps = {
   pagesToEagerLoad: 2,
   i18n: {},
   style: {},
-  title: 'Emoji Mart™ Native',
-  emoji: 'department_store',
   color: '#ae65c5',
   set: EmojiDefaultProps.set,
   theme: 'light',

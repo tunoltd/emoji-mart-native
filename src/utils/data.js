@@ -6,15 +6,14 @@ const mapping = {
   has_img_google: 'e',
   has_img_twitter: 'f',
   has_img_facebook: 'g',
-  has_img_messenger: 'h',
-  keywords: 'i',
-  sheet: 'j',
-  emoticons: 'k',
-  text: 'l',
-  short_names: 'm',
-  added_in: 'n',
-  image: 'o',
-  skin_variations: 'p',
+  keywords: 'h',
+  sheet: 'i',
+  emoticons: 'j',
+  text: 'k',
+  short_names: 'l',
+  added_in: 'm',
+  image: 'n',
+  skin_variations: 'o',
 }
 
 const buildSearch = (emoji) => {

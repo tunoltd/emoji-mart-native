@@ -100,9 +100,8 @@ To render picker in a fullscreen modal use [`<ModalPicker />`](#modalpicker).
 ```jsx
 import { Picker } from 'emoji-mart-native'
 
-<Picker set='google' />
+<Picker set='apple' />
 <Picker onSelect={this.addEmoji} />
-<Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: 20, right: 20 }} />
 <Picker i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />
 ```
@@ -111,37 +110,35 @@ import { Picker } from 'emoji-mart-native'
 | ---- | :------: | ------- | ----------- |
 | **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
-| **emoji** | | `department_store` | The emoji shown when no emojis are hovered, set to an empty string to show nothing |
 | **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
 | **recent** | | | Pass your own frequently used emojis as array of string IDs |
 | **enableFrequentEmojiSort** | | `false` | Instantly sort “Frequently Used” category |
-| **emojiSize** | | `24` | The emoji width and height |
+| **emojiSize** | | `30` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}` |
 | **onSkinChange** | | | Params: `(skin) => {}` |
 | **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 | **onPressClose** | | | Trigger when user press close button |
-| **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * 4`) |
+| **perLine** | | `7` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * 3`) |
 | **pagesToEagerLoad** | | `2` | Number of pages to eager load each side of currently active page. |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
 | **theme** | | `light` | The picker theme: `'auto', 'light', 'dark'` Note: `auto` uses `Appearance` and only works when using `react-native` 0.62.0 or above |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
-| **spriteSheetFn** | | `((set, sheetSize) => …)` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **spriteSheetFn** | | `((set, sheetSize) => …)` | [A Fn](#spritesheetfn) that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
 | **emojisToShowFilter** | | `((emoji) => true)` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
 | **showSkinTones** | | `true` | Display skin tones picker |
-| **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **skinEmoji** | | | The emoji used to pick a skin tone. Uses an emoji-less skin tone picker by default |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
-| **notFound** | | | [Not found](#not-found) |
+| **notFound** | | | [Not Found](#not-found) |
 | **categoryEmojis** | | `{}` | [Custom category emojis](#custom-category-emojis) |
 
 #### I18n
@@ -203,31 +200,31 @@ const localSpriteSheets = {
 #### Sheet sizes
 Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).
 
-| Set       | Size (`sheetSize: 16`) | Size (`sheetSize: 20`) | Size (`sheetSize: 32`) | Size (`sheetSize: 64`) |
-| --------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| apple     | 407 KB                 | 561 KB                 | 1.34 MB                | 3.60 MB                |
-| facebook  | 416 KB                 | 579 KB                 | 1.38 MB                | 3.68 MB                |
-| google    | 362 KB                 | 489 KB                 | 1.12 MB                | 2.78 MB                |
-| twitter   | 361 KB                 | 485 KB                 | 1.05 MB                | 2.39 MB                |
+| Set | Size (`sheetSize: 16`) | Size (`sheetSize: 20`) | Size (`sheetSize: 32`) | Size (`sheetSize: 64`) |
+| --- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| apple | 407 KB | 561 KB | 1.34 MB | 3.60 MB |
+| facebook | 416 KB | 579 KB | 1.38 MB | 3.68 MB |
+| google | 362 KB | 489 KB | 1.12 MB | 2.78 MB |
+| twitter | 361 KB | 485 KB | 1.05 MB | 2.39 MB |
 
 #### Datasets
 While all sets are available by default, you may want to include only a single set data to reduce the size of your bundle.
 
-| Set       | Size (on disk) |
-| --------- | -------------- |
-| all       | 611 KB         |
-| apple     | 548 KB         |
-| facebook  | 468 KB         |
-| google    | 518 KB         |
-| twitter   | 517 KB         |
+| Set | Size (on disk) |
+| --- | -------------- |
+| all | 611 KB |
+| apple | 548 KB |
+| facebook | 468 KB |
+| google | 518 KB |
+| twitter | 517 KB |
 
 To use these data files (or any other custom data), use the `NimblePicker` component:
 
 ```js
-import data from 'emoji-mart-native/data/google.json'
-import {NimblePicker} from 'emoji-mart-native'
+import data from 'emoji-mart-native/data/apple.json'
+import { NimblePicker } from 'emoji-mart-native'
 
-<NimblePicker set='google' data={data} />
+<NimblePicker set="apple" data={data} />
 ```
 
 #### Examples of `emoji` object:
@@ -269,13 +266,13 @@ import {NimblePicker} from 'emoji-mart-native'
 #### Local image requires
 By default the picker source the emoji images online, this may not be the best solution and you may want to bundle the emojis with your app.
 
-| Set       | Size (on disk) |
-| --------- | -------------- |
-| all       | 1.6 MB         |
-| apple     | 776 KB         |
-| facebook  | 690 KB         |
-| google    | 742 KB         |
-| twitter   | 752 KB         |
+| Set | Size (on disk) |
+| --- | -------------- |
+| all | 1.6 MB |
+| apple | 776 KB |
+| facebook | 690 KB |
+| google | 742 KB |
+| twitter | 752 KB |
 
 To use local image requires you need to install the individual sets you need in your project using the individual sets npm packages from https://github.com/iamcal/emoji-data#installation:
 
@@ -299,14 +296,14 @@ const {emojis: localEmojis} = dataRequires
 Renders the picker in a fullscreen modal.
 
 ```jsx
-import {ModalPicker} from 'emoji-mart-native'
+import { ModalPicker } from 'emoji-mart-native'
 ;<ModalPicker isVisible={true} showCloseButton />
 ```
 
-| Prop               | Required | Default | Description                               |
-| ------------------ | :------: | ------- | ----------------------------------------- |
-| **...PickerProps** |          |         |                                           |
-| **isVisible**      |          | `false` | When true shows the modal with the picker |
+| Prop | Required | Default | Description |
+| ---- | :------: | ------- | ----------- |
+| **...PickerProps** | | | |
+| **isVisible** | | `false` | When true shows the modal with the picker |
 
 ### EmojiButton
 Renders an emoji button that can be used to trigger showing a hidden picker.
@@ -320,10 +317,10 @@ const emojiImage = require('assets/emoji-image.png')
 <EmojiButton onButtonPress={showPickerTrigger} buttonImage={{uri: 'https://github.githubassets.com/images/icons/emoji/octocat.png'}} />
 ```
 
-| Prop              | Required | Default                                                                                                          | Description                                                    |
-| ----------------- | :------: | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **onButtonPress** |          |                                                                                                                  | Trigger when user press the button                             |
-| **buttonImage**   |          | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
+| Prop | Required | Default | Description |
+| ---- | :------: | ------- | ----------- |
+| **onButtonPress** | | | Trigger when user press the button |
+| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
 
 ### Emoji
 ```jsx
@@ -331,7 +328,7 @@ import { Emoji } from 'emoji-mart-native'
 
 <Emoji emoji={{ id: 'santa', skin: 3 }} size={16} />
 <Emoji emoji=':santa::skin-tone-3:' size={16} />
-<Emoji emoji='santa' set='google' size={16} />
+<Emoji emoji='santa' set='apple' size={16} />
 ```
 
 | Prop | Required | Default | Description |
@@ -342,12 +339,11 @@ import { Emoji } from 'emoji-mart-native'
 | **onPress** | | | Params: `(emoji, event) => {}` |
 | **onLongPress** | | | Params: `(emoji, event) => {}` |
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'`|
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
-| **spriteSheetFn** | | `` ((set, sheetSize) => {uri: `https://unpkg.com/emoji-datasource@5.0.1/sheet_${set}_${sheetSize}.png`}) `` | [A Fn](#spritesheetfn) that returns the image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **spriteSheetFn** | | ``((set, sheetSize) => {uri: `https://unpkg.com/emoji-datasource@5.0.1/sheet_${set}_${sheetSize}.png`})`` | [A Fn](#spritesheetfn) that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
-| **tooltip** | | `false` | Show emoji short name when hovering (title) |
 | [**html**](#using-with-dangerouslysetinnerhtml) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
 
 #### Unsupported emojis fallback
@@ -367,7 +363,7 @@ To have the component render `:shrug:` you would need to:
 ```
 
 ## Custom emojis
-You can provide custom emojis which will show up in their own category. You can either use a single image as `image` or use a spritesheet as `spriteSheet`.
+You can provide custom emojis which will show up in their own category. You can either use a single image as `image` or use a spritesheet as shown in the third object.
 
 ```js
 import { Picker, NimbleEmoji, getEmojiDataFromCustom } from 'emoji-mart-native'
@@ -432,10 +428,10 @@ const emoji = getEmojiDataFromCustom('troll', customEmojis, emojiData);
 />
 ```
 
-The `customCategory` string is optional. If you include it, then the custom emoji will be shown in whatever categories you define.
-If you don't include it, then there will just be one category called "Custom".
+The `customCategory` string is optional. If you include it, then the custom emoji will be shown in whatever
+categories you define. If you don't include it, then there will just be one category called "Custom".
 
-## Not found
+## Not Found
 You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
 
 ```js
@@ -472,7 +468,7 @@ const categoryEmojis = {
 The `Picker` doesn’t have to be mounted for you to take advantage of the advanced search results.
 
 ```js
-import {emojiIndex} from 'emoji-mart-native'
+import { emojiIndex } from 'emoji-mart-native'
 
 emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
@@ -481,7 +477,7 @@ emojiIndex.search('christmas').map((o) => o.native)
 ### With custom data
 ```js
 import data from 'emoji-mart-native/datasets/facebook'
-import {NimbleEmojiIndex} from 'emoji-mart-native'
+import { NimbleEmojiIndex } from 'emoji-mart-native'
 
 let emojiIndex = new NimbleEmojiIndex(data)
 emojiIndex.search('christmas')
@@ -521,7 +517,7 @@ emojiData: {
 By default EmojiMartNative will store user chosen skin and frequently used emojis in `localStorage`. That can however be overwritten should you want to store these in your own storage.
 
 ```js
-import {store} from 'emoji-mart-native'
+import { store } from 'emoji-mart-native'
 
 store.setHandlers({
   getter: (key) => {

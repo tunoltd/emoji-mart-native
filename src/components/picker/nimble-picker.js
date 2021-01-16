@@ -1,5 +1,3 @@
-import '../../vendor/raf-polyfill'
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -472,8 +470,6 @@ export default class NimblePicker extends React.PureComponent {
       sheetColumns,
       sheetRows,
       style,
-      title,
-      emoji,
       color,
       native,
       spriteSheetFn,

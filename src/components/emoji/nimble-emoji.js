@@ -101,7 +101,6 @@ class NimbleEmoji extends React.PureComponent {
       imageStyle = {},
       labelStyle = {},
       children = this.props.children,
-      title = null,
       emojiImage,
       emojiImageSource
 
@@ -111,10 +110,6 @@ class NimbleEmoji extends React.PureComponent {
       } else {
         return null
       }
-    }
-
-    if (this.props.tooltip) {
-      title = short_names[0]
     }
 
     if (this.props.native && unified) {
