@@ -611,7 +611,7 @@ You'll also need to ensure that Babel is transpiling `emoji-mart-native`, e.g. [
 yarn build
 ```
 
-In two separate tabs:
+<!--In two separate tabs:
 
 ```bash
 yarn start
@@ -619,6 +619,7 @@ yarn storybook
 ```
 
 The storybook is hosted at `localhost:6006`, and the code will be built on-the-fly.
+-->
 
 ### Testing Changes
 
