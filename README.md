@@ -121,7 +121,8 @@ import { Picker } from 'emoji-mart-native'
 | **onSkinChange** | | | Params: `(skin) => {}` |
 | **showCloseButton** | | `false` | Shows the close button which triggers **onPressClose** |
 | **onPressClose** | | | Trigger when user press close button |
-| **perLine** | | `7` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * 3`) |
+| **perLine** | | `7` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set _Frequently Used_ length as well (`perLine * rows`) |
+| **rows** | | `3` | Number of rows. While there's no minimum or maximum, this will affect the picker’s height. This will set _Frequently Used_ length as well (`perLine * rows`) |
 | **pagesToEagerLoad** | | `2` | Number of pages to eager load each side of currently active page. |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
