@@ -6,7 +6,6 @@ import NimbleEmoji from './emoji/nimble-emoji'
 
 const styles = StyleSheet.create({
   labelText: {
-    fontSize: 15,
     fontWeight: 'bold',
   },
   labelTextLight: {
@@ -31,10 +30,12 @@ export default class NotFound extends React.PureComponent {
     emojiProps: PropTypes.object.isRequired,
     style: ViewPropTypes.style,
     theme: PropTypes.oneOf(['light', 'dark']),
+    fontSize: PropTypes.number,
   }
 
   static defaultProps = {
     theme: 'light',
+    fontSize: 15,
   }
 
   render() {
@@ -46,6 +47,7 @@ export default class NotFound extends React.PureComponent {
       notFoundEmoji,
       style,
       theme,
+      fontSize,
     } = this.props
 
     const component = (
@@ -69,6 +71,7 @@ export default class NotFound extends React.PureComponent {
                   theme === 'light'
                     ? styles.labelTextLight
                     : styles.labelTextDark,
+                  {fontSize},
                 ]}
               >
                 {i18n.notfound}

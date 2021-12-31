@@ -140,6 +140,7 @@ import { Picker } from 'emoji-mart-native'
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
 | **notFound** | | | [Not Found](#not-found) |
 | **categoryEmojis** | | `{}` | [Custom category emojis](#custom-category-emojis) |
+| **fontSize** | | 15 | Font size used for all text in the picker |
 
 #### I18n
 
@@ -320,7 +321,8 @@ const emojiImage = require('assets/emoji-image.png')
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
 | **onButtonPress** | | | Trigger when user press the button |
-| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
+| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button |
+| **buttonSize** | | 18 | The button width and height |
 
 ### Emoji
 ```jsx
@@ -610,16 +612,6 @@ You'll also need to ensure that Babel is transpiling `emoji-mart-native`, e.g. [
 ```bash
 yarn build
 ```
-
-<!--In two separate tabs:
-
-```bash
-yarn start
-yarn storybook
-```
-
-The storybook is hosted at `localhost:6006`, and the code will be built on-the-fly.
--->
 
 ### Testing Changes
 

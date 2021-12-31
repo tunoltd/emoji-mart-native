@@ -7,7 +7,6 @@ import {
   View,
   ScrollView,
   ToastAndroid,
-  // PixelRatio,
 } from 'react-native'
 
 import skinStore from '../../utils/skin'
@@ -488,20 +487,11 @@ export default class NimblePicker extends React.PureComponent {
       notFound,
       notFoundEmoji,
       skinEmoji,
+      fontSize,
     } = this.props
 
     const emojiSizing = emojiSize + emojiMargin
-    // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
-    // multiple devices, however the values passed still gets modified..
-    // TODO: If 4.roundToNearestPixel() starts working correctly,
-    // change hard value back to using PixelRatio.roundToNearestPixel()
-    // const emojisListWidth = PixelRatio.roundToNearestPixel(
-    //   perLine * emojiSizing + emojiMargin + 2,
-    // )
-    // const emojisListHeight = PixelRatio.roundToNearestPixel(
-    //   rows * emojiSizing + emojiMargin,
-    // )
-    const emojisListWidth = 320
+    const emojisListWidth = perLine * emojiSizing + emojiMargin + 2
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
     const theme = this.getPreferredTheme()
@@ -550,6 +540,7 @@ export default class NimblePicker extends React.PureComponent {
           }}
           showCloseButton={showCloseButton}
           theme={theme}
+          fontSize={fontSize}
         />
 
         <ScrollView
@@ -612,6 +603,7 @@ export default class NimblePicker extends React.PureComponent {
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
                 theme={theme}
+                fontSize={fontSize}
               />
             )
           })}
