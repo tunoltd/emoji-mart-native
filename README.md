@@ -116,6 +116,8 @@ import { Picker } from 'emoji-mart-native'
 | **recent** | | | Pass your own frequently used emojis as array of string IDs |
 | **enableFrequentEmojiSort** | | `false` | Instantly sort “Frequently Used” category |
 | **emojiSize** | | `30` | The emoji width and height |
+| **emojiMargin** | | `14` | The emoji margin |
+| **anchorSize** | | `24` | The anchor emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}` |
 | **onSkinChange** | | | Params: `(skin) => {}` |
