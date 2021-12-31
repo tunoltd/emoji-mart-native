@@ -3,7 +3,8 @@ var fs = require('fs'),
   inflection = require('inflection'),
   mkdirp = require('mkdirp')
 
-var {compress} = require('../../src/utils/data')
+var {compress} = require('../../dist/utils/data')
+var {unifiedToNative} = require('../../dist/utils')
 
 var sets = ['apple', 'facebook', 'google', 'twitter']
 
@@ -86,8 +87,10 @@ module.exports = (options) => {
     datum.text = datum.text || ''
     delete datum.texts
 
-    if (emojiLib.lib[datum.short_name]) {
-      datum.keywords = emojiLib.lib[datum.short_name].keywords
+    var nativeEmoji = unifiedToNative(datum.unified)
+
+    if (emojiLib[nativeEmoji]) {
+      datum.keywords = emojiLib[nativeEmoji]
     }
 
     data.emojis[datum.short_name] = datum
@@ -97,6 +100,7 @@ module.exports = (options) => {
     delete datum.softbank
     delete datum.google
     delete datum.category
+    delete datum.subcategory
     delete datum.sort_order
 
     compress(datum)

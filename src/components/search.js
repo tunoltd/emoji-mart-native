@@ -81,6 +81,7 @@ export default class Search extends React.PureComponent {
     skinsProps: PropTypes.object.isRequired,
     emojiProps: PropTypes.object.isRequired,
     theme: PropTypes.oneOf(['light', 'dark']),
+    fontSize: PropTypes.number,
   }
 
   static defaultProps = {
@@ -91,6 +92,7 @@ export default class Search extends React.PureComponent {
     autoFocus: false,
     showSkinTones: true,
     theme: 'light',
+    fontSize: 15,
   }
 
   constructor(props) {
@@ -147,6 +149,7 @@ export default class Search extends React.PureComponent {
       showCloseButton,
       emojiProps,
       theme,
+      fontSize,
     } = this.props
     const {searchTerm} = this.state
 
@@ -196,6 +199,7 @@ export default class Search extends React.PureComponent {
             theme === 'light'
               ? styles.searchInputLight
               : styles.searchInputDark,
+            {fontSize},
           ]}
           placeholderTextColor={theme === 'light' ? '#878787' : '#787878'}
           ref={this.setRef}

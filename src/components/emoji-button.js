@@ -1,15 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, TouchableOpacity, Image} from 'react-native'
+import {TouchableOpacity, Image} from 'react-native'
 
 const emojiIcon = require('../assets/emoji-icon.png')
-
-const styles = StyleSheet.create({
-  emojiButton: {
-    width: 18,
-    height: 18,
-  },
-})
 
 export default class EmojiButton extends React.PureComponent {
   static propTypes /* remove-proptypes */ = {
@@ -20,19 +13,24 @@ export default class EmojiButton extends React.PureComponent {
       }),
       PropTypes.number,
     ]),
+    buttonSize: PropTypes.number,
   }
 
   static defaultProps = {
     onButtonPress: () => {},
     buttonImage: emojiIcon,
+    buttonSize: 18,
   }
 
   render() {
-    const {buttonImage} = this.props
+    const {buttonImage, buttonSize} = this.props
 
     return (
       <TouchableOpacity onPress={this.props.onButtonPress}>
-        <Image style={styles.emojiButton} source={buttonImage} />
+        <Image
+          style={{width: buttonSize, height: buttonSize}}
+          source={buttonImage}
+        />
       </TouchableOpacity>
     )
   }

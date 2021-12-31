@@ -128,6 +128,8 @@ import { Picker } from 'emoji-mart-native'
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
 | **theme** | | `light` | The picker theme: `'auto', 'light', 'dark'` Note: `auto` uses `Appearance` and only works when using `react-native` 0.62.0 or above |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
+| **sheetColumns** | | `60` | The emoji sheet columns |
+| **sheetRows** | | `60` | The emoji sheet rows |
 | **spriteSheetFn** | | `((set, sheetSize) => …)` | [A Fn](#spritesheetfn) that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
 | **emojisToShowFilter** | | `((emoji) => true)` | A Fn to choose whether an emoji should be displayed or not |
@@ -140,6 +142,7 @@ import { Picker } from 'emoji-mart-native'
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
 | **notFound** | | | [Not Found](#not-found) |
 | **categoryEmojis** | | `{}` | [Custom category emojis](#custom-category-emojis) |
+| **fontSize** | | 15 | Font size used for all text in the picker |
 
 #### I18n
 
@@ -320,7 +323,8 @@ const emojiImage = require('assets/emoji-image.png')
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
 | **onButtonPress** | | | Trigger when user press the button |
-| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button (Renders 18px by 18px) |
+| **buttonImage** | | ![emoji-icon.png](https://raw.githubusercontent.com/tunoltd/emoji-mart-native/master/dist/assets/emoji-icon.png) | The image used for rendering the button |
+| **buttonSize** | | 18 | The button width and height |
 
 ### Emoji
 ```jsx
@@ -341,6 +345,8 @@ import { Emoji } from 'emoji-mart-native'
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
+| **sheetColumns** | | `60` | The emoji sheet columns |
+| **sheetRows** | | `60` | The emoji sheet rows |
 | **spriteSheetFn** | | ``((set, sheetSize) => {uri: `https://unpkg.com/emoji-datasource@5.0.1/sheet_${set}_${sheetSize}.png`})`` | [A Fn](#spritesheetfn) that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **useLocalImages** | | false | [Local image requires](#local-image-requires) |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
@@ -396,8 +402,8 @@ const customEmojis = [
     sheet_x: 1,
     sheet_y: 1,
     size: 64,
-    sheetColumns: 57,
-    sheetRows: 57
+    sheetColumns: 60,
+    sheetRows: 60
   },
   {
     name: 'Test Flag',
@@ -409,8 +415,8 @@ const customEmojis = [
     sheet_x: 1,
     sheet_y: 1,
     size: 64,
-    sheetColumns: 57,
-    sheetRows: 57
+    sheetColumns: 60,
+    sheetRows: 60
   }
 ]
 
@@ -610,16 +616,6 @@ You'll also need to ensure that Babel is transpiling `emoji-mart-native`, e.g. [
 ```bash
 yarn build
 ```
-
-<!--In two separate tabs:
-
-```bash
-yarn start
-yarn storybook
-```
-
-The storybook is hosted at `localhost:6006`, and the code will be built on-the-fly.
--->
 
 ### Testing Changes
 

@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.6.2-beta",
+  "version": "0.6.3-beta",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "repository": {
@@ -21,28 +21,24 @@
   },
   "homepage": "https://tunoltd.github.io/emoji-mart-native/",
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.16.7",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.0.0",
-    "@storybook/addon-actions": "^5.3.18",
-    "@storybook/addon-knobs": "^5.3.18",
-    "@storybook/addon-links": "^3.2.10",
-    "@storybook/addon-options": "3.2.10",
-    "@storybook/react": "^3.2.11",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-define": "^2.0.0",
-    "emoji-datasource": "5.0.1",
-    "emojilib": "^2.2.1",
+    "emoji-datasource": "7.0.2",
+    "emojilib": "^3.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "inflection": "1.10.0",
@@ -68,8 +64,6 @@
     "start": "npm run watch",
     "test": "npm run clean && jest",
     "prepublishOnly": "npm run build",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "prettier": "prettier --write \"{src,scripts}/**/*.js\"",
     "prettier:check": "prettier --check \"{src,scripts}/**/*.js\"",
     "prepare": "npm run build:dist"

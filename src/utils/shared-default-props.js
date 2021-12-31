@@ -2,8 +2,8 @@ const EmojiDefaultProps = {
   skin: 1,
   set: 'apple',
   sheetSize: 64,
-  sheetColumns: 57,
-  sheetRows: 57,
+  sheetColumns: 60,
+  sheetRows: 60,
   native: false,
   forceSize: false,
   tooltip: false,
@@ -39,6 +39,8 @@ const PickerDefaultProps = {
   defaultSkin: EmojiDefaultProps.skin,
   native: EmojiDefaultProps.native,
   sheetSize: EmojiDefaultProps.sheetSize,
+  sheetColumns: EmojiDefaultProps.sheetColumns,
+  sheetRows: EmojiDefaultProps.sheetRows,
   spriteSheetFn: EmojiDefaultProps.spriteSheetFn,
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,
@@ -54,6 +56,7 @@ const PickerDefaultProps = {
   notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',
   categoryEmojis: {},
+  fontSize: 15,
 }
 
 export {PickerDefaultProps, EmojiDefaultProps}

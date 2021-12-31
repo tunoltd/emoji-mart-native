@@ -4,6 +4,7 @@ var fs = require('fs'),
   mkdirp = require('mkdirp')
 
 var {compress} = require('../dist/utils/data')
+var {unifiedToNative} = require('../dist/utils')
 
 var categories = [
   ['Smileys & Emotion', 'smileys'],
@@ -81,11 +82,13 @@ module.exports = (options) => {
     datum.text = datum.text || ''
     delete datum.texts
 
-    if (emojiLib.lib[datum.short_name]) {
-      datum.keywords = emojiLib.lib[datum.short_name].keywords
+    var nativeEmoji = unifiedToNative(datum.unified)
+
+    if (emojiLib[nativeEmoji]) {
+      datum.keywords = emojiLib[nativeEmoji]
     }
 
-    if (datum.category != 'Skin Tones') {
+    if (datum.category != 'Component') {
       categoryIndex = categoriesIndex[category]
       data.categories[categoryIndex].emojis.push(datum.short_name)
       data.emojis[datum.short_name] = datum
@@ -105,6 +108,7 @@ module.exports = (options) => {
     delete datum.google
     delete datum.image
     delete datum.category
+    delete datum.subcategory
     delete datum.sort_order
 
     compress(datum)

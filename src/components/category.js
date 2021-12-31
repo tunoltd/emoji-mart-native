@@ -1,12 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  // PixelRatio
-} from 'react-native'
+import {StyleSheet, View, Text, ScrollView} from 'react-native'
 
 import frequently from '../utils/frequently'
 import {getData, getSanitizedData, chunk} from '../utils'
@@ -35,12 +29,14 @@ export default class Category extends React.Component {
     notFound: PropTypes.func,
     notFoundEmoji: PropTypes.string.isRequired,
     theme: PropTypes.oneOf(['light', 'dark']),
+    fontSize: PropTypes.number,
   }
 
   static defaultProps = {
     emojis: [],
     hasStickyPosition: true,
     theme: 'light',
+    fontSize: 15,
   }
 
   constructor(props) {
@@ -239,6 +235,7 @@ export default class Category extends React.Component {
         notFound,
         notFoundEmoji,
         theme,
+        fontSize,
       } = this.props,
       emojis = this.getEmojis(),
       {visible} = this.state
@@ -246,17 +243,7 @@ export default class Category extends React.Component {
     const {size: emojiSize, margin: emojiMargin} = emojiProps
 
     const emojiSizing = emojiSize + emojiMargin
-    // Wanted to use PixelRatio.roundToNearestPixel() here to accomodate
-    // multiple devices, however the values passed still gets modified..
-    // TODO: If PixelRatio.roundToNearestPixel() starts working correctly,
-    // change hard value back to using PixelRatio.roundToNearestPixel()
-    // const emojisListWidth = PixelRatio.roundToNearestPixel(
-    //   perLine * emojiSizing + emojiMargin + 2,
-    // )
-    // const emojisListHeight = PixelRatio.roundToNearestPixel(
-    //   rows * emojiSizing + emojiMargin,
-    // )
-    const emojisListWidth = 320
+    const emojisListWidth = perLine * emojiSizing + emojiMargin + 2
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
     const paginatedEmojis = chunk(emojis, perLine * rows)
@@ -279,9 +266,6 @@ export default class Category extends React.Component {
                       width: emojisListWidth,
                       height: emojisListHeight,
                       padding: emojiMargin / 2,
-                      // TODO: Remove once we can use PixelRatio.roundToNearestPixel()
-                      paddingLeft: 6,
-                      paddingRight: 6,
                     },
                   ]}
                 >
@@ -317,6 +301,7 @@ export default class Category extends React.Component {
               data={this.data}
               emojiProps={emojiProps}
               theme={theme}
+              fontSize={fontSize}
             />
           ),
         ]

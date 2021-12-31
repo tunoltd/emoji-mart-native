@@ -42,6 +42,8 @@ const PickerPropTypes = {
   native: PropTypes.bool,
   spriteSheetFn: EmojiPropTypes.spriteSheetFn,
   sheetSize: EmojiPropTypes.sheetSize,
+  sheetColumns: PropTypes.number,
+  sheetRows: PropTypes.number,
   emojiImageFn: EmojiPropTypes.emojiImageFn,
   emojisToShowFilter: PropTypes.func,
   useLocalImages: EmojiPropTypes.useLocalImages,
@@ -79,6 +81,7 @@ const PickerPropTypes = {
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
   categoryEmojis: PropTypes.objectOf(PropTypes.string),
+  fontSize: PropTypes.number,
 }
 
 export {EmojiPropTypes, PickerPropTypes}
