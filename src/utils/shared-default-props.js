@@ -39,6 +39,8 @@ const PickerDefaultProps = {
   defaultSkin: EmojiDefaultProps.skin,
   native: EmojiDefaultProps.native,
   sheetSize: EmojiDefaultProps.sheetSize,
+  sheetColumns: EmojiDefaultProps.sheetColumns,
+  sheetRows: EmojiDefaultProps.sheetRows,
   spriteSheetFn: EmojiDefaultProps.spriteSheetFn,
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,

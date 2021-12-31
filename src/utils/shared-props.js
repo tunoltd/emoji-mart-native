@@ -42,6 +42,8 @@ const PickerPropTypes = {
   native: PropTypes.bool,
   spriteSheetFn: EmojiPropTypes.spriteSheetFn,
   sheetSize: EmojiPropTypes.sheetSize,
+  sheetColumns: PropTypes.number,
+  sheetRows: PropTypes.number,
   emojiImageFn: EmojiPropTypes.emojiImageFn,
   emojisToShowFilter: PropTypes.func,
   useLocalImages: EmojiPropTypes.useLocalImages,
