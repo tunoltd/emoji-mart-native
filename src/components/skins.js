@@ -19,13 +19,6 @@ const styles = StyleSheet.create({
     borderColor: '#3f3f3f',
   },
   skinSwatch: {
-    width: 0,
-    height: 0,
-    overflow: 'hidden',
-  },
-  skinSwatchShown: {
-    width: 20,
-    height: 16,
     paddingLeft: 2,
     paddingRight: 2,
   },
@@ -94,15 +87,9 @@ export default class Skins extends React.PureComponent {
     for (let skinTone = 1; skinTone <= 6; skinTone++) {
       const selected = skinTone === skin
 
-      skinToneNodes.push(
-        <View
-          key={`skin-tone-${skinTone}`}
-          style={[
-            styles.skinSwatch,
-            selected || opened ? styles.skinSwatchShown : null,
-          ]}
-        >
-          {selected || opened ? (
+      if (selected || opened) {
+        skinToneNodes.push(
+          <View key={`skin-tone-${skinTone}`} style={[styles.skinSwatch]}>
             <TouchableWithoutFeedback
               onPress={this.handlePress.bind(this, skinTone)}
               style={[styles.skin, styles[`skinTone${skinTone}`]]}
@@ -113,9 +100,9 @@ export default class Skins extends React.PureComponent {
                 ) : null}
               </View>
             </TouchableWithoutFeedback>
-          ) : null}
-        </View>,
-      )
+          </View>,
+        )
+      }
     }
 
     return (
