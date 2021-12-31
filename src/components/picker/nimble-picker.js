@@ -487,6 +487,7 @@ export default class NimblePicker extends React.PureComponent {
       notFound,
       notFoundEmoji,
       skinEmoji,
+      skinEmojiSize,
       fontSize,
     } = this.props
 
@@ -528,6 +529,7 @@ export default class NimblePicker extends React.PureComponent {
             skin,
             onChange: this.handleSkinChange,
             skinEmoji: skinEmoji,
+            skinEmojiSize: skinEmojiSize,
           }}
           emojiProps={{
             native,
