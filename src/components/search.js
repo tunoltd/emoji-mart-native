@@ -143,6 +143,7 @@ export default class Search extends React.PureComponent {
       theme,
       fontSize,
     } = this.props
+    const iconSize = Math.round(fontSize * 1.6)
     const {searchTerm} = this.state
 
     let background
@@ -176,7 +177,10 @@ export default class Search extends React.PureComponent {
             style={[styles.closeButton]}
           >
             <Image
-              style={styles.closeButtonIcon}
+              style={[
+                styles.closeButtonIcon,
+                {width: iconSize, height: iconSize},
+              ]}
               source={
                 theme === 'light' ? arrowBackIconLight : arrowBackIconDark
               }
@@ -206,7 +210,10 @@ export default class Search extends React.PureComponent {
             style={[styles.closeButton]}
           >
             <Image
-              style={styles.closeButtonIcon}
+              style={[
+                styles.closeButtonIcon,
+                {width: iconSize, height: iconSize},
+              ]}
               source={theme === 'light' ? clearIconLight : clearIconDark}
             />
           </Touchable>
@@ -220,7 +227,7 @@ export default class Search extends React.PureComponent {
                 {...skinsProps}
               />
             ) : (
-              <Skins theme={theme} {...skinsProps} />
+              <Skins theme={theme} iconSize={iconSize} {...skinsProps} />
             )}
           </View>
         )}
