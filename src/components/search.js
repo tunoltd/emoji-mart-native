@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 2,
     paddingBottom: 2,
-    height: 52,
+    minHeight: 52,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -49,18 +49,10 @@ const styles = StyleSheet.create({
   searchInputDark: {
     color: '#bebebe',
   },
-  closeButtonContainer: {
-    width: 44,
-    height: 44,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   closeButton: {
-    width: 28,
-    height: 28,
-    margin: 10,
     borderRadius: 500,
+    margin: 10,
+    padding: 2,
   },
   closeButtonIcon: {
     marginTop: 2,
@@ -151,6 +143,7 @@ export default class Search extends React.PureComponent {
       theme,
       fontSize,
     } = this.props
+    const iconSize = Math.round(fontSize * 1.6)
     const {searchTerm} = this.state
 
     let background
@@ -178,20 +171,21 @@ export default class Search extends React.PureComponent {
         ]}
       >
         {showCloseButton ? (
-          <View style={styles.closeButtonContainer}>
-            <Touchable
-              onPress={onPressClose}
-              background={Platform.OS === 'android' ? background : null}
-              style={[styles.closeButton]}
-            >
-              <Image
-                style={styles.closeButtonIcon}
-                source={
-                  theme === 'light' ? arrowBackIconLight : arrowBackIconDark
-                }
-              />
-            </Touchable>
-          </View>
+          <Touchable
+            onPress={onPressClose}
+            background={Platform.OS === 'android' ? background : null}
+            style={[styles.closeButton]}
+          >
+            <Image
+              style={[
+                styles.closeButtonIcon,
+                {width: iconSize, height: iconSize},
+              ]}
+              source={
+                theme === 'light' ? arrowBackIconLight : arrowBackIconDark
+              }
+            />
+          </Touchable>
         ) : null}
         <TextInput
           style={[
@@ -210,18 +204,19 @@ export default class Search extends React.PureComponent {
           underlineColorAndroid="transparent"
         />
         {searchTerm.length > 0 ? (
-          <View style={styles.closeButtonContainer}>
-            <Touchable
-              onPress={this.pressCancel}
-              background={Platform.OS === 'android' ? background : null}
-              style={[styles.closeButton]}
-            >
-              <Image
-                style={styles.closeButtonIcon}
-                source={theme === 'light' ? clearIconLight : clearIconDark}
-              />
-            </Touchable>
-          </View>
+          <Touchable
+            onPress={this.pressCancel}
+            background={Platform.OS === 'android' ? background : null}
+            style={[styles.closeButton]}
+          >
+            <Image
+              style={[
+                styles.closeButtonIcon,
+                {width: iconSize, height: iconSize},
+              ]}
+              source={theme === 'light' ? clearIconLight : clearIconDark}
+            />
+          </Touchable>
         ) : null}
         {showSkinTones && (
           <View>
@@ -232,7 +227,7 @@ export default class Search extends React.PureComponent {
                 {...skinsProps}
               />
             ) : (
-              <Skins theme={theme} {...skinsProps} />
+              <Skins theme={theme} iconSize={iconSize} {...skinsProps} />
             )}
           </View>
         )}

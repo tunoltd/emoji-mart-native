@@ -13,19 +13,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   skinSwatch: {
-    width: 0,
-    height: 0,
-    overflow: 'hidden',
-  },
-  skinSwatchShown: {
-    width: 32,
-    height: 28,
     paddingLeft: 2,
     paddingRight: 2,
   },
   skin: {
-    width: 28,
-    height: 28,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -55,7 +46,7 @@ export default class SkinsEmoji extends React.PureComponent {
   }
 
   render() {
-    const {skin, emojiProps, data, skinEmoji} = this.props
+    const {skin, emojiProps, data, skinEmoji, skinEmojiSize} = this.props
     const {opened} = this.state
 
     const skinToneNodes = []
@@ -63,27 +54,20 @@ export default class SkinsEmoji extends React.PureComponent {
     for (let skinTone = 1; skinTone <= 6; skinTone++) {
       const selected = skinTone === skin
 
-      skinToneNodes.push(
-        <View
-          key={`skin-tone-${skinTone}`}
-          style={[
-            styles.skinSwatch,
-            selected || opened ? styles.skinSwatchShown : null,
-          ]}
-        >
-          {selected || opened ? (
-            <View style={styles.skin}>
-              <NimbleEmoji
-                emoji={skinEmoji}
-                data={data}
-                onPress={this.handlePress.bind(this, skinTone)}
-                {...emojiProps}
-                skin={skinTone}
-              />
-            </View>
-          ) : null}
-        </View>,
-      )
+      if (selected || opened) {
+        skinToneNodes.push(
+          <View key={`skin-tone-${skinTone}`} style={[styles.skinSwatch]}>
+            <NimbleEmoji
+              emoji={skinEmoji}
+              data={data}
+              onPress={this.handlePress.bind(this, skinTone)}
+              {...emojiProps}
+              size={skinEmojiSize}
+              skin={skinTone}
+            />
+          </View>,
+        )
+      }
     }
 
     return <View style={styles.skinSwatches}>{skinToneNodes}</View>

@@ -78,6 +78,7 @@ const PickerPropTypes = {
     }),
   ),
   skinEmoji: PropTypes.string,
+  skinEmojiSize: PropTypes.number,
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
   categoryEmojis: PropTypes.objectOf(PropTypes.string),

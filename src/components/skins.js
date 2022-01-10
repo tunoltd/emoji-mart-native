@@ -19,28 +19,15 @@ const styles = StyleSheet.create({
     borderColor: '#3f3f3f',
   },
   skinSwatch: {
-    width: 0,
-    height: 0,
-    overflow: 'hidden',
-  },
-  skinSwatchShown: {
-    width: 20,
-    height: 16,
     paddingLeft: 2,
     paddingRight: 2,
   },
   skin: {
-    width: 16,
-    height: 16,
-    borderRadius: 32,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   skinSelected: {
-    width: 6,
-    height: 6,
-    borderRadius: 12,
     backgroundColor: 'rgba(255, 255, 255, 0.75)',
   },
   skinTone1: {
@@ -86,36 +73,52 @@ export default class Skins extends React.PureComponent {
   }
 
   render() {
-    const {skin, theme} = this.props
+    const {skin, theme, iconSize} = this.props
     const {opened} = this.state
 
     const skinToneNodes = []
 
+    const skinSize = Math.round(iconSize * 0.6666666666666666)
+    const skinSelectedSize = skinSize / 2
+
     for (let skinTone = 1; skinTone <= 6; skinTone++) {
       const selected = skinTone === skin
 
-      skinToneNodes.push(
-        <View
-          key={`skin-tone-${skinTone}`}
-          style={[
-            styles.skinSwatch,
-            selected || opened ? styles.skinSwatchShown : null,
-          ]}
-        >
-          {selected || opened ? (
+      if (selected || opened) {
+        skinToneNodes.push(
+          <View key={`skin-tone-${skinTone}`} style={[styles.skinSwatch]}>
             <TouchableWithoutFeedback
               onPress={this.handlePress.bind(this, skinTone)}
               style={[styles.skin, styles[`skinTone${skinTone}`]]}
             >
-              <View style={[styles.skin, styles[`skinTone${skinTone}`]]}>
+              <View
+                style={[
+                  styles.skin,
+                  {
+                    width: skinSize,
+                    height: skinSize,
+                    borderRadius: skinSize / 2,
+                  },
+                  styles[`skinTone${skinTone}`],
+                ]}
+              >
                 {selected && opened ? (
-                  <View style={styles.skinSelected} />
+                  <View
+                    style={[
+                      styles.skinSelected,
+                      {
+                        width: skinSelectedSize,
+                        height: skinSelectedSize,
+                        borderRadius: skinSelectedSize / 2,
+                      },
+                    ]}
+                  />
                 ) : null}
               </View>
             </TouchableWithoutFeedback>
-          ) : null}
-        </View>,
-      )
+          </View>,
+        )
+      }
     }
 
     return (

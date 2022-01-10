@@ -53,6 +53,7 @@ const PickerDefaultProps = {
   enableFrequentEmojiSort: false,
   custom: [],
   skinEmoji: '',
+  skinEmojiSize: 28,
   notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',
   categoryEmojis: {},
