@@ -22,6 +22,7 @@
   "homepage": "https://tunoltd.github.io/emoji-mart-native/",
   "dependencies": {
     "@babel/runtime": "^7.16.7",
+    "deprecated-react-native-prop-types": "^4.0.0",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
