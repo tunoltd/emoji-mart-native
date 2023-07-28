@@ -103,6 +103,8 @@ export default class NimblePicker extends React.PureComponent {
 
     this.scrollViewScrollLeft = 0
 
+    this.appearanceListener = undefined;
+
     this.categories = []
     let allCategories = [].concat(this.data.categories)
 
@@ -249,8 +251,8 @@ export default class NimblePicker extends React.PureComponent {
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
 
-    if (this.colorScheme && Appearance) {
-      Appearance.removeChangeListener(this.handleAppearanceChange)
+    if (this.colorScheme && Appearance && this.appearanceListener) {
+      this.appearanceListener.remove();
     }
   }
 
@@ -260,7 +262,7 @@ export default class NimblePicker extends React.PureComponent {
 
     if (!this.colorScheme && Appearance) {
       this.colorScheme = Appearance.getColorScheme()
-      Appearance.addChangeListener(this.handleAppearanceChange)
+      this.appearanceListener = Appearance.addChangeListener(this.handleAppearanceChange)
     }
 
     if (!this.colorScheme) return PickerDefaultProps.theme
