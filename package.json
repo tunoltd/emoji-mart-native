@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.6.5-beta",
+  "version": "1.0.0-beta",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "repository": {
@@ -20,53 +20,11 @@
     "url": "https://github.com/tunoltd/emoji-mart-native/issues"
   },
   "homepage": "https://tunoltd.github.io/emoji-mart-native/",
-  "dependencies": {
-    "@babel/runtime": "^7.16.7",
-    "deprecated-react-native-prop-types": "^4.0.0",
-    "prop-types": "^15.6.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.16.7",
-    "@babel/core": "^7.16.7",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.7.6",
-    "@babel/preset-env": "^7.0.0",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.0",
-    "babel-plugin-transform-define": "^2.0.0",
-    "emoji-datasource": "7.0.2",
-    "emojilib": "^3.0.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.11.2",
-    "inflection": "1.10.0",
-    "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.59.0",
-    "mkdirp": "0.5.1",
-    "prettier": "^1.16.4",
-    "react": "^16.11.0",
-    "react-native": "^0.62.2",
-    "react-test-renderer": "^16.8.4",
-    "rimraf": "2.5.2",
-    "webpack": "^3.6.0"
-  },
-  "scripts": {
-    "clean": "rm -rf dist/",
-    "build:data": "node scripts/build-data",
-    "build:localImagesData": "node scripts/local-images/build-data && BABEL_ENV=cjs babel data/local-images --out-dir data/local-images --copy-files",
-    "build:dist": "npm run build:cjs",
-    "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files --ignore  '**/__tests__/*'",
-    "build:link": "BABEL_ENV=cjs babel src --copy-files --ignore '**/__tests__/*'",
-    "build": "npm run clean && npm run build:dist",
-    "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files --ignore '**/__tests__/*'",
-    "start": "npm run watch",
-    "test": "npm run clean && jest",
-    "prepublishOnly": "npm run build",
-    "prettier": "prettier --write \"{src,scripts}/**/*.js\"",
-    "prettier:check": "prettier --check \"{src,scripts}/**/*.js\"",
-    "prepare": "npm run build:dist"
-  }
+  "devDependencies": {},
+  "scripts": {}
 }
